@@ -1,0 +1,16 @@
+@use "../abstract";
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0px;
+	background-color: abstract.$mainBackgroundColor;
+	font-family: "Mukta", sans-serif;
+	font-size: 30px;
+}
