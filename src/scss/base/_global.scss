@@ -1,5 +1,3 @@
-@use "../abstract";
-
 *,
 *::before,
 *::after {
@@ -10,7 +8,6 @@
 
 body {
 	margin: 0px;
-	background-color: abstract.$mainBackgroundColor;
 	font-family: "Mukta", sans-serif;
 	font-size: 30px;
 }

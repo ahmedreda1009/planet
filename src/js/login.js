@@ -1,6 +1,4 @@
-import Swal from 'sweetalert2';
-import axios from 'axios';
-
+// api url
 const baseUrl = 'https://tarmeezacademy.com/api/v1/';
 
 // modal fires when user clicks on the forget password button.
@@ -35,14 +33,13 @@ let passwordSignUp = document.getElementById('password-sign-up').value;
 let pictureSignUp = document.getElementById('file-sign-up');
 
 function login(username, password) {
-    axios({
-        method: 'post',
-        url: `${baseUrl}/login`,
-        data: {
-            email: username,
-            password
-        }
-    });
+    // axios({
+    //     method: 'post',
+    //     url: `${baseUrl}/login`,
+    //     data: {
+    //         email: username,
+    //         password
+    //     }
+    // });
 }
-
-axios.get('https://api.aladhan.com/v1/calendarByCity/2017/4?city=Cairo&country=Egypt&method=5').then(data => console.log(data.data.data));
+// axios.get('https://api.aladhan.com/v1/calendarByCity/2017/4?city=Cairo&country=Egypt&method=5').then(data => console.log(data.data.data));

@@ -1,10 +1,7 @@
-const path = require('path');
-
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 // handle multiple html pages.
-let htmlPageNames = ['home'];
+let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/pages/${name}.html`, // relative path to the HTML files
@@ -15,12 +12,8 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 
 module.exports = {
     entry: {
-        main: './src/index.js'
-    },
-    output: {
-        path: path.resolve(__dirname, 'build'),
-        filename: "main.js",
-        assetModuleFilename: 'assets/[hash][ext][query]'
+        main: './src/index.js',
+        vendor: './src/vendor.js'
     },
     module: {
         rules: [
@@ -62,16 +55,6 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({ template: './src/index.html' })
-    ].concat(multipleHtmlPlugins),
-    devServer: {
-        static: {
-            directory: path.join(__dirname, 'build'),
-        },
-        port: 1009,
-        open: true,
-        compress: true,
-        magicHtml: true,
-    }
+    ].concat(multipleHtmlPlugins)
 }

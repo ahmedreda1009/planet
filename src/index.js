@@ -1,5 +1,5 @@
-import '@fortawesome/fontawesome-free/css/all.min.css';
-
+// css
 import './scss/_index.scss';
 
+// js
 import './js/login';
