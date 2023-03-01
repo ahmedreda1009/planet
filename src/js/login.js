@@ -24,8 +24,6 @@ document.getElementById('close-sign-up').addEventListener('click', () => {
     document.querySelector('.sign-up').classList.remove('active');
 });
 
-console.log('hi');
-
 let emailLogin = document.getElementById('email-login').value;
 let passwordLogin = document.getElementById('password-login').value;
 
