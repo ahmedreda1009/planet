@@ -49,7 +49,11 @@ module.exports = merge(common, {
             directory: path.join(__dirname, 'build'),
         },
         port: 1009,
-        open: true
-    }
+        open: true,
+        hot: false
+    },
+    optimization: {
+        runtimeChunk: 'single'
+    },
 });
 
