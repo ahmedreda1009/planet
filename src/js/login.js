@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+import axios from 'axios';
 // api url
 const baseUrl = 'https://tarmeezacademy.com/api/v1/';
 
@@ -22,7 +24,7 @@ document.getElementById('close-sign-up').addEventListener('click', () => {
     document.querySelector('.sign-up').classList.remove('active');
 });
 
-
+console.log('hi');
 
 let emailLogin = document.getElementById('email-login').value;
 let passwordLogin = document.getElementById('password-login').value;
