@@ -32,7 +32,7 @@
                     placeholder="Email">
                 <input class="rounded mb-3 border-opacity-25 ps-2" type="password" name="password" id="password-login"
                     placeholder="Password">
-                <button class="btn btn-info mb-2 fw-bold py-2 text-light fs-5">Log in</button>
+                <button class="btn btn-info mb-2 fw-bold py-2 text-light fs-5" id="login-btn">Log in</button>
                 <h6 class="forgotten-password text-primary text-center" id="forgotten-password">Forgotten password?</h6>
                 <hr class="border-dark">
                 <span class="or bg-light px-2 text-muted fs-6 position-absolute">or</span>
@@ -55,9 +55,11 @@
                 <input type="password" placeholder="New password" id="password-sign-up">
                 <label for="profile-pic">
                     <i class="fa-solid fa-image text-info"></i>
-                    <span>Select your profile picture.</span>
-                    <input id="profile-pic" type="file" id="file-sign-up"
-                        accept="image/png, image/jpg, image/gif, image/jpeg" />
+                    <input id="profile-pic" type="file" accept="image/png, image/jpg, image/gif, image/jpeg" />
+                    <span class="title">Select your profile picture.</span>
+                    <span id="selected-img">
+
+                    </span>
                 </label>
                 <div class="info">
                     <p>Do not share photos or any personal data that you do not want to be seen by other users.</p>
