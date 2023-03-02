@@ -10,7 +10,7 @@
 	max-width: 100vw;
 	min-height: 100vh;
 
-	@media (max-width: 800px) {
+	@media (max-width: 900px) {
 		& {
 			flex-direction: column;
 			gap: 0px;
@@ -23,7 +23,7 @@
 }
 
 .text {
-	@media (max-width: 800px) {
+	@media (max-width: 900px) {
 		& {
 			padding-top: 40px;
 		}
@@ -31,13 +31,24 @@
 
 	.logo {
 		font-family: "Comfortaa", sans-serif;
-		font-size: 60px;
+		font-size: 80px;
 		user-select: none;
+
+		@media (max-width: 900px) {
+			& {
+				font-size: 60px;
+			}
+		}
 
 		span {
 			font-weight: 800;
-			letter-spacing: -4px;
-			letter-spacing: -4px;
+			letter-spacing: -8px;
+
+			@media (max-width: 900px) {
+				& {
+					letter-spacing: -6px;
+				}
+			}
 		}
 
 		.outer {
@@ -48,9 +59,16 @@
 	}
 
 	.slogan {
-		font-size: 17px;
-		margin-top: -13px;
+		font-size: 20px;
+		margin-top: -18px;
+		padding-left: 3px;
 		font-weight: 100;
+
+		@media (max-width: 900px) {
+			& {
+				font-size: 18px;
+			}
+		}
 	}
 }
 
@@ -148,7 +166,7 @@
 		transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 		box-shadow: 0 2px 5px rgb(0 0 0), 0 8px 20px 0px rgb(0 0 0);
 
-		@media (max-width: 800px) {
+		@media (max-width: 900px) {
 			& {
 				top: 60%;
 			}
@@ -241,6 +259,7 @@
 		button {
 			width: 50%;
 			margin: 10px auto;
+			padding: 10px;
 		}
 	}
 }
