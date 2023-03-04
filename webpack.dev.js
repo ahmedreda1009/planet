@@ -9,19 +9,13 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/views/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
-        chunks: [`${name}`] // respective JS files
+        chunks: [`${name}`], // respective JS files
+        // favicon: './src/assets/favicon.png'
     })
 });
 
 module.exports = merge(common, {
     mode: "development",
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'build'),
-        // assetModuleFilename: './assets/[hash][ext][query]',
-        assetModuleFilename: './assets/[name][ext]',
-        // asyncChunks: true,
-    },
     module: {
         rules: [
             {

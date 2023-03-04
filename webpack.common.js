@@ -1,8 +1,16 @@
+const path = require('path');
+
 module.exports = {
     entry: {
         main: './src/index.js',
         vendor: './src/vendor.js',
         home: './src/js/home/home.js'
+    },
+    output: {
+        filename: '[name]-[contenthash].bundle.js',
+        path: path.resolve(__dirname, 'build'),
+        assetModuleFilename: './assets/[name]-[hash][ext][query]',
+        // asyncChunks: true,
     },
     module: {
         rules: [

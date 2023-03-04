@@ -15,17 +15,13 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/views/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
-        chunks: [`${name}`] // respective JS files
+        chunks: [`${name}`], // respective JS files
+        // favicon: './src/assets/favicon.png'
     })
 });
 
 module.exports = merge(common, {
     mode: "production",
-    output: {
-        filename: '[name]-[contenthash].bundle.js',
-        path: path.resolve(__dirname, 'build'),
-        assetModuleFilename: './assets/[name]-[hash][ext][query]'
-    },
     plugins: [
         new MiniCssExtractPlugin({ filename: "[name]-[contenthash].css" }),
         new CleanWebpackPlugin(),
@@ -34,7 +30,7 @@ module.exports = merge(common, {
             filename: 'index.html',
             chunks: [`main`, 'vendor'], // respective JS files
             excludeChunks: ['home'],
-            favicon: './src/assets/favicon.png'
+            // favicon: './src/assets/favicon.png'
         }),
     ].concat(multipleHtmlPlugins),
     module: {
