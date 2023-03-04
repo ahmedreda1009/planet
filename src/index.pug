@@ -1,16 +1,7 @@
 doctype html
-html
+html(lang='en')
 	head
-		meta(charset='UTF-8')
-		meta(http-equiv='X-UA-Compatible' content='IE=edge')
-		meta(name='viewport' content='width=device-width, initial-scale=1.0')
-		title planet
-		//- link(rel='icon' href='./favicon.png' type='image/x-icon')
-		//- link(rel='icon' href='./assets/favicon.png' type='image/x-icon')
-		link(rel='icon' href=require('./assets/favicon.png') type='image/x-icon')
-		link(rel='preconnect' href='https://fonts.googleapis.com')
-		link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
-		link(href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mukta:wght@200;300;400;500;600;700;800&display=swap' rel='stylesheet')
+		include views/includes/head.pug
 	body
 		.wrapper.d-flex.pb-5.text-light
 			.text
@@ -24,7 +15,12 @@ html
 					span.fw-bold pla
 						span.text-info net
 				form.d-flex.flex-column.position-relative(action='')
-					input#email-login.rounded.mb-2.border-opacity-25.ps-2(type='text' name='email' placeholder='Email' value='eve.holt@reqres.in')
+					input#email-login.rounded.mb-2.border-opacity-25.ps-2(
+						type='text' 
+						name='email' 
+						placeholder='Email' 
+						value='eve.holt@reqres.in'
+					)
 					input#password-login.rounded.mb-3.border-opacity-25.ps-2(type='password' name='password' placeholder='Password' value='pistol')
 					button#login-btn.btn.btn-dark.mb-2.fw-bold.py-2.text-light.fs-5.shadow Log in
 					h6#forgotten-password.forgotten-password.text-info.text-center Forgotten password?
