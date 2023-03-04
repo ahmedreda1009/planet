@@ -13,7 +13,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        template: `./src/pages/${name}.html`, // relative path to the HTML files
+        template: `./src/views/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`] // respective JS files
     })
@@ -24,12 +24,19 @@ module.exports = merge(common, {
     output: {
         filename: '[name]-[contenthash].bundle.js',
         path: path.resolve(__dirname, 'build'),
-        assetModuleFilename: 'assets/[name]-[hash][ext][query]'
+        assetModuleFilename: './assets/[name]-[hash][ext][query]'
     },
     plugins: [
         new MiniCssExtractPlugin({ filename: "[name]-[contenthash].css" }),
-        new CleanWebpackPlugin()
-    ],
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.pug',
+            filename: 'index.html',
+            chunks: [`main`, 'vendor'], // respective JS files
+            excludeChunks: ['home'],
+            favicon: './src/assets/favicon.png'
+        }),
+    ].concat(multipleHtmlPlugins),
     module: {
         rules: [
             {
@@ -46,21 +53,13 @@ module.exports = merge(common, {
                     // Compiles Sass to CSS
                     "sass-loader",
                 ],
-            }
+            },
         ]
     },
     optimization: {
         minimizer: [
             new CssMinimizerPlugin(),
             new TerserPlugin(),
-            new HtmlWebpackPlugin({
-                template: './src/index.html',
-                minify: {
-                    removeAttributeQuotes: true,
-                    collapseWhitespace: true,
-                    removeComments: true
-                }
-            }),
             new ImageMinimizerPlugin({
                 minimizer: {
                     implementation: ImageMinimizerPlugin.sharpMinify,
@@ -90,6 +89,6 @@ module.exports = merge(common, {
                     },
                 },
             })
-        ].concat(multipleHtmlPlugins),
+        ]
     },
 });

@@ -29,19 +29,20 @@
                         class="text-info">net</span></span></h3>
             <form action="" class="d-flex flex-column position-relative">
                 <input class="rounded mb-2 border-opacity-25 ps-2" type="text" name="email" id="email-login"
-                    placeholder="Email">
+                    placeholder="Email" value="eve.holt@reqres.in">
                 <input class="rounded mb-3 border-opacity-25 ps-2" type="password" name="password" id="password-login"
-                    placeholder="Password">
-                <button class="btn btn-info mb-2 fw-bold py-2 text-light fs-5" id="login-btn">Log in</button>
-                <h6 class="forgotten-password text-primary text-center" id="forgotten-password">Forgotten password?</h6>
+                    placeholder="Password" value="pistol">
+                <button class="btn btn-dark mb-2 fw-bold py-2 text-light fs-5 shadow" id="login-btn">Log in</button>
+                <h6 class="forgotten-password text-info text-center" id="forgotten-password">Forgotten password?</h6>
                 <hr class="border-dark">
                 <span class="or bg-light px-2 text-muted fs-6 position-absolute">or</span>
-                <button class="btn btn-primary w-75 m-auto mt-2 fw-bold py-2" id="create-new-acc">Create new
+                <button class="btn btn-info w-75 m-auto mt-2 fw-bold py-2 shadow" id="create-new-acc">Create new
                     account</button>
             </form>
         </div>
 
         <div class="sign-up position-absolute min-vh-100 min-vw-100 top-0">
+            <div class="overlay position-absolute min-vh-100 min-vw-100 top-0"></div>
             <form action="" class="d-flex flex-column position-absolute rounded">
                 <i class="fa-solid fa-xmark" id="close-sign-up"></i>
                 <div class="header">
@@ -53,7 +54,7 @@
                 <input type="text" placeholder="Your name" id="name-sign-up">
                 <input type="email" placeholder="Email address" id="email-sign-up">
                 <input type="password" placeholder="New password" id="password-sign-up">
-                <label for="profile-pic">
+                <label id="input-img" for="profile-pic">
                     <i class="fa-solid fa-image text-info"></i>
                     <input id="profile-pic" type="file" accept="image/png, image/jpg, image/gif, image/jpeg" />
                     <span class="title">Select your profile picture.</span>
@@ -67,7 +68,7 @@
                         in
                         order to preserve your privacy.</p>
                 </div>
-                <button class="btn btn-primary bg-gradient" id="sign-up-btn">Sign Up</button>
+                <button class="btn btn-dark bg-gradient" id="sign-up-btn">Sign Up</button>
             </form>
         </div>
     </div>

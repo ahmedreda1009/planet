@@ -1,0 +1,54 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+		meta(name='viewport' content='width=device-width, initial-scale=1.0')
+		title planet
+		link(rel='icon' href='./favicon.png' type='image/x-icon')
+		//- link(rel='icon' href='./assets/favicon.png' type='image/x-icon')
+		link(rel='preconnect' href='https://fonts.googleapis.com')
+		link(rel='preconnect' href='https://fonts.gstatic.com' crossorigin='')
+		link(href='https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&family=Mukta:wght@200;300;400;500;600;700;800&display=swap' rel='stylesheet')
+	body
+		.wrapper.d-flex.pb-5.text-light
+			.text
+				.logo.text-center
+					i.fa-solid.fa-earth-americas.text-info
+					span.outer pla
+						span.text-info net
+				.slogan To be connected, not to be controlled.
+			.login-box.mt-5.bg-light.p-3.rounded
+				h3.title.fs-5.text-center.mb-4.mt-1 Log in to 
+					span.fw-bold pla
+						span.text-info net
+				form.d-flex.flex-column.position-relative(action='')
+					input#email-login.rounded.mb-2.border-opacity-25.ps-2(type='text' name='email' placeholder='Email' value='eve.holt@reqres.in')
+					input#password-login.rounded.mb-3.border-opacity-25.ps-2(type='password' name='password' placeholder='Password' value='pistol')
+					button#login-btn.btn.btn-dark.mb-2.fw-bold.py-2.text-light.fs-5.shadow Log in
+					h6#forgotten-password.forgotten-password.text-info.text-center Forgotten password?
+					hr.border-dark
+					span.or.bg-light.px-2.text-muted.fs-6.position-absolute or
+					button#create-new-acc.btn.btn-info.w-75.m-auto.mt-2.fw-bold.py-2.shadow Create new account
+			.sign-up.position-absolute.min-vh-100.min-vw-100.top-0
+				.overlay.position-absolute.min-vh-100.min-vw-100.top-0
+				form.d-flex.flex-column.position-absolute.rounded(action='')
+					i#close-sign-up.fa-solid.fa-xmark
+					.header
+						h3.title Sign Up
+						p Register and connect to the whole 
+							span.logo.fw-bold pla
+								span.text-info net
+						hr
+					input#name-sign-up(type='text' placeholder='Your name')
+					input#email-sign-up(type='email' placeholder='Email address')
+					input#password-sign-up(type='password' placeholder='New password')
+					label#input-img(for='profile-pic')
+						i.fa-solid.fa-image.text-info
+						input#profile-pic(type='file' accept='image/png, image/jpg, image/gif, image/jpeg')
+						span.title Select your profile picture.
+						span#selected-img
+					.info
+						p Do not share photos or any personal data that you do not want to be seen by other users.
+						p We are still experimenting, so kindly do not use a password that you do not want anyone to know, in order to preserve your privacy.
+					button#sign-up-btn.btn.btn-dark.bg-gradient Sign Up

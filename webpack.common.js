@@ -1,7 +1,8 @@
 module.exports = {
     entry: {
         main: './src/index.js',
-        vendor: './src/vendor.js'
+        vendor: './src/vendor.js',
+        home: './src/js/home/home.js'
     },
     module: {
         rules: [
@@ -24,7 +25,11 @@ module.exports = {
             {
                 test: /\.(png|jpg|svg|gif)$/i,
                 type: 'asset/resource'
-            }
+            },
+            {
+                test: /\.pug$/,
+                loader: '@webdiscus/pug-loader',
+            },
         ]
     }
 }
