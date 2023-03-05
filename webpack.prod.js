@@ -22,6 +22,12 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 
 module.exports = merge(common, {
     mode: "production",
+    output: {
+        filename: '[name]-[contenthash].bundle.js',
+        path: path.resolve(__dirname, 'build'),
+        assetModuleFilename: './assets/[name]-[hash][ext][query]',
+        // asyncChunks: true,
+    },
     plugins: [
         new MiniCssExtractPlugin({ filename: "[name]-[contenthash].css" }),
         new CleanWebpackPlugin(),

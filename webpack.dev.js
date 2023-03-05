@@ -10,12 +10,19 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
         template: `./src/views/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`], // respective JS files
+        cache: false,
         // favicon: './src/assets/favicon.png'
     })
 });
 
 module.exports = merge(common, {
     mode: "development",
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'build'),
+        assetModuleFilename: './assets/[name][ext][query]',
+        // asyncChunks: true,
+    },
     module: {
         rules: [
             {
@@ -41,6 +48,7 @@ module.exports = merge(common, {
             filename: 'index.html',
             excludeChunks: ['home'],
             chunks: [`main`, 'vendor'], // respective JS files
+            cache: false,
             // favicon: 'src/assets/favicon.png'
             // inject: false,
             // minify: false
@@ -54,7 +62,11 @@ module.exports = merge(common, {
         },
         port: 1009,
         open: true,
-        // hot: false
+        hot: false,
+        // contentBase: 'public/',
+        // publicPath: 'public/',
+        // inline: true,
+        // hot: true,
     },
     optimization: {
         runtimeChunk: 'single'
