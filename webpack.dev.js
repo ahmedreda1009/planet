@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        template: `./src/views/${name}.pug`, // relative path to the HTML files
+        template: `./src/views/content/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`], // respective JS files
         cache: false,
@@ -17,12 +17,12 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 
 module.exports = merge(common, {
     mode: "development",
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'build'),
-        assetModuleFilename: './assets/[name][ext][query]',
-        // asyncChunks: true,
-    },
+    // output: {
+    //     filename: '[name].bundle.js',
+    //     path: path.resolve(__dirname, 'build'),
+    //     assetModuleFilename: './assets/[name][ext][query]',
+    //     // asyncChunks: true,
+    // },
     module: {
         rules: [
             {
@@ -44,7 +44,7 @@ module.exports = merge(common, {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/index.pug',
+            template: 'src/views/index.pug',
             filename: 'index.html',
             excludeChunks: ['home'],
             chunks: [`main`, 'vendor'], // respective JS files
@@ -55,7 +55,8 @@ module.exports = merge(common, {
         })
     ].concat(multipleHtmlPlugins)
     ,
-    devtool: 'source-map',
+    // devtool: 'source-map',
+    devtool: 'inline-source-map',
     devServer: {
         static: {
             directory: path.join(__dirname, 'build'),

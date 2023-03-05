@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
 	head
-		include views/includes/head.pug
+		include meta/head
 	body
 		.wrapper.d-flex.pb-5.text-light
 			.text
@@ -21,8 +21,16 @@ html(lang='en')
 						placeholder='Email' 
 						value='eve.holt@reqres.in'
 					)
-					input#password-login.rounded.mb-3.border-opacity-25.ps-2(type='password' name='password' placeholder='Password' value='pistol')
-					button#login-btn.btn.btn-info.mb-2.fw-bold.py-2.text-light.fs-5.shadow Log in
+					span 
+						input#password-login.rounded.mb-3.border-opacity-25.ps-2(
+							type='password' 
+							name='password' 
+							placeholder='Password' 
+							value='pistol'
+							maxlength='20'
+							)
+						i#show-password.fa-solid.fa-eye.eye.text-info
+					button#login-btn.btn.btn-info.mb-2.fw-bold.py-2.text-light.fs-5.shadow-sm Log in
 					h6#forgotten-password.forgotten-password.text-info.text-center Forgotten password?
 					hr.border-dark
 					span.or.bg-light.px-2.text-muted.fs-6.position-absolute or
@@ -37,14 +45,20 @@ html(lang='en')
 							span.logo.fw-bold pla
 								span.text-info net
 						hr
+					label#input-img(for='profile-pic')
+						span#select-img
+							i.fa-solid.fa-image.text-info
+							input#profile-pic(type='file' accept='image/png, image/jpg, image/gif, image/jpeg')
+							span.title Select your profile picture.
+						span#selected-img
+							.position-relative
+								span#remove-profile-picture.position-absolute.p-1.bg-danger.rounded-circle
+									i.fa-solid.fa-xmark
+								img(src=require('../assets/profile_picture.png') alt="profile picture")
 					input#name-sign-up(type='text' placeholder='Your name')
 					input#email-sign-up(type='email' placeholder='Email address')
 					input#password-sign-up(type='password' placeholder='New password')
-					label#input-img(for='profile-pic')
-						i.fa-solid.fa-image.text-info
-						input#profile-pic(type='file' accept='image/png, image/jpg, image/gif, image/jpeg')
-						span.title Select your profile picture.
-						span#selected-img
+					
 					.info
 						p Do not share photos or any personal data that you do not want to be seen by other users.
 						p We are still experimenting, so kindly do not use a password that you do not want anyone to know, in order to preserve your privacy.

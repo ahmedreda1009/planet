@@ -2,7 +2,7 @@
 import './scss/_index.scss';
 
 // js
-import './js/sign-in-up/login';
-import './js/sign-in-up/sign-up';
+import './ts/login/login';
+import './ts/login/signUp';
 
 // import mainImage from './assets/favicon.png';

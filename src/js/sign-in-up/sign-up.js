@@ -14,7 +14,7 @@ document.getElementById('close-sign-up').addEventListener('click', () => {
 });
 
 // hide sign up when clicking on empty space.
-document.querySelector('.sign-up .overlay').addEventListener('click', (e) => {
+document.querySelector('.sign-up .overlay').addEventListener('click', () => {
     document.querySelector('.sign-up').classList.remove('active');
 });
 
@@ -81,33 +81,33 @@ document.getElementById('sign-up-btn').addEventListener('click', (e) => {
 let inputFile = document.getElementById('profile-pic');
 
 inputFile.addEventListener('change', () => {
-    document.getElementById('input-img').classList.remove('empty');
+    document.getElementById('select-img').classList.remove('empty');
 
     // create the images url
     const src = URL.createObjectURL(inputFile.files[0]);
 
     if (!src) {
-        document.getElementById('input-img').classList.add('empty');
+        document.getElementById('select-img').classList.add('empty');
     } else {
-        document.getElementById('input-img').classList.remove('empty');
+        document.getElementById('select-img').classList.remove('empty');
     }
 
     // inject the image's url inside img tag in html.
-    let image = `
-    <div class="position-relative">
-        <span class="position-absolute p-1 bg-danger rounded-circle" id="remove-profile-picture">
-            <i class="fa-solid fa-xmark"></i>
-        </span>
-        <img src=${src} alt="profile picture" />
-    </div>`;
+    // let image = `
+    // <div class="position-relative">
+    //     <span class="position-absolute p-1 bg-danger rounded-circle" id="remove-profile-picture">
+    //         <i class="fa-solid fa-xmark"></i>
+    //     </span>
+    //     <img src=${src} alt="profile picture" />
+    // </div>`;
 
-    document.getElementById("selected-img").innerHTML = image;
+    document.querySelector("#selected-img img").src = src;
 
     document.getElementById("remove-profile-picture").addEventListener('click', (e) => {
         e.preventDefault();
 
         // remove image when click on remove image icon.
-        document.getElementById("selected-img").innerHTML = '';
+        document.querySelector("#selected-img img").src = require('../../assets/profile_picture.png');
         inputFile.value = '';
     });
 });

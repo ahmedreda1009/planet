@@ -2,16 +2,16 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        main: './src/index.js',
-        vendor: './src/vendor.js',
-        home: './src/js/home/home.js'
+        main: './src/index.ts',
+        vendor: './src/vendor.ts',
+        home: './src/ts/home/home.ts'
     },
-    // output: {
-    //     filename: '[name]-[contenthash].bundle.js',
-    //     path: path.resolve(__dirname, 'build'),
-    //     assetModuleFilename: './assets/[name]-[hash][ext][query]',
-    //     // asyncChunks: true,
-    // },
+    output: {
+        filename: '[name]-[contenthash].bundle.js',
+        path: path.resolve(__dirname, 'build'),
+        assetModuleFilename: './assets/[name]-[hash][ext][query]',
+        // asyncChunks: true,
+    },
     module: {
         rules: [
             {
@@ -27,6 +27,11 @@ module.exports = {
                 }
             },
             {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+            {
                 test: /\.html$/i,
                 use: "html-loader",
             },
@@ -39,5 +44,8 @@ module.exports = {
                 loader: '@webdiscus/pug-loader',
             },
         ]
-    }
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
 }

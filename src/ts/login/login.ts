@@ -4,7 +4,8 @@ import axios from 'axios';
 import baseUrl from '../global';
 
 // modal fires when user clicks on the forget password button.
-document.getElementById('forgotten-password').addEventListener('click', () => {
+const forgottenPasswordBtn = document.getElementById('forgotten-password') as HTMLHeadingElement;
+forgottenPasswordBtn.addEventListener('click', () => {
     Swal.fire({
         title: 'Forgot your password?',
         text: 'Don\'t forget it again, ok?',
@@ -14,7 +15,7 @@ document.getElementById('forgotten-password').addEventListener('click', () => {
 });
 
 // login function
-function login(username, password) {
+function login(username: string, password: string): void {
     axios.post(`${baseUrl}/api/login`, {
         "email": username,
         "password": password
@@ -22,26 +23,26 @@ function login(username, password) {
         window.localStorage.setItem("token", response.data.token);
         window.localStorage.setItem("user", JSON.stringify(response.data));
 
-        window.location = 'home.html';
+        window.location.href = 'home.html';
     });
 }
+// password input
+const passwordInput = document.getElementById('password-login') as HTMLInputElement;
 
 // trigger login.
-document.getElementById('login-btn').addEventListener('click', (e) => {
+const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
+loginBtn.addEventListener('click', (e) => {
     e.preventDefault();
 
-    // email value
-    let emailLogin = document.getElementById('email-login').value;
-    // password value
-    let passwordLogin = document.getElementById('password-login').value;
+
+    const emailInput = document.getElementById('email-login') as HTMLInputElement;
 
     // trigger login request.
-    login(emailLogin, passwordLogin);
+    login(emailInput.value, passwordInput.value);
 });
 
 // toggle show password
-const showIconBtn = document.getElementById('show-password');
-const passwordInput = document.getElementById('password-login');
+const showIconBtn = document.getElementById('show-password') as HTMLElement;
 showIconBtn.addEventListener('click', () => {
     if (showIconBtn.classList.contains('fa-eye')) {
         showIconBtn.classList.remove('fa-eye');

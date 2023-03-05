@@ -13,7 +13,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        template: `./src/views/${name}.pug`, // relative path to the HTML files
+        template: `./src/views/content/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`], // respective JS files
         // favicon: './src/assets/favicon.png'
@@ -22,17 +22,17 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
 
 module.exports = merge(common, {
     mode: "production",
-    output: {
-        filename: '[name]-[contenthash].bundle.js',
-        path: path.resolve(__dirname, 'build'),
-        assetModuleFilename: './assets/[name]-[hash][ext][query]',
-        // asyncChunks: true,
-    },
+    // output: {
+    //     filename: '[name]-[contenthash].bundle.js',
+    //     path: path.resolve(__dirname, 'build'),
+    //     assetModuleFilename: './assets/[name]-[hash][ext][query]',
+    //     // asyncChunks: true,
+    // },
     plugins: [
         new MiniCssExtractPlugin({ filename: "[name]-[contenthash].css" }),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            template: './src/index.pug',
+            template: './src/views/index.pug',
             filename: 'index.html',
             chunks: [`main`, 'vendor'], // respective JS files
             excludeChunks: ['home'],
