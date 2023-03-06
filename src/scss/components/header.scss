@@ -1,0 +1,24 @@
+body {
+	background-color: #eee;
+}
+
+nav {
+	.container-sm {
+		max-width: 1000px;
+		padding-left: 40px;
+		padding-right: 40px;
+
+		#logo {
+			font-family: "Comfortaa", sans-serif;
+			color: #fff;
+			user-select: none;
+			cursor: pointer;
+
+			span {
+				font-size: 25px;
+				font-weight: bold;
+				letter-spacing: -2px;
+			}
+		}
+	}
+}

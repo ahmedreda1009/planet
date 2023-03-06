@@ -9,7 +9,7 @@ let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/views/content/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
-        chunks: [`${name}`], // respective JS files
+        chunks: [`${name}`, 'vendor'], // respective JS files
         cache: false,
         // favicon: './src/assets/favicon.png'
     })

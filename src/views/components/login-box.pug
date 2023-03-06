@@ -1,0 +1,25 @@
+.login-box.mt-5.bg-light.p-3.rounded
+	h3.title.fs-5.text-center.mb-4.mt-1 Log in to 
+		span.fw-bold pla
+			span.text-info net
+	form.d-flex.flex-column.position-relative(action='')
+		input#email-login.rounded.mb-2.border-opacity-25.ps-2(
+			type='text' 
+			name='email' 
+			placeholder='Email' 
+			value='eve.holt@reqres.in'
+		)
+		span 
+			input#password-login.rounded.mb-3.border-opacity-25.ps-2(
+				type='password' 
+				name='password' 
+				placeholder='Password' 
+				value='pistol'
+				maxlength='20'
+				)
+			i#show-password.fa-solid.fa-eye.eye.text-info
+		button#login-btn.btn.btn-info.mb-2.fw-bold.py-2.text-light.fs-5.shadow-sm Log in
+		a#forgotten-password.forgotten-password.text-info.text-center Forgotten password?
+		hr.border-dark
+		span.or.bg-light.px-2.text-muted.fs-6.position-absolute or
+		button#create-new-acc.btn.btn-dark.w-75.m-auto.mt-2.fw-bold.py-2.shadow Create new account
