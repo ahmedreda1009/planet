@@ -1,2 +1,24 @@
 @use "../../components/header.scss";
-@use "../../components/new-post-box.scss";
+@use "../../components/home/new-post-box.scss";
+@use "../../components/home/profile-card.scss";
+@use "../../components/home/tags.scss";
+
+.container-xl {
+	display: flex;
+	gap: 10px;
+
+	> * {
+		flex: 1;
+		transition: width 0.3s ease;
+	}
+
+	@media (max-width: 900px) {
+		& aside#tags {
+			display: none;
+		}
+
+		& #profile-card {
+			display: none;
+		}
+	}
+}

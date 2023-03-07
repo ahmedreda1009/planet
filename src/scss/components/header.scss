@@ -1,25 +1,34 @@
-body {
-	background-color: #eee;
-	background-color: beige;
-}
+@use "../abstract";
 
 nav {
-	.container-sm {
+	background-color: #222;
+	box-shadow: abstract.$mainShadow;
+
+	.container-xl {
 		max-width: 1000px;
 		padding-left: 40px;
 		padding-right: 40px;
 
-		#logo {
-			font-family: "Comfortaa", sans-serif;
-			color: #fff;
-			user-select: none;
-			cursor: pointer;
+		a.navbar-brand {
+			#logo {
+				font-family: "Comfortaa", sans-serif;
+				color: #fff;
+				user-select: none;
+				cursor: pointer;
 
-			span {
-				font-size: 25px;
-				font-weight: bold;
-				letter-spacing: -2px;
+				span {
+					font-size: 30px;
+					font-weight: bold;
+					letter-spacing: -2px;
+				}
 			}
+		}
+
+		#profile-icon-header {
+			max-width: 150px;
+			height: 50px;
+			border-radius: 50px;
+			border: 2px solid #eee;
 		}
 	}
 }
