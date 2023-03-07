@@ -4,12 +4,13 @@
 	background-color: #222;
 	border-radius: 10px;
 	margin-top: 10px;
-	max-width: 500px;
+	// max-width: 500px;
 	min-width: 450px;
 	padding: 10px;
 	box-shadow: abstract.$mainShadow;
 	margin-left: auto;
 	margin-right: auto;
+	border: 2px solid #555;
 
 	@media (max-width: 700px) {
 		& {
@@ -29,7 +30,7 @@
 			display: block;
 			padding: 10px;
 			width: 100%;
-			min-height: 120px;
+			// min-height: 120px;
 			line-height: 20px;
 			color: #fff;
 			transition: height 0.3s ease;
@@ -50,13 +51,15 @@
 		i {
 			font-size: 20px;
 			background-color: #333;
+			color: #eee;
 			border-radius: 50%;
 			padding: 10px;
 			cursor: pointer;
-			transition: background-color 0.3s ease;
+			transition: background-color 0.3s ease, color 0.3s ease;
 
 			&:hover {
 				background-color: #444;
+				color: rgb(13, 202, 240);
 			}
 		}
 
@@ -65,6 +68,8 @@
 			font-size: 17px;
 			padding-left: 20px;
 			padding-right: 20px;
+			padding-top: 5px;
+			padding-bottom: 5px;
 			margin-bottom: 5px;
 		}
 	}

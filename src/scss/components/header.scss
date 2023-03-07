@@ -3,11 +3,12 @@
 nav {
 	background-color: #222;
 	box-shadow: abstract.$mainShadow;
+	border-bottom: 2px solid #555;
 
 	.container-xl {
-		max-width: 1000px;
-		padding-left: 40px;
-		padding-right: 40px;
+		// max-width: 1000px;
+		padding-left: 20px;
+		padding-right: 20px;
 
 		a.navbar-brand {
 			#logo {
@@ -28,6 +29,28 @@ nav {
 					font-size: 30px;
 					font-weight: bold;
 					letter-spacing: -2px;
+				}
+			}
+		}
+
+		.profile-and-logout {
+			display: flex;
+			align-items: center;
+			justify-content: flex-end;
+			gap: 15px;
+
+			i {
+				background-color: #333;
+				color: #aaa;
+				padding: 10px;
+				border-radius: 50%;
+				font-size: 15px;
+				cursor: pointer;
+				transition: background-color 0.3s ease, color 0.3s ease;
+
+				&:hover {
+					background-color: #444;
+					color: red;
 				}
 			}
 		}

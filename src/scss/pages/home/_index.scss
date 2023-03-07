@@ -4,6 +4,12 @@
 @use "../../components/home/tags.scss";
 @use "../../components/profile-icon.scss";
 
+body {
+	background-color: dimgray;
+	background-color: #222;
+	background-color: #eee;
+}
+
 .container-xl {
 	display: flex;
 	gap: 10px;

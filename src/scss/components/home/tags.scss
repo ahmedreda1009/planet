@@ -1,8 +1,37 @@
+@use "../../abstract";
+
 aside#tags {
 	background-color: #222;
 	margin-top: 10px;
 	border-radius: 10px;
-	max-height: 200px;
+	max-width: 380px;
+	min-width: fit-content;
 	position: sticky;
 	top: 81px;
+	color: #fff;
+	padding: 10px;
+	box-shadow: abstract.$mainShadow;
+	border: 2px solid #555;
+
+	h4 {
+		padding-left: 5px;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0px;
+		margin: 0px;
+
+		li {
+			padding: 10px;
+			border-radius: 10px;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #333;
+				color: rgb(13, 202, 240);
+				text-decoration: underline;
+			}
+		}
+	}
 }
