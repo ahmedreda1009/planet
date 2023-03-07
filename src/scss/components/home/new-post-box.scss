@@ -17,22 +17,26 @@
 		}
 	}
 
-	textarea#post-text-area {
-		resize: none;
-		border: none;
-		outline: none;
-		background: none;
-		overflow: hidden;
-		display: block;
-		padding: 10px;
-		width: 100%;
-		min-height: 120px;
-		line-height: 20px;
-		color: #fff;
-		transition: height 0.3s ease;
+	> div.icon-and-text {
+		display: flex;
 
-		&::placeholder {
-			font-size: 20px;
+		textarea#post-text-area {
+			resize: none;
+			border: none;
+			outline: none;
+			background: none;
+			overflow: hidden;
+			display: block;
+			padding: 10px;
+			width: 100%;
+			min-height: 120px;
+			line-height: 20px;
+			color: #fff;
+			transition: height 0.3s ease;
+
+			&::placeholder {
+				font-size: 17px;
+			}
 		}
 	}
 
