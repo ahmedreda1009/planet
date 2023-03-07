@@ -1,7 +1,8 @@
 @use "../../abstract";
 
 #create-new-post-box {
-	background-color: #333;
+	background-color: #222;
+	background-color: abstract.$mainBackgroundColor;
 	border-radius: 10px;
 	margin-top: 10px;
 	// max-width: 500px;
@@ -21,6 +22,10 @@
 	> div.icon-and-text {
 		display: flex;
 
+		.profile-img-icon {
+			flex-shrink: 0;
+		}
+
 		textarea#post-text-area {
 			resize: none;
 			border: none;
@@ -30,7 +35,8 @@
 			display: block;
 			padding: 10px;
 			max-width: 100%;
-			// min-height: 120px;
+			flex-grow: 1;
+			min-height: 80px;
 			line-height: 20px;
 			color: #fff;
 			transition: height 0.3s ease;

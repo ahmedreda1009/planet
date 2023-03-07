@@ -1,7 +1,8 @@
 @use "../../abstract";
 
 aside#tags {
-	background-color: #333;
+	background-color: #222;
+	background-color: abstract.$mainBackgroundColor;
 	margin-top: 10px;
 	border-radius: 10px;
 	max-width: 380px;
