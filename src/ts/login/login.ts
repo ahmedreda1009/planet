@@ -31,7 +31,7 @@ function login(username: string, password: string): void {
 		})
 		.catch((response) => {
 			console.log(response);
-			window.location.href = "index.html";
+			// window.location.href = "index.html";
 		});
 }
 // password input

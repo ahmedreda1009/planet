@@ -1,8 +1,6 @@
-import "../../scss/pages/home/_index.scss";
-import '../home/postBox';
-
-let authorized: boolean = false;
-
-if (!authorized) {
+if (!window.localStorage.getItem("token")) {
 	window.location.href = "index.html";
 }
+
+import "../../scss/pages/home/_index.scss";
+import '../home/postBox';
