@@ -31,9 +31,11 @@
 
 			.name {
 				cursor: pointer;
+				color: #ddd;
+				font-weight: 500;
 
 				&:hover {
-					text-decoration: underline;
+					color: #fff;
 				}
 			}
 
@@ -41,6 +43,7 @@
 				margin-top: -5px;
 				margin-left: -2px;
 				font-size: 13px;
+				cursor: default;
 			}
 		}
 	}
