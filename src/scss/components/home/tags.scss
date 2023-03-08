@@ -3,17 +3,16 @@
 aside#tags {
 	background-color: #222;
 	background-color: abstract.$mainBackgroundColor;
+	background-color: #f7f7f7;
 	margin-top: 10px;
 	border-radius: 10px;
 	max-width: 380px;
 	min-width: fit-content;
 	height: fit-content;
 	position: sticky;
-	top: 83px;
-	color: #fff;
+	top: 113px;
 	padding: 10px;
 	box-shadow: abstract.$mainShadow;
-	// border: 2px solid #555;
 
 	h4 {
 		padding-left: 5px;
@@ -32,8 +31,7 @@ aside#tags {
 			cursor: pointer;
 
 			&:hover {
-				background-color: #333;
-				color: rgb(13, 202, 240);
+				background-color: #eee;
 				text-decoration: underline;
 			}
 		}

@@ -3,20 +3,23 @@
 #profile-card {
 	background-color: #222;
 	background-color: abstract.$mainBackgroundColor;
+	background-color: #f7f7f7;
 	margin-top: 10px;
 	border-radius: 10px;
 	max-height: 200px;
 	max-width: 380px;
 	min-width: fit-content;
 	position: sticky;
-	top: 83px;
+	top: 113px;
 	z-index: 1;
 	padding: 10px;
-	color: #fff;
+	padding-top: 20px;
 	box-shadow: abstract.$mainShadow;
 
 	.header {
 		display: flex;
+		flex-direction: column;
+		align-items: center;
 		gap: 10px;
 
 		.profile-icon {
@@ -28,21 +31,20 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
+			align-items: center;
 
 			.name {
 				cursor: pointer;
-				color: #fff;
 				font-weight: 500;
 
 				&:hover {
-					color: #ddd;
+					color: #555;
 				}
 			}
 
 			.username {
-				margin-top: -5px;
-				margin-left: -2px;
 				font-size: 13px;
+				margin-top: -5px;
 				cursor: default;
 			}
 		}

@@ -1,11 +1,13 @@
+@use "../abstract";
+
 .profile-icon {
 	max-width: 40px;
 	height: 40px;
 	border-radius: 50%;
-	border: 2px solid #eee;
+	border: 2px solid #999;
 	overflow: hidden;
 	cursor: pointer;
-	// box-shadow: abstract.$mainShadow;
+	box-shadow: abstract.$mainShadow;
 
 	img {
 		height: 100%;

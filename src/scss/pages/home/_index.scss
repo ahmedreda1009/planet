@@ -7,23 +7,14 @@
 @use "../../abstract";
 
 body {
-	background-color: rgb(13, 202, 240);
-	// background-color: dimgray;
-	// background-color: #222;
-	background-color: #f0f2f5;
-	background-color: #eee;
-	background-color: #f0f0f0;
-	background-color: #e3eff3;
-	background-color: #e3f1f3;
-	background-color: rgb(225, 237, 240);
 	background-color: rgb(222, 225, 240);
 }
-.main-wrapper {
-	// overflow: hidden;
 
+.main-wrapper {
 	.container-xl {
 		display: flex;
 		gap: 10px;
+		max-width: 1500px;
 
 		> * {
 			flex: 1;
@@ -41,15 +32,22 @@ body {
 		}
 
 		main {
-			&::before {
-				content: "";
-				width: 100vw;
-				height: 91px;
-				background-color: rgb(222, 225, 240);
-				position: fixed;
-				top: 0;
-				left: 0;
-				z-index: 0;
+			@media (min-width: 1400px) {
+				& {
+					width: 100%;
+				}
+			}
+
+			@media (max-width: 1400px) {
+				& {
+					min-width: 400px;
+				}
+			}
+
+			@media (max-width: 700px) {
+				& {
+					min-width: 100%;
+				}
 			}
 
 			display: flex;
@@ -57,10 +55,16 @@ body {
 			margin-top: 73px;
 
 			.posts {
-				max-width: 450px;
 				margin: auto;
 				padding-top: 10px;
 				padding-bottom: 80px;
+				width: 100%;
+
+				@media (min-width: 1400px) {
+					& {
+						min-width: 100%;
+					}
+				}
 
 				@media (max-width: 1400px) {
 					& {

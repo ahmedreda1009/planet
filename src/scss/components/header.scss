@@ -1,15 +1,21 @@
 @use "../abstract";
 
 nav {
-	background-color: #222;
-	box-shadow: abstract.$mainShadow;
-	// border-bottom: 2px solid #555;
 	background-color: abstract.$mainBackgroundColor;
+	box-shadow: abstract.$mainShadow;
 
 	.container-xl {
-		// max-width: 1000px;
 		padding-left: 20px;
 		padding-right: 20px;
+		// max-width: 1500px;
+		min-height: 80px;
+		// justify-content: center !important;
+		gap: 10px;
+
+		.profile-icon {
+			max-width: 55px;
+			height: 55px;
+		}
 
 		a.navbar-brand {
 			#logo {
@@ -20,14 +26,14 @@ nav {
 				align-items: center;
 
 				i {
-					font-size: 30px;
+					font-size: 40px;
 					display: block;
 					padding-top: 5px;
 					cursor: pointer;
 				}
 
 				span {
-					font-size: 30px;
+					font-size: 40px;
 					font-weight: bold;
 					letter-spacing: -2px;
 					cursor: pointer;
@@ -35,25 +41,25 @@ nav {
 			}
 		}
 
-		.profile-and-logout {
-			display: flex;
-			align-items: center;
-			justify-content: flex-end;
-			gap: 15px;
+		// .profile-and-logout {
+		// 	display: flex;
+		// 	align-items: center;
+		// 	justify-content: flex-end;
+		// 	gap: 15px;
+		// }
 
-			i.logout {
-				background-color: #333;
-				color: #aaa;
-				padding: 8px;
-				border-radius: 50%;
-				font-size: 12px;
-				cursor: pointer;
-				transition: background-color 0.3s ease, color 0.3s ease;
+		i.logout {
+			background-color: #333;
+			color: #aaa;
+			padding: 10px;
+			border-radius: 50%;
+			font-size: 15px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, color 0.3s ease;
 
-				&:hover {
-					background-color: #353535;
-					color: red;
-				}
+			&:hover {
+				background-color: #353535;
+				color: red;
 			}
 		}
 	}

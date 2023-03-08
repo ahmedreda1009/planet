@@ -3,30 +3,16 @@
 #create-new-post-box {
 	background-color: #222;
 	background-color: abstract.$mainBackgroundColor;
+	background-color: #f7f7f7;
 	border-radius: 10px;
-	margin-top: 10px;
-	// max-width: 500px;
-	min-width: 450px;
-	padding: 10px;
+	margin-top: 40px;
+	width: 100%;
+	min-height: 200px;
+	padding: 20px;
 	box-shadow: abstract.$mainShadow;
 	margin-left: auto;
 	margin-right: auto;
-	// border: 2px solid #555;
 	transition: width 0.3s ease;
-	position: sticky;
-	top: 83px;
-
-	@media (max-width: 1400px) {
-		& {
-			min-width: 400px;
-		}
-	}
-
-	@media (max-width: 700px) {
-		& {
-			min-width: 100%;
-		}
-	}
 
 	> div.icon-and-text {
 		display: flex;
@@ -45,9 +31,8 @@
 			padding: 10px;
 			max-width: 100%;
 			flex-grow: 1;
-			min-height: 80px;
+			min-height: 140px;
 			line-height: 20px;
-			color: #fff;
 			transition: height 0.3s ease;
 
 			&::placeholder {
@@ -60,12 +45,12 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding-left: 10px;
-		padding-right: 10px;
+		// padding-left: 10px;
+		// padding-right: 10px;
 
 		i {
 			font-size: 13px;
-			background-color: #333;
+			background-color: #9c9c9c;
 			color: #eee;
 			border-radius: 50%;
 			padding: 10px;
@@ -73,7 +58,7 @@
 			transition: background-color 0.3s ease, color 0.3s ease;
 
 			&:hover {
-				background-color: #353535;
+				background-color: rgb(121, 121, 121);
 				color: rgb(13, 202, 240);
 			}
 		}
@@ -83,11 +68,11 @@
 			font-size: 17px;
 			font-size: 13px;
 			font-weight: bold;
-			padding-left: 20px;
-			padding-right: 20px;
-			padding-top: 5px;
-			padding-bottom: 5px;
-			margin-bottom: 5px;
+			padding-left: 25px;
+			padding-right: 25px;
+			padding-top: 6px;
+			padding-bottom: 6px;
+			// margin-bottom: 5px;
 		}
 	}
 }
