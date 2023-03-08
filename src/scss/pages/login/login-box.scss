@@ -22,17 +22,16 @@
 			transition: color 0.3s ease, outline 0.3s ease, border 0.1s ease;
 			height: 50px;
 			min-width: 370px;
-			background: none;
 			max-width: 190px;
 			color: #242424;
 			padding: 0.15rem 0.5rem;
 			min-height: 40px;
-			// border-radius: 4px;
+			border-radius: 5px;
 			line-height: 1.15;
 			box-shadow: 0px 10px 15px -18px;
-			border: none;
-			border-bottom: 2px solid transparent;
-			outline: 1px solid lightgrey;
+			background: none;
+			border: 1px solid lightgrey;
+			outline: none;
 
 			@media (max-width: 500px) {
 				& {
@@ -41,19 +40,19 @@
 			}
 
 			&.wrong {
-				outline-color: red;
+				border-color: red;
 
 				&:focus {
-					border-bottom: 2px solid transparent;
+					border-color: red;
 				}
 
 				&:hover {
-					outline: 1px solid red;
+					border-color: red;
 				}
 			}
 
 			&:hover {
-				outline: 1px solid darkgray;
+				border: 1px solid darkgray;
 			}
 
 			&:focus {

@@ -19,6 +19,9 @@
 	"[javascript]": {
 		"editor.defaultFormatter": "vscode.typescript-language-features"
 	},
+	"[typescript]": {
+		"editor.defaultFormatter": "vscode.typescript-language-features"
+	},
 	"editor.stickyScroll.enabled": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"prettier.useTabs": true,

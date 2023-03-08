@@ -9,18 +9,19 @@
 					span.text-info.fw-bold.logo net
 			hr
 		label#input-img(for='profile-pic')
-			span#select-img.rounded
+			span#select-img
 				i.fa-solid.fa-image.text-info
-				input#profile-pic.rounded(type='file' accept='image/png, image/jpg, image/gif, image/jpeg')
+				input#profile-pic(type='file' accept='image/png, image/jpg, image/gif, image/jpeg')
 				span.title Select your profile picture.
-			span#selected-img.rounded
-				.position-relative
-					span#remove-profile-picture.position-absolute.p-1.bg-danger.rounded-circle
-						i.fa-solid.fa-xmark
-					img(src=require('../../../assets/profile_picture.png') alt="profile picture")
-		input#name-sign-up.rounded(type='text' placeholder='Your name')
-		input#email-sign-up.rounded(type='email' placeholder='Email address')
-		input#password-sign-up.rounded(type='password' placeholder='New password')
+			div#selected-img
+				div.position-relative
+					.inner.overflow-hidden
+						span#remove-profile-picture.position-absolute.p-1.bg-danger.rounded-circle
+							i.fa-solid.fa-xmark
+						img(src=require('../../../assets/profile_picture.png') alt="profile picture")
+		input#name-sign-up(type='text' placeholder='Your name')
+		input#email-sign-up(type='email' placeholder='Email address')
+		input#password-sign-up(type='password' placeholder='New password')
 		
 		.info
 			p Do not share photos or any personal data that you do not want to be seen by other users.
