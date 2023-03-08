@@ -5,9 +5,9 @@
 	background-color: abstract.$mainBackgroundColor;
 	background-color: #f7f7f7;
 	border-radius: 10px;
-	margin-top: 40px;
+	margin-top: 30px;
 	width: 100%;
-	min-height: 200px;
+	min-height: 150px;
 	padding: 20px;
 	box-shadow: abstract.$mainShadow;
 	margin-left: auto;
@@ -31,7 +31,7 @@
 			padding: 10px;
 			max-width: 100%;
 			flex-grow: 1;
-			min-height: 140px;
+			min-height: 100px;
 			line-height: 20px;
 			transition: height 0.3s ease;
 

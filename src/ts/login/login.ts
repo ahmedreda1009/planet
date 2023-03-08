@@ -30,6 +30,7 @@ function login(username: string, password: string): void {
 			window.location.href = "home.html";
 		})
 		.catch((response) => {
+			window.localStorage.removeItem("token");
 			console.log(response);
 			// window.location.href = "index.html";
 		});

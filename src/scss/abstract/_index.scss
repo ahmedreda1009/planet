@@ -1,8 +1,7 @@
 @forward "./colors";
 
-$mainShadow: 0 2px 4px rgb(0 0 0 / 10%), 0 8px 16px rgb(0 0 0 / 10%);
 $mainShadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
 	rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-$mainShadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-	rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+$lightShadow: rgb(124 124 139 / 67%) 0px 2px 5px -1px,
+	rgb(255 255 255) 0px 1px 3px -1px;
 // $mainShadow: none;

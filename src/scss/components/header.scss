@@ -3,12 +3,13 @@
 nav {
 	background-color: abstract.$mainBackgroundColor;
 	box-shadow: abstract.$mainShadow;
+	background-color: #222;
 
 	.container-xl {
 		padding-left: 20px;
 		padding-right: 20px;
 		// max-width: 1500px;
-		min-height: 80px;
+		// min-height: 80px;
 		// justify-content: center !important;
 		gap: 10px;
 
@@ -21,6 +22,7 @@ nav {
 			#logo {
 				font-family: "Comfortaa", sans-serif;
 				color: #fff;
+				// color: #222;
 				user-select: none;
 				display: flex;
 				align-items: center;
@@ -35,7 +37,7 @@ nav {
 				span {
 					font-size: 40px;
 					font-weight: bold;
-					letter-spacing: -2px;
+					letter-spacing: -3px;
 					cursor: pointer;
 				}
 			}
