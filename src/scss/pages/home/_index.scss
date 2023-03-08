@@ -3,6 +3,8 @@
 @use "../../components/home/profile-card.scss";
 @use "../../components/home/tags.scss";
 @use "../../components/profile-icon.scss";
+@use "../../components/post.scss";
+@use "../../abstract";
 
 body {
 	// background-color: dimgray;
@@ -12,23 +14,61 @@ body {
 	background-color: #f0f2f5;
 	// background-color: #ecf5f4;
 }
+.main-wrapper {
+	// overflow: hidden;
 
-.container-xl {
-	display: flex;
-	gap: 10px;
+	.container-xl {
+		display: flex;
+		gap: 10px;
 
-	> * {
-		flex: 1;
-		transition: width 0.3s ease;
-	}
-
-	@media (max-width: 900px) {
-		& aside#tags {
-			display: none;
+		> * {
+			flex: 1;
+			transition: width 0.3s ease;
 		}
 
-		& #profile-card {
-			display: none;
+		@media (max-width: 900px) {
+			& aside#tags {
+				display: none;
+			}
+
+			& #profile-card {
+				display: none;
+			}
+		}
+
+		main {
+			&::before {
+				content: "saf";
+				width: 100vw;
+				height: 100px;
+				background-color: #f0f2f5;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 0;
+			}
+
+			display: flex;
+			flex-direction: column;
+			margin-top: 73px;
+
+			.posts {
+				max-width: 450px;
+				margin: auto;
+				padding-bottom: 30px;
+
+				@media (max-width: 1400px) {
+					& {
+						min-width: 400px;
+					}
+				}
+
+				@media (max-width: 700px) {
+					& {
+						min-width: 100%;
+					}
+				}
+			}
 		}
 	}
 }
