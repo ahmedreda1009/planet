@@ -7,12 +7,15 @@
 @use "../../abstract";
 
 body {
+	background-color: rgb(13, 202, 240);
 	// background-color: dimgray;
 	// background-color: #222;
-	// background-color: #eee;
-	// background-color: #f0f0f0;
 	background-color: #f0f2f5;
-	// background-color: #ecf5f4;
+	background-color: #eee;
+	background-color: #f0f0f0;
+	background-color: #e3eff3;
+	background-color: #e3f1f3;
+	background-color: rgb(222, 238, 241);
 }
 .main-wrapper {
 	// overflow: hidden;
@@ -38,10 +41,10 @@ body {
 
 		main {
 			&::before {
-				content: "saf";
+				content: "";
 				width: 100vw;
-				height: 100px;
-				background-color: #f0f2f5;
+				height: 91px;
+				background-color: rgb(222, 238, 241);
 				position: fixed;
 				top: 0;
 				left: 0;
@@ -55,7 +58,7 @@ body {
 			.posts {
 				max-width: 450px;
 				margin: auto;
-				padding-bottom: 30px;
+				padding-bottom: 80px;
 
 				@media (max-width: 1400px) {
 					& {
