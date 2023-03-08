@@ -19,6 +19,11 @@
 		display: flex;
 		gap: 10px;
 
+		.profile-icon {
+			max-width: 70px;
+			height: 70px;
+		}
+
 		.name-and-username {
 			display: flex;
 			flex-direction: column;

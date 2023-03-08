@@ -16,7 +16,6 @@ nav {
 				font-family: "Comfortaa", sans-serif;
 				color: #fff;
 				user-select: none;
-				cursor: pointer;
 				display: flex;
 				align-items: center;
 
@@ -24,12 +23,14 @@ nav {
 					font-size: 30px;
 					display: block;
 					padding-top: 5px;
+					cursor: pointer;
 				}
 
 				span {
 					font-size: 30px;
 					font-weight: bold;
 					letter-spacing: -2px;
+					cursor: pointer;
 				}
 			}
 		}
@@ -43,9 +44,9 @@ nav {
 			i.logout {
 				background-color: #333;
 				color: #aaa;
-				padding: 10px;
+				padding: 8px;
 				border-radius: 50%;
-				font-size: 15px;
+				font-size: 12px;
 				cursor: pointer;
 				transition: background-color 0.3s ease, color 0.3s ease;
 

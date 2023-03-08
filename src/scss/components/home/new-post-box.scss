@@ -12,6 +12,13 @@
 	margin-left: auto;
 	margin-right: auto;
 	border: 2px solid #555;
+	transition: width 0.3s ease;
+
+	@media (max-width: 1400px) {
+		& {
+			min-width: 400px;
+		}
+	}
 
 	@media (max-width: 700px) {
 		& {
@@ -55,7 +62,7 @@
 		padding-right: 10px;
 
 		i {
-			font-size: 20px;
+			font-size: 13px;
 			background-color: #333;
 			color: #eee;
 			border-radius: 50%;
