@@ -16,6 +16,15 @@ nav {
 		.profile-icon {
 			max-width: 55px;
 			height: 55px;
+			opacity: 0;
+			pointer-events: none;
+
+			@media (max-width: 900px) {
+				& {
+					opacity: 1;
+					pointer-events: all;
+				}
+			}
 		}
 
 		a.navbar-brand {
