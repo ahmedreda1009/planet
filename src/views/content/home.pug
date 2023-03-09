@@ -2,6 +2,10 @@ doctype html
 html
 	head
 		include ../meta/head
+		script.
+			if (!window.localStorage.getItem("token")) {
+				window.location.href = "index.html";
+			}
 	body 
 		include ../components/header
 		.main-wrapper
@@ -20,6 +24,48 @@ html
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
+							.tags-comments
+								.comments-number
+									span 5
+									.fa-regular.fa-message
+								.tags
+									.tag sports
+									.tag Entertainment
+							.comments
+								.make-comment
+									.fa-regular.fa-message
+									span Comment
+						.post
+							.header
+								include ../components/profile-icon
+								.name-and-username
+									.name Ahmed Reda
+									.username.text-muted @ahmedreda1009
+									.time.text-muted 2 min ago
+							.text This is the first post in planet.
+							.image
+								img(src=require('../../assets/post.jpg'))
+							.tags-comments
+								.comments-number
+									span 5
+									.fa-regular.fa-message
+								.tags
+									.tag sports
+									.tag Entertainment
+							.comments
+								.make-comment
+									.fa-regular.fa-message
+									span Comment
+						.post
+							.header
+								include ../components/profile-icon
+								.name-and-username
+									.name Ahmed Reda
+									.username.text-muted @ahmedreda1009
+									.time.text-muted 2 min ago
+							.text This is the first post in planet.
+							//- .image
+							//- 	img(src=require('../../assets/post.jpg'))
 							.tags-comments
 								.comments-number
 									span 5
