@@ -29,6 +29,11 @@
 			position: absolute;
 			top: 15px;
 			z-index: -1;
+			transition: background-color 0.3s ease;
+		}
+
+		&:hover::before {
+			background-color: #ddd;
 		}
 
 		.profile-icon {
@@ -66,10 +71,18 @@
 	}
 
 	.text {
-		padding-left: 3px;
-		position: relative;
-		top: 5px;
+		// padding-left: 3px;
+		// position: relative;
+		// top: 5px;
 		font-size: 14px;
+		background-color: #eee;
+		border-radius: 10px;
+		padding: 10px;
+		transition: background-color 0.3s ease;
+
+		&:hover {
+			background-color: #ddd;
+		}
 	}
 
 	.image {
@@ -95,7 +108,7 @@
 		align-items: center;
 		justify-content: space-between;
 		// margin: auto;
-		margin-top: 15px;
+		margin-top: 10px;
 		border-bottom: 1px solid #ccc;
 		// width: calc(100% - 30px);
 		padding-bottom: 10px;
@@ -146,7 +159,7 @@
 
 				&:hover {
 					background-color: rgb(13, 202, 240);
-					color: #eee;
+					background-color: #ddd;
 				}
 			}
 		}
