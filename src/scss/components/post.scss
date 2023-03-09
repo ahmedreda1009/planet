@@ -32,9 +32,9 @@
 			transition: background-color 0.3s ease;
 		}
 
-		&:hover::before {
-			background-color: #ddd;
-		}
+		// &:hover::before {
+		// 	background-color: #ddd;
+		// }
 
 		.profile-icon {
 			max-width: 50px;
@@ -117,7 +117,7 @@
 
 		.comments-number {
 			// padding-left: 10px;
-			font-size: 13px;
+			font-size: 15px;
 			min-height: 30px;
 			display: flex;
 			align-items: center;
@@ -128,10 +128,11 @@
 			border-radius: 8px;
 			cursor: pointer;
 			transition: background-color 0.3s ease;
+			color: #444;
 
-			&:hover {
-				background-color: #ddd;
-			}
+			// &:hover {
+			// 	background-color: #ddd;
+			// }
 
 			span {
 				font-size: 14px;
@@ -157,10 +158,10 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				font-size: 12px;
 
-				&:hover {
-					background-color: rgb(13, 202, 240);
-					background-color: #ddd;
-				}
+				// &:hover {
+				// 	background-color: rgb(13, 202, 240);
+				// 	background-color: #ddd;
+				// }
 			}
 		}
 	}
@@ -182,10 +183,17 @@
 			border-radius: 8px;
 			cursor: pointer;
 			transition: background-color 0.3s ease, color 0.3s ease;
+			color: #444;
 
 			&:hover {
 				background-color: #ddd;
 			}
+		}
+
+		span {
+			font-size: 14px;
+			position: relative;
+			bottom: 2px;
 		}
 	}
 }
