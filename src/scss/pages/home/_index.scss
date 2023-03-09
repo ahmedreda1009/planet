@@ -57,7 +57,7 @@ body {
 			.posts {
 				margin: auto;
 				// padding-top: 10px;
-				padding-bottom: 80px;
+				padding-bottom: 120px;
 				width: 100%;
 
 				@media (min-width: 1400px) {
@@ -97,6 +97,8 @@ body {
 	opacity: 1;
 	pointer-events: all;
 	transition: opacity 0.3s ease;
+	box-shadow: rgb(50 50 93 / 25%) 0px -2px 5px -1px,
+		rgb(0 0 0 / 30%) 0px -2px 3px -1px;
 
 	@media (min-width: 900px) {
 		& {
