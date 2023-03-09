@@ -6,7 +6,7 @@
 	margin-top: 20px;
 	border-radius: 10px;
 	box-shadow: abstract.$mainShadow;
-	padding: 10px;
+	// padding: 10px;
 
 	.header {
 		display: flex;
@@ -15,6 +15,8 @@
 		gap: 10px;
 		z-index: 1;
 		cursor: pointer;
+		padding: 10px;
+		padding-bottom: 0px;
 
 		// &::before {
 		// 	content: "";
@@ -68,6 +70,9 @@
 
 	.text {
 		font-size: 16px;
+		padding: 10px;
+		padding-top: 0px;
+		padding-bottom: 0px;
 		// background-color: #eee;
 		border-radius: 10px;
 		// padding: 10px;
@@ -87,7 +92,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: 10px;
+		// border-radius: 10px;
 
 		img {
 			max-width: 100%;
@@ -95,6 +100,8 @@
 	}
 
 	.tags-comments {
+		padding: 10px;
+		padding-top: 0px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -124,7 +131,9 @@
 	.comments {
 		display: flex;
 		gap: 5px;
-		margin-top: 5px;
+		margin-top: 10px;
+		padding: 10px;
+		padding-top: 0px;
 
 		.comments-number {
 			font-size: 15px;
@@ -155,7 +164,7 @@
 		}
 
 		.make-comment {
-			padding: 5px;
+			padding: 8px;
 			// margin: auto;
 			display: flex;
 			gap: 10px;
