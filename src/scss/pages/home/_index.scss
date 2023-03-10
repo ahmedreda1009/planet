@@ -109,8 +109,8 @@ body {
 	}
 
 	i {
-		background-color: #333;
-		color: #aaa;
+		background-color: #ddd;
+		color: #555;
 		padding: 10px;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -129,23 +129,26 @@ body {
 			}
 		}
 
-		&.profile:hover {
-			background-color: #353535;
-			color: rgb(13, 202, 240);
+		&.profile:hover,
+		&.tags:hover,
+		&.post-icon:hover,
+		&.logout:hover {
+			background-color: #e2e2e2;
+			color: #222;
 		}
 
-		&.tags:hover {
-			background-color: #353535;
-			color: #fff;
-		}
+		// &.profile:hover {
+		// 	color: rgb(13, 202, 240);
+		// }
 
-		&.post-icon:hover {
-			background-color: #353535;
-			color: #fff;
-		}
+		// &.tags:hover {
+		// }
+
+		// &.post-icon:hover {
+		// 	color: #222;
+		// }
 
 		&.logout:hover {
-			background-color: #353535;
 			color: red;
 		}
 	}
