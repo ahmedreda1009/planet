@@ -92,8 +92,8 @@ body {
 	justify-content: space-evenly;
 	bottom: 0;
 	padding: 10px;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	// padding-top: 20px;
+	padding-bottom: 25px;
 	opacity: 1;
 	pointer-events: all;
 	transition: opacity 0.3s ease;
@@ -109,16 +109,19 @@ body {
 	}
 
 	i {
-		background-color: #ddd;
-		color: #555;
+		// background-color: #eee;
+		color: #666;
 		padding: 10px;
 		padding-left: 20px;
 		padding-right: 20px;
-		// border-radius: 50%;
 		border-radius: 5px;
+		border-radius: 50%;
 		font-size: 18px;
-		// width: 30px;
-		// height: 30px;
+		width: 50px;
+		height: 50px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		cursor: pointer;
 		transition: background-color 0.3s ease, color 0.3s ease;
 
@@ -133,7 +136,7 @@ body {
 		&.tags:hover,
 		&.post-icon:hover,
 		&.logout:hover {
-			background-color: #e2e2e2;
+			// background-color: #e2e2e2;
 			color: #222;
 		}
 
