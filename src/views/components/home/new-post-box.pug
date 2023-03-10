@@ -1,13 +1,14 @@
-#create-new-post-box
+.create-new-post-box
     div.icon-and-text
         include ../profile-icon
-        textarea#post-text-area(
+        textarea.post-text-area(
             name="post content" 
             placeholder="What's on your mind, Ahmed?"
             rows="4"
             )
-    #post-img
+    .post-img
     div.btns
-        #attach-img-btn
+        .attach-img-btn
             i.fa-solid.fa-image
-        button#post-btn.btn.btn-info.text-light POST
+        .tags Tags #[i.fa-solid.fa-chevron-down]
+        button.post-btn.btn.btn-info.fw-bold.text-light Post

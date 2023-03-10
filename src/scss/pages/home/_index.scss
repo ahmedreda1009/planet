@@ -8,11 +8,14 @@
 
 body {
 	background-color: rgb(222, 225, 240);
+	background-color: #fff;
+	background-color: #f7f7f7;
 }
 
 .main-wrapper {
 	.container-xl {
 		display: flex;
+		justify-content: center;
 		gap: 10px;
 		max-width: 1500px;
 
@@ -32,6 +35,8 @@ body {
 		}
 
 		main {
+			max-width: 600px;
+
 			@media (min-width: 1400px) {
 				& {
 					width: 100%;
@@ -57,7 +62,7 @@ body {
 			.posts {
 				margin: auto;
 				// padding-top: 10px;
-				padding-bottom: 120px;
+				padding-bottom: 180px;
 				width: 100%;
 
 				@media (min-width: 1400px) {

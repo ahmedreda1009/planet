@@ -4,10 +4,11 @@
 	background-color: #222;
 	background-color: abstract.$mainBackgroundColor;
 	background-color: #f7f7f7;
+	background-color: #fff;
 	margin-top: 10px;
 	border-radius: 10px;
-	max-height: 200px;
-	max-width: 380px;
+	height: fit-content;
+	max-width: 300px;
 	min-width: fit-content;
 	position: sticky;
 	top: 100px;
@@ -18,7 +19,7 @@
 
 	.header {
 		display: flex;
-		flex-direction: column;
+		// flex-direction: column;
 		align-items: center;
 		gap: 10px;
 		position: relative;
@@ -33,10 +34,14 @@
 			display: flex;
 			flex-direction: column;
 			justify-content: center;
-			align-items: center;
+			// align-items: center;
 			margin-top: -5px;
 
 			.name {
+				padding-left: 2px;
+				font-size: 18px;
+				font-weight: bold;
+
 				cursor: pointer;
 				font-weight: 500;
 
@@ -49,6 +54,59 @@
 				font-size: 13px;
 				margin-top: -5px;
 				cursor: default;
+			}
+		}
+	}
+
+	.info {
+		margin-top: -20px;
+		padding-left: 5px;
+
+		> div {
+			font-weight: bold;
+			// font-size: 15px;
+		}
+
+		span {
+			font-weight: normal;
+		}
+
+		// .email span {
+		// 	font-size: 12px;
+		// }
+	}
+
+	.buttons {
+		margin-top: 15px;
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		> div {
+			flex: 1;
+		}
+
+		.post-btn {
+			font-size: 20px;
+			// font-size: 16px;
+		}
+
+		.logout {
+			background-color: #ddd;
+			display: flex;
+			gap: 10px;
+			flex-direction: row-reverse;
+			justify-content: center;
+			align-items: center;
+
+			i {
+				margin-left: 5px;
+				transform: rotate(180deg);
+			}
+
+			&:hover {
+				background-color: #dc3545;
+				color: #fff;
 			}
 		}
 	}

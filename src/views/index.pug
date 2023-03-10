@@ -2,6 +2,8 @@ doctype html
 html(lang='en')
 	head
 		include meta/head
+		script.
+			window.localStorage.removeItem('token');
 	body
 		.wrapper.d-flex.pb-5.text-light
 			.text
