@@ -34,6 +34,24 @@ body {
 			}
 		}
 
+		.profile {
+			max-width: 300px;
+
+			.post-btn {
+				position: sticky;
+				top: 300px;
+				width: 100%;
+				box-shadow: abstract.$mainShadow;
+				margin-top: auto;
+			}
+
+			@media (max-width: 900px) {
+				& {
+					display: none;
+				}
+			}
+		}
+
 		main {
 			max-width: 600px;
 
@@ -115,7 +133,7 @@ body {
 
 	i {
 		// background-color: #eee;
-		color: #666;
+		color: #888;
 		padding: 10px;
 		padding-left: 20px;
 		padding-right: 20px;
@@ -142,7 +160,7 @@ body {
 		&.post-icon:hover,
 		&.logout:hover {
 			// background-color: #e2e2e2;
-			color: #222;
+			color: #111;
 		}
 
 		// &.profile:hover {
@@ -160,4 +178,9 @@ body {
 			color: red;
 		}
 	}
+}
+
+.post-btn {
+	font-size: 20px;
+	// font-size: 16px;
 }

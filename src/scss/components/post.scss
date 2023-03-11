@@ -126,6 +126,7 @@
 				color: #222;
 				transition: background-color 0.3s ease, color 0.3s ease;
 				font-size: 12px;
+				// box-shadow: abstract.$mainShadow;
 			}
 		}
 	}
@@ -153,7 +154,7 @@
 			width: 50%;
 
 			&:hover {
-				background-color: #ddd;
+				background-color: #eee;
 				color: #444;
 			}
 
@@ -180,7 +181,7 @@
 			width: 50%;
 
 			&:hover {
-				background-color: #ddd;
+				background-color: #eee;
 				color: #444;
 			}
 		}

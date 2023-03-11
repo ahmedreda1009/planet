@@ -35,7 +35,7 @@
 			flex-direction: column;
 			justify-content: center;
 			// align-items: center;
-			margin-top: -5px;
+			// margin-top: 5px;
 
 			.name {
 				padding-left: 2px;
@@ -86,13 +86,8 @@
 			flex: 1;
 		}
 
-		.post-btn {
-			font-size: 20px;
-			// font-size: 16px;
-		}
-
 		.logout {
-			background-color: #ddd;
+			background-color: #eee;
 			display: flex;
 			gap: 10px;
 			flex-direction: row-reverse;
