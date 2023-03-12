@@ -17,7 +17,7 @@ body {
 		display: flex;
 		justify-content: center;
 		gap: 10px;
-		max-width: 1500px;
+		// max-width: 1500px;
 
 		> * {
 			flex: 1;
@@ -39,7 +39,7 @@ body {
 
 			.post-btn {
 				position: sticky;
-				top: 300px;
+				top: 225px;
 				width: 100%;
 				box-shadow: abstract.$mainShadow;
 				margin-top: auto;
@@ -177,6 +177,10 @@ body {
 
 		&.logout:hover {
 			color: red;
+		}
+
+		&.active {
+			color: rgb(13, 202, 240);
 		}
 	}
 }

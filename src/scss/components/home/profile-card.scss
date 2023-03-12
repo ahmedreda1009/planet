@@ -11,7 +11,7 @@
 	max-width: 300px;
 	min-width: fit-content;
 	position: sticky;
-	top: 100px;
+	top: 80px;
 	z-index: 1;
 	padding: 10px;
 	padding-top: 20px;
@@ -40,10 +40,8 @@
 			.name {
 				padding-left: 2px;
 				font-size: 18px;
-				font-weight: bold;
-
 				cursor: pointer;
-				font-weight: 500;
+				font-weight: 700;
 
 				&:hover {
 					color: #555;
@@ -56,28 +54,45 @@
 				cursor: default;
 			}
 		}
+
+		i {
+			margin-left: auto;
+			margin-right: 5px;
+			color: #aaa;
+			cursor: pointer;
+			border-radius: 50%;
+			padding: 8px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&:hover {
+				background-color: #eee;
+				color: #333;
+			}
+		}
 	}
 
-	.info {
-		margin-top: -20px;
-		padding-left: 5px;
+	// .info {
+	// 	margin-top: -20px;
+	// 	padding-left: 5px;
 
-		> div {
-			font-weight: bold;
-			// font-size: 15px;
-		}
+	// 	> div {
+	// 		font-weight: bold;
+	// 		// font-size: 15px;
+	// 	}
 
-		span {
-			font-weight: normal;
-		}
+	// 	span {
+	// 		font-weight: normal;
+	// 	}
 
-		// .email span {
-		// 	font-size: 12px;
-		// }
-	}
+	// 	// .email span {
+	// 	// 	font-size: 12px;
+	// 	// }
+	// }
 
 	.buttons {
-		margin-top: 15px;
+		// margin-top: 15px;
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
@@ -93,6 +108,7 @@
 			flex-direction: row-reverse;
 			justify-content: center;
 			align-items: center;
+			color: #888;
 
 			i {
 				margin-left: 5px;

@@ -61,7 +61,7 @@
 			}
 		}
 
-		input {
+		input:not([type="checkbox"]) {
 			color: #222;
 			transition: color 0.3s ease;
 			height: 40px;
@@ -222,9 +222,18 @@
 			font-size: 11px;
 			color: #777;
 			font-weight: 600;
+			display: flex;
+			gap: 5px;
+			align-items: flex-start;
+
+			input {
+				padding: 7px;
+				cursor: pointer;
+			}
 
 			p {
 				margin-bottom: 10px;
+				padding-top: 2px;
 			}
 		}
 

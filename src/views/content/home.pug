@@ -6,7 +6,7 @@ html
 			if (!window.localStorage.getItem("token")) {
 				window.location.href = "index.html";
 			}
-	body 
+	body
 		include ../components/header
 		.main-wrapper
 			.container-xl
@@ -16,13 +16,14 @@ html
 				main 
 					include ../components/home/new-post-box
 					.posts
-						.post
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -31,40 +32,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
-							.text This is the first post in planet.
-							.image
-								img(src=require('../../assets/post.jpg'))
-							.tags-comments
-								.tags
-									.tag sports
-									.tag Entertainment
-							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
-							.header
-								include ../components/profile-icon
-								.name-and-username
-									.name Ahmed Reda
-									//- .username.text-muted @ahmedreda1009
-									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							//- .image
 							//- 	img(src=require('../../assets/post.jpg'))
@@ -73,19 +70,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -94,19 +108,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -115,19 +146,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -136,19 +184,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -157,19 +222,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -178,19 +260,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -199,19 +298,36 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+						.post(data-id=1)
 							.header
 								include ../components/profile-icon
 								.name-and-username
 									.name Ahmed Reda
 									//- .username.text-muted @ahmedreda1009
 									.time.text-muted 2 min ago
+								i.fa-solid.fa-ellipsis
 							.text This is the first post in planet.
 							.image
 								img(src=require('../../assets/post.jpg'))
@@ -220,57 +336,31 @@ html
 									.tag sports
 									.tag Entertainment
 							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
-							.header
-								include ../components/profile-icon
-								.name-and-username
-									.name Ahmed Reda
-									//- .username.text-muted @ahmedreda1009
-									.time.text-muted 2 min ago
-							.text This is the first post in planet.
-							.image
-								img(src=require('../../assets/post.jpg'))
-							.tags-comments
-								.tags
-									.tag sports
-									.tag Entertainment
-							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
-						.post
-							.header
-								include ../components/profile-icon
-								.name-and-username
-									.name Ahmed Reda
-									//- .username.text-muted @ahmedreda1009
-									.time.text-muted 2 min ago
-							.text This is the first post in planet.
-							.image
-								img(src=require('../../assets/post.jpg'))
-							.tags-comments
-								.tags
-									.tag sports
-									.tag Entertainment
-							.comments
-								.comments-number
-									span 5
-									.fa-solid.fa-message
-								.make-comment
-									.fa-solid.fa-message
-									span Comment
+								.comments-wrapper
+									.comments-number(data-bs-toggle="collapse" href="#comments-number" role="button" aria-expanded="false" aria-controls="comments-number")
+										span 5
+										.fa-solid.fa-message
+									.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment" aria-expanded="false" aria-controls="make-comment")
+										.fa-solid.fa-message
+										span Comment
+								#make-comment.collapse
+									.card.card-body
+										input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+										i.fa-solid.fa-circle-right.text-primary
+								#comments-number.collapse
+									.card.card-body
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
+										.comment
+											include ../components/profile-icon
+											.comment-content This is comment.
 				include ../components/home/tags
 		.icons
-			i.home.fa-solid.fa-house
+			i.home.active.fa-solid.fa-house
 			i.profile.fa-solid.fa-user
 			i.tags.fa-solid.fa-hashtag
 			i.post-icon.fa-solid.fa-pen

@@ -4,29 +4,30 @@ nav {
 	background-color: abstract.$mainBackgroundColor;
 	box-shadow: abstract.$mainShadow;
 	background-color: #222;
+	// padding: 0px !important;
 
 	.container-xl {
-		padding-left: 20px;
-		padding-right: 20px;
+		// padding-left: 20px;
+		// padding-right: 20px;
 		// max-width: 1500px;
 		// min-height: 80px;
 		justify-content: center !important;
-		gap: 10px;
+		// gap: 10px;
 
-		.profile-icon {
-			max-width: 55px;
-			height: 55px;
-			opacity: 0;
-			pointer-events: none;
-			transition: opacity 0.3s ease;
+		// .profile-icon {
+		// 	max-width: 55px;
+		// 	height: 55px;
+		// 	opacity: 0;
+		// 	pointer-events: none;
+		// 	transition: opacity 0.3s ease;
 
-			// @media (max-width: 900px) {
-			// 	& {
-			// 		opacity: 1;
-			// 		pointer-events: all;
-			// 	}
-			// }
-		}
+		// 	// @media (max-width: 900px) {
+		// 	// 	& {
+		// 	// 		opacity: 1;
+		// 	// 		pointer-events: all;
+		// 	// 	}
+		// 	// }
+		// }
 
 		a.navbar-brand {
 			#logo {
@@ -38,16 +39,16 @@ nav {
 				align-items: center;
 
 				i {
-					font-size: 35px;
+					font-size: 25px;
 					display: block;
-					padding-top: 5px;
+					padding-top: 3px;
 					cursor: pointer;
 				}
 
 				span {
-					font-size: 35px;
+					font-size: 25px;
 					font-weight: bold;
-					letter-spacing: -3px;
+					letter-spacing: -2px;
 					cursor: pointer;
 				}
 			}
@@ -60,28 +61,28 @@ nav {
 		// 	gap: 15px;
 		// }
 
-		i.logout {
-			background-color: #333;
-			color: #aaa;
-			padding: 10px;
-			border-radius: 50%;
-			font-size: 15px;
-			cursor: pointer;
-			transition: background-color 0.3s ease, color 0.3s ease;
-			opacity: 0;
-			pointer-events: none;
+		// i.logout {
+		// 	background-color: #333;
+		// 	color: #aaa;
+		// 	padding: 10px;
+		// 	border-radius: 50%;
+		// 	font-size: 15px;
+		// 	cursor: pointer;
+		// 	transition: background-color 0.3s ease, color 0.3s ease;
+		// 	opacity: 0;
+		// 	pointer-events: none;
 
-			@media (min-width: 900px) {
-				& {
-					opacity: 1;
-					pointer-events: all;
-				}
-			}
+		// 	@media (min-width: 900px) {
+		// 		& {
+		// 			opacity: 1;
+		// 			pointer-events: all;
+		// 		}
+		// 	}
 
-			&:hover {
-				background-color: #353535;
-				color: red;
-			}
-		}
+		// 	&:hover {
+		// 		background-color: #353535;
+		// 		color: red;
+		// 	}
+		// }
 	}
 }

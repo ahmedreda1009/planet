@@ -15,7 +15,7 @@
 		align-items: flex-start;
 		gap: 10px;
 		z-index: 1;
-		cursor: pointer;
+		// cursor: pointer;
 		padding: 10px;
 		padding-bottom: 0px;
 
@@ -67,6 +67,25 @@
 				// margin-left: -60px;
 			}
 		}
+
+		i {
+			margin-left: auto;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			padding: 8px;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			transition: background-color 0.3s ease, color 0.3s ease;
+			color: #888;
+			cursor: pointer;
+
+			&:hover {
+				background-color: #eee;
+				color: #333;
+			}
+		}
 	}
 
 	.text {
@@ -116,46 +135,86 @@
 			// justify-content: center;
 			gap: 10px;
 			width: 100%;
+			font-weight: bold;
 
 			.tag {
-				border-radius: 7px;
-				// border: 2px solid rgb(13, 202, 240);
-				padding: 2px 7px;
-				cursor: pointer;
-				background-color: #eee;
-				color: #222;
+				// border-radius: 7px;
+				// border: 1px solid #bbb;
+				// padding: 2px 7px;
+				cursor: default;
+				// background-color: #eee;
+				// color: #222;
 				transition: background-color 0.3s ease, color 0.3s ease;
 				font-size: 12px;
+				color: #666;
+				color: rgb(13, 202, 240);
 				// box-shadow: abstract.$mainShadow;
+
+				&::before {
+					content: "#";
+				}
 			}
 		}
 	}
 
 	.comments {
 		display: flex;
+		flex-direction: column;
 		gap: 5px;
 		margin-top: 10px;
 		padding: 10px;
 		padding-top: 0px;
 
-		.comments-number {
-			font-size: 15px;
-			min-height: 30px;
+		.comments-wrapper {
 			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 5px;
-			min-width: 100px;
-			// background-color: #eee;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: background-color 0.3s ease, color 0.3s ease;
-			color: #999;
-			width: 50%;
 
-			&:hover {
-				background-color: #eee;
-				color: #444;
+			.comments-number {
+				font-size: 15px;
+				min-height: 30px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 5px;
+				min-width: 100px;
+				// background-color: #eee;
+				border-radius: 8px;
+				cursor: pointer;
+				transition: background-color 0.3s ease, color 0.3s ease;
+				color: #999;
+				width: 50%;
+
+				&:hover {
+					background-color: #eee;
+					color: #444;
+				}
+
+				span {
+					font-size: 14px;
+					position: relative;
+					bottom: 2px;
+					color: #555;
+				}
+			}
+
+			.make-comment {
+				padding: 8px;
+				// margin: auto;
+				display: flex;
+				gap: 10px;
+				justify-content: center;
+				align-items: center;
+				// background-color: #eee;
+				border-radius: 8px;
+				cursor: pointer;
+				user-select: none;
+				transition: background-color 0.3s ease, color 0.3s ease;
+				color: #999;
+				width: 50%;
+
+				&:hover {
+					background-color: #eee;
+					color: #444;
+				}
 			}
 
 			span {
@@ -166,31 +225,70 @@
 			}
 		}
 
-		.make-comment {
-			padding: 8px;
-			// margin: auto;
-			display: flex;
-			gap: 10px;
-			justify-content: center;
-			align-items: center;
-			// background-color: #eee;
-			border-radius: 8px;
-			cursor: pointer;
-			transition: background-color 0.3s ease, color 0.3s ease;
-			color: #999;
-			width: 50%;
+		[id^="make-comment"] {
+			.card {
+				padding: 0px;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				border: none;
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 10px;
 
-			&:hover {
-				background-color: #eee;
-				color: #444;
+				input {
+					flex-grow: 1;
+					outline: none;
+					border: 1px solid #ddd;
+					border-radius: 5px;
+					padding-left: 5px;
+					min-height: 40px;
+
+					&::placeholder {
+						color: #919191;
+						font-size: 14px;
+					}
+
+					&:focus::placeholder {
+						color: #c9c9c9;
+					}
+				}
+
+				i {
+					font-size: 24px;
+					cursor: pointer;
+
+					// &:hover {
+					// 	color: rgb(13, 202, 240) !important;
+					// }
+				}
 			}
 		}
 
-		span {
-			font-size: 14px;
-			position: relative;
-			bottom: 2px;
-			color: #555;
+		[id^="comments-number"] {
+			.card {
+				border: none;
+				padding: 0;
+
+				.comment {
+					display: flex;
+					flex-direction: row;
+					align-items: flex-start;
+					gap: 10px;
+					margin-top: 10px;
+
+					.profile-icon {
+						flex-shrink: 0;
+					}
+
+					.comment-content {
+						background-color: #eee;
+						border-radius: 5px;
+						padding: 10px;
+						flex-grow: 1;
+					}
+				}
+			}
 		}
 	}
 }

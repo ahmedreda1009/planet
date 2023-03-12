@@ -7,7 +7,7 @@ function calcHeight(value: string): number {
 }
 
 // change text area height when writing inside it.
-let textarea = document.getElementById("post-text-area") as HTMLTextAreaElement;
+let textarea = document.querySelector(".post-text-area") as HTMLTextAreaElement;
 textarea.addEventListener("keyup", () => {
 	textarea.style.height = calcHeight(textarea.value) + "px";
 });

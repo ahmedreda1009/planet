@@ -11,7 +11,7 @@ aside#tags {
 	min-width: fit-content;
 	height: fit-content;
 	position: sticky;
-	top: 100px;
+	top: 80px;
 	padding: 10px;
 	box-shadow: abstract.$mainShadow;
 
@@ -34,6 +34,7 @@ aside#tags {
 			&:hover {
 				background-color: #eee;
 				text-decoration: underline;
+				color: rgb(13, 202, 240);
 			}
 		}
 	}
