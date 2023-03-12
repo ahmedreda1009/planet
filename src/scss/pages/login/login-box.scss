@@ -22,7 +22,7 @@
 
 	form {
 		input {
-			transition: color 0.3s ease, outline 0.3s ease, border 0.1s ease;
+			transition: color 0.3s ease, border 0.3s ease, border 0.1s ease;
 			height: 50px;
 			min-width: 370px;
 			max-width: 190px;
@@ -31,9 +31,10 @@
 			min-height: 40px;
 			border-radius: 5px;
 			line-height: 1.15;
-			box-shadow: 0px 10px 15px -18px;
+			// box-shadow: 0px 10px 15px -18px;
+			// box-shadow: abstract.$mainShadow;
 			background: none;
-			border: 1px solid lightgrey;
+			border: 2px solid #ddd;
 			outline: none;
 
 			@media (max-width: 500px) {
@@ -54,12 +55,12 @@
 				}
 			}
 
-			&:hover {
-				border: 1px solid darkgray;
-			}
+			// &:hover {
+			// 	border: 1px solid darkgray;
+			// }
 
 			&:focus {
-				border-bottom: 2px solid rgb(13, 202, 240);
+				border: 2px solid #222;
 				// border-radius: 4px 4px 2px 2px;
 			}
 

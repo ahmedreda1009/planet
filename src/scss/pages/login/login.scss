@@ -35,6 +35,12 @@
 		font-size: 80px;
 		user-select: none;
 
+		i {
+			font-size: 65px;
+			position: relative;
+			bottom: 5px;
+		}
+
 		@media (max-width: 900px) {
 			& {
 				font-size: 70px;
