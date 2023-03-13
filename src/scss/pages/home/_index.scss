@@ -82,6 +82,18 @@ body {
 				// padding-top: 10px;
 				padding-bottom: 180px;
 				width: 100%;
+				position: relative;
+
+				// &::before {
+				// 	content: "";
+				// 	width: 5px;
+				// 	height: calc(100% - 300px);
+				// 	background-color: #ddd;
+				// 	position: absolute;
+				// 	top: 10px;
+				// 	left: 32px;
+				// 	z-index: -1;
+				// }
 
 				@media (min-width: 1400px) {
 					& {

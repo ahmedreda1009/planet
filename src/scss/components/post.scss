@@ -135,7 +135,7 @@
 			// justify-content: center;
 			gap: 10px;
 			width: 100%;
-			font-weight: bold;
+			// font-weight: bold;
 
 			.tag {
 				// border-radius: 7px;
@@ -179,6 +179,7 @@
 				// background-color: #eee;
 				border-radius: 8px;
 				cursor: pointer;
+				user-select: none;
 				transition: background-color 0.3s ease, color 0.3s ease;
 				color: #999;
 				width: 50%;
@@ -247,6 +248,7 @@
 					&::placeholder {
 						color: #919191;
 						font-size: 14px;
+						user-select: none;
 					}
 
 					&:focus::placeholder {
@@ -284,7 +286,7 @@
 					}
 
 					.comment-content {
-						background-color: #eee;
+						background-color: #f4f4f4;
 						border-radius: 5px;
 						padding: 10px;
 						flex-grow: 1;

@@ -47,6 +47,20 @@
 		}
 	}
 
+	ul.tags-box {
+		list-style-type: none;
+		padding: 0px;
+		display: flex;
+		gap: 5px;
+
+		li {
+			background-color: green;
+			border-radius: 10px;
+			color: #fff;
+			padding: 0px 10px;
+		}
+	}
+
 	.btns {
 		display: flex;
 		gap: 5px;
@@ -74,6 +88,7 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				// box-shadow: abstract.$mainShadow;
 				color: rgb(13, 202, 240);
+				margin-left: 8px;
 
 				&:hover {
 					// background-color: #ccc;
@@ -87,9 +102,10 @@
 		.tags {
 			// background-color: #eee;
 			border-radius: 15px;
-			padding-left: 40px;
-			padding-right: 40px;
+			// padding-left: 40px;
+			// padding-right: 40px;
 			user-select: none;
+			min-width: 140px;
 			// padding-top: 1px;
 			// padding-bottom: 1px;
 			// border: 1px solid transparent;
@@ -101,6 +117,7 @@
 			color: #666;
 			transition: border 0.3s ease;
 			transition: background-color 0.3s ease, color 0.3s ease;
+			position: relative;
 
 			&:hover {
 				// background-color: #00caee;
@@ -111,6 +128,61 @@
 			i {
 				margin-left: 5px;
 				font-size: 13px;
+			}
+
+			.tags-btn {
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+
+				i {
+					transition: transform 0.3s ease;
+
+					&.active {
+						transform: rotate(180deg);
+					}
+				}
+			}
+
+			ul.tags-selectbox {
+				position: absolute;
+				top: 28px;
+				left: 0px;
+				// min-width: 129px;
+				z-index: 1;
+				background-color: #eee;
+				border-radius: 10px;
+				list-style-type: none;
+				box-shadow: abstract.$mainShadow;
+				padding: 0px;
+				padding: 5px 10px;
+				transform: scaleY(0) translateY(-20px);
+				opacity: 0;
+				transform-origin: top center;
+				transition: transform 0.3s ease, color 0.3s ease,
+					opacity 0.3s ease;
+
+				&.active {
+					transform: scaleY(1) translateY(0px);
+					opacity: 1;
+				}
+
+				li {
+					border-radius: 5px;
+					padding: 5px 10px;
+					display: flex;
+					align-items: center;
+					gap: 5px;
+
+					&:hover {
+						background-color: #ddd;
+
+						i {
+							color: #00cbee;
+						}
+					}
+				}
 			}
 		}
 
