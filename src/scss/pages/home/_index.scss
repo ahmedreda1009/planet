@@ -6,6 +6,10 @@
 @use "../../components/post.scss";
 @use "../../abstract";
 
+button.swal2-confirm.swal2-styled.swal2-default-outline:focus {
+	box-shadow: 0 0 0 3px rgb(200 100 100 / 50%);
+}
+
 body {
 	background-color: rgb(222, 225, 240);
 	background-color: #fff;
