@@ -93,7 +93,7 @@
 		font-weight: 500;
 		padding: 10px;
 		padding-top: 0px;
-		padding-bottom: 0px;
+		padding-bottom: 10px;
 		// background-color: #eee;
 		border-radius: 10px;
 		// padding: 10px;
@@ -105,7 +105,7 @@
 	}
 
 	.image {
-		margin-top: 10px;
+		// margin-top: 10px;
 		width: 100%;
 		max-height: 400px;
 		max-height: 350px;
@@ -161,9 +161,10 @@
 		display: flex;
 		flex-direction: column;
 		gap: 5px;
-		margin-top: 10px;
+		// margin-top: 10px;
 		padding: 10px;
-		padding-top: 0px;
+		padding-top: 10px;
+		border-top: 2px solid #ddd;
 
 		.comments-wrapper {
 			display: flex;

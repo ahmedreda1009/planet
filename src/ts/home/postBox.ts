@@ -12,16 +12,16 @@ textarea.addEventListener("keyup", () => {
 	textarea.style.height = calcHeight(textarea.value) + "px";
 });
 
-// tags list
-const listBtn = document.querySelector('.create-new-post-box div.btns .tags .tags-btn') as HTMLDivElement;
-const list = document.querySelector('.create-new-post-box div.btns .tags ul.tags-selectbox') as HTMLUListElement;
-const listItems = list.querySelectorAll('li');
+// // tags list
+// const listBtn = document.querySelector('.create-new-post-box div.btns .tags .tags-btn') as HTMLDivElement;
+// const list = document.querySelector('.create-new-post-box div.btns .tags ul.tags-selectbox') as HTMLUListElement;
+// const listItems = list.querySelectorAll('li');
 
-// toggle tags list
-listBtn.addEventListener('click', () => {
-	listBtn.querySelector('i')?.classList.toggle('active');
-	list.classList.toggle('active');
-});
+// // toggle tags list
+// listBtn.addEventListener('click', () => {
+// 	listBtn.querySelector('i')?.classList.toggle('active');
+// 	list.classList.toggle('active');
+// });
 
 // // add tags to tags box
 // listItems.forEach(item => {
