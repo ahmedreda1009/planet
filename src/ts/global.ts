@@ -19,7 +19,7 @@ logoutBtns.forEach(btn => {
             confirmButtonColor: '#d33',
             // confirmButtonBorderColor: '#000',
             cancelButtonColor: '#0dcaf0',
-            confirmButtonText: 'Logout!'
+            confirmButtonText: 'Log out!'
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire(

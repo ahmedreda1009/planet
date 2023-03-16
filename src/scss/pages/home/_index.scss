@@ -1,5 +1,6 @@
 @use "../../components/header.scss";
 @use "../../components/home/new-post-box.scss";
+@use "../../components/home/floating-post-box.scss";
 @use "../../components/home/profile-card.scss";
 @use "../../components/home/tags.scss";
 @use "../../components/profile-icon.scss";
@@ -28,7 +29,7 @@ body {
 			transition: width 0.3s ease;
 		}
 
-		@media (max-width: 900px) {
+		@media (max-width: 1100px) {
 			& aside#tags {
 				display: none;
 			}
@@ -49,7 +50,7 @@ body {
 				margin-top: auto;
 			}
 
-			@media (max-width: 900px) {
+			@media (max-width: 1100px) {
 				& {
 					display: none;
 				}
@@ -131,6 +132,7 @@ body {
 	justify-content: space-evenly;
 	bottom: 0;
 	padding: 10px;
+	z-index: 10000;
 	// padding-top: 20px;
 	padding-bottom: 25px;
 	opacity: 1;
@@ -140,14 +142,14 @@ body {
 		rgb(0 0 0 / 30%) 0px -2px 3px -1px;
 	box-shadow: abstract.$mainShadow;
 
-	@media (min-width: 900px) {
+	@media (min-width: 1100px) {
 		& {
 			opacity: 0;
 			pointer-events: none;
 		}
 	}
 
-	i {
+	> div {
 		// background-color: #eee;
 		color: #888;
 		padding: 10px;
@@ -159,27 +161,34 @@ body {
 		width: 50px;
 		height: 50px;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		cursor: pointer;
 		transition: background-color 0.3s ease, color 0.3s ease;
 
-		@media (min-width: 900px) {
+		@media (min-width: 1100px) {
 			& {
 				opacity: 1;
 				pointer-events: all;
 			}
 		}
 
-		&.home:hover,
-		&.profile:hover,
-		&.tags:hover,
-		&.post-icon:hover,
-		&.logout:hover,
-		&.fa-earth-americas:hover {
-			// background-color: #e2e2e2;
+		&:hover {
 			color: #111;
 		}
+
+		// &.home,
+		// &.profile,
+		// &.tags,
+		// &.post-icon,
+		// &.logout {
+		// 	display: flex;
+		// 	flex-direction: column;
+		// 	justify-content: center;
+		// 	align-items: center;
+
+		// }
 
 		// &.profile:hover {
 		// 	color: rgb(13, 202, 240);
@@ -198,6 +207,64 @@ body {
 
 		&.active {
 			color: rgb(13, 202, 240);
+		}
+
+		span {
+			font-size: 14px;
+		}
+
+		// &.tags {
+		// 	position: relative;
+		// 	z-index: 10;
+		// }
+	}
+}
+
+ul.tags-list {
+	position: fixed;
+	bottom: 50px;
+	left: calc(50% - 75px);
+	background-color: red;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	// width: 200px;
+	// height: 200px;
+
+	@media (min-width: 1100px) {
+		& {
+			opacity: 0;
+			pointer-events: none;
+		}
+	}
+
+	li {
+		padding: 5px 10px;
+		background-color: #ffffff;
+		color: #222;
+		border-radius: 10px;
+		margin-top: 5px;
+		box-shadow: abstract.$mainShadow;
+		position: absolute;
+		min-width: 150px;
+		min-height: 40px;
+		font-size: 18px;
+		text-align: center;
+		transition: transform 0.5s ease-in-out;
+		// bottom: -100px;
+		// left: -75%;
+		// z-index: -10000;
+		cursor: pointer;
+		transform: translateY(0px);
+
+		&:hover {
+			background-color: #eee;
+		}
+	}
+
+	&.muted {
+		li {
+			transform: translateY(0px);
 		}
 	}
 }

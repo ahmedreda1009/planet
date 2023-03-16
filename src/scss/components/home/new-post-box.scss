@@ -14,6 +14,19 @@
 	margin-left: auto;
 	margin-right: auto;
 	transition: width 0.3s ease;
+	position: relative;
+
+	i.fa-xmark {
+		position: absolute;
+		right: 0;
+		padding: 5px;
+		// background-color: red;
+		right: 10px;
+		// border-radius: 50%;
+		cursor: pointer;
+		font-size: 18px;
+		display: none;
+	}
 
 	> div.icon-and-text {
 		display: flex;

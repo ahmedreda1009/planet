@@ -1,0 +1,55 @@
+.floating-new-post-box {
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 0px;
+	left: 0;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	pointer-events: none;
+
+	.overlay {
+		background-color: #000000a9;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s ease 0.2s;
+	}
+
+	.create-new-post-box {
+		max-width: 600px;
+		width: calc(100% - 40px);
+		transform: translateY(-80px);
+		transition: transform 0.3s ease;
+		position: absolute;
+		top: 150px;
+		opacity: 0;
+		pointer-events: none;
+		transition: transform 0.3s ease, opacity 0.3s ease;
+
+		i.fa-xmark {
+			display: block;
+		}
+
+		textarea {
+			min-height: 120px !important;
+		}
+	}
+
+	&.active {
+		.overlay {
+			opacity: 1;
+			pointer-events: all;
+		}
+
+		.create-new-post-box {
+			transform: translateY(0px);
+			opacity: 1;
+			pointer-events: all;
+			transition: transform 0.3s ease, opacity 0.3s ease;
+		}
+	}
+}
