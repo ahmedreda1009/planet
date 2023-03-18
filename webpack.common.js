@@ -4,7 +4,8 @@ module.exports = {
     entry: {
         main: './src/index.ts',
         vendor: './src/vendor.ts',
-        home: './src/ts/home/home.ts'
+        home: './src/ts/pages/home.ts',
+        profile: './src/ts/pages/profile.ts',
     },
     output: {
         filename: '[name]-[contenthash].bundle.js',

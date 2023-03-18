@@ -1,0 +1,91 @@
+extends ../layouts/page-skeleton
+
+block mainBlock
+	include ../components/home/new-post-box
+	.posts
+		//- .post(data-id=1)
+		//- 	.header
+		//- 		include ../components/profile-icon
+		//- 		.name-and-username
+		//- 			.name Ahmed Reda
+		//- 			//- .username.text-muted @ahmedreda1009
+		//- 			.time.text-muted 2 min ago
+		//- 		.edit
+		//- 			i.fa-solid.fa-ellipsis
+		//- 			ul.options
+		//- 				li.bg.bg-primary Edit
+		//- 				li.bg.bg-danger.delete-btn Delete
+		//- 	.text This is the first post in planet.
+		//- 	.image
+		//- 		img(src=require('../../assets/post.jpg') decoding="async")
+		//- 	//- .tags-comments
+		//- 	//- 	.tags
+		//- 	//- 		.tag sports
+		//- 	//- 		.tag Entertainment
+		//- 	.comments
+		//- 		.comments-wrapper
+		//- 			.comments-number(data-bs-toggle="collapse" href="#comments-number-1" role="button" aria-expanded="false" aria-controls="comments-number")
+		//- 				span 5
+		//- 				i.fa-regular.fa-message
+		//- 			.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-1" aria-expanded="false" aria-controls="make-comment")
+		//- 				i.fa-regular.fa-message
+		//- 				span Comment
+		//- 		#make-comment-1.collapse
+		//- 			.card.card-body
+		//- 				include ../components/profile-icon
+		//- 				input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+		//- 				i.fa-solid.fa-circle-right
+		//- 		#comments-number-1.collapse
+		//- 			.card.card-body
+		//- 				.comment
+		//- 					include ../components/profile-icon
+		//- 					.comment-content This is comment.
+		//- 				.comment
+		//- 					include ../components/profile-icon
+		//- 					.comment-content This is comment.
+		//- 				.comment
+		//- 					include ../components/profile-icon
+		//- 					.comment-content This is comment.
+		//- .post(data-id=1)
+			.header
+				include ../components/profile-icon
+				.name-and-username
+					.name Ahmed Reda
+					//- .username.text-muted @ahmedreda1009
+					.time.text-muted 2 min ago
+				.edit
+					i.fa-solid.fa-ellipsis
+					ul.options
+						li.bg.bg-primary Edit
+						li.bg.bg-danger.delete-btn Delete
+			.text This is the first post in planet.
+			.image
+				img(src=require('../../assets/post.jpg') decoding="async")
+			//- .tags-comments
+			//- 	.tags
+			//- 		.tag sports
+			//- 		.tag Entertainment
+			.comments
+				.comments-wrapper
+					.comments-number(data-bs-toggle="collapse" href="#comments-number-1" role="button" aria-expanded="false" aria-controls="comments-number")
+						span 5
+						i.fa-regular.fa-message
+					.make-comment(type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-1" aria-expanded="false" aria-controls="make-comment")
+						i.fa-regular.fa-message
+						span Comment
+				#make-comment-1.collapse
+					.card.card-body
+						include ../components/profile-icon
+						input#new-comment(type="text", name="comment" placeholder="Write a comment...")
+						i.fa-solid.fa-circle-right
+				#comments-number-1.collapse
+					.card.card-body
+						.comment
+							include ../components/profile-icon
+							.comment-content This is comment.
+						.comment
+							include ../components/profile-icon
+							.comment-content This is comment.
+						.comment
+							include ../components/profile-icon
+							.comment-content This is comment.

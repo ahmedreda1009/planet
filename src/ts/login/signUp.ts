@@ -1,6 +1,7 @@
 import axios from "axios";
 
-import baseUrl from "../global";
+// const baseUrl = "https://reqres.in";
+const baseUrl = "https://tarmeezacademy.com/api/v1/'";
 
 // click to show sign up window.
 const createNewAccBtn = document.getElementById(

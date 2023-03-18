@@ -1,0 +1,47 @@
+doctype html
+html
+	head
+		include ../meta/head
+		script.
+			if (!window.localStorage.getItem("token")) {
+				window.location.href = "index.html";
+			}
+	body
+		include ../components/header
+		.main-wrapper
+			.container-xl
+				.profile
+					include ../components/home/profile-card
+					.home-btn.btn.btn-light.fw-bold
+						i.fa-solid.fa-earth-americas
+						span Home
+					.profile-btn.btn.btn-light.fw-bold
+						i.fa-solid.fa-user
+						span Profile
+					.post-btn.btn.btn-info.fw-bold.text-light Post
+				main
+					block mainBlock
+				include ../components/home/tags
+		.icons
+			//- i.home.active.fa-solid.fa-house
+			.home
+				i.fa-solid.fa-earth-americas
+				span Home
+			.profile
+				i.fa-solid.fa-user
+				span Profile
+			.tags
+				i.fa-solid.fa-hashtag
+				span Explore
+			.post-icon
+				i.fa-solid.fa-pen
+				span Post
+			.logout
+				i.fa-solid.fa-right-from-bracket
+				span Logout
+		ul.tags-list
+			li Sports
+			li Politics
+			li Economy
+			li Entertainment
+		include ../components/home/floating-post-box

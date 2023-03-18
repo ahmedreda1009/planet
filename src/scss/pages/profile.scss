@@ -1,0 +1,10 @@
+@use "../components/skeleton.scss";
+@use "../abstract";
+
+main {
+	background-color: black;
+	border-radius: 10px;
+	position: relative;
+	top: 7px;
+	box-shadow: abstract.$mainShadow;
+}

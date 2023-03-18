@@ -8,7 +8,7 @@
 	border-radius: 10px;
 	margin-top: 7px;
 	width: 100%;
-	min-height: 90px;
+	min-height: 133px;
 	padding: 10px;
 	box-shadow: abstract.$mainShadow;
 	margin-left: auto;
@@ -60,6 +60,46 @@
 		}
 	}
 
+	.post-img {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 10px;
+		position: relative;
+		max-height: 200px;
+		overflow: hidden;
+
+		img {
+			max-width: 100%;
+
+			// &::after {
+			// 	content: "\f00d";
+			// 	position: absolute;
+			// 	top: 0px;
+			// 	right: 0px;
+			// }
+		}
+
+		i {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			cursor: pointer;
+			background-color: #eee;
+			border-radius: 50%;
+			padding: 10px;
+			width: 30px;
+			height: 30px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+			&:hover {
+				background-color: #ddd;
+			}
+		}
+	}
+
 	ul.tags-box {
 		list-style-type: none;
 		padding: 0px;
@@ -85,6 +125,10 @@
 
 		.attach-img-btn {
 			margin-right: auto;
+
+			input {
+				display: none;
+			}
 
 			i.fa-image {
 				// width: 40px;

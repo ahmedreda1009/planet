@@ -7,7 +7,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        template: `./src/views/content/${name}.pug`, // relative path to the HTML files
+        template: `./src/views/pages/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`, 'vendor'], // respective JS files
         cache: false,

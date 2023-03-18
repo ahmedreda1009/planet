@@ -1,3 +1,5 @@
+export { }
+
 // tags list in navbar.
 const tagIcon = document.querySelector('.icons .tags') as HTMLElement;
 const tagsList = document.querySelector('ul.tags-list') as HTMLUListElement;

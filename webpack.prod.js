@@ -13,7 +13,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 let htmlPageNames = ['home', 'profile'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
-        template: `./src/views/content/${name}.pug`, // relative path to the HTML files
+        template: `./src/views/pages/${name}.pug`, // relative path to the HTML files
         filename: `${name}.html`, // output HTML files
         chunks: [`${name}`, 'vendor'], // respective JS files
         // favicon: './src/assets/favicon.png'
@@ -35,7 +35,7 @@ module.exports = merge(common, {
             template: './src/views/index.pug',
             filename: 'index.html',
             chunks: [`main`, 'vendor'], // respective JS files
-            excludeChunks: ['home'],
+            excludeChunks: ['home', 'profile'],
             // favicon: './src/assets/favicon.png'
         }),
     ].concat(multipleHtmlPlugins),
