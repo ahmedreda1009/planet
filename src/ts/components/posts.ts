@@ -45,7 +45,7 @@ function checkUrl(string: string) {
 }
 
 function getPostsHome(currPage: number) {
-    return getPosts(`http://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`, postsBlock)
+    return getPosts(`https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`, postsBlock)
 }
 
 function getPosts(url: string, div: HTMLDivElement) {
