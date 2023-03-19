@@ -1,21 +1,29 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
 
+// the div where we eill put the posts that we get from the api.
 let postsBlock = document.querySelector('.posts') as HTMLDivElement;
 
 // get user data from local storage.
 const userData: string = window.localStorage.getItem('user') as string;
 const user = JSON.parse(userData);
 
+// get user profile image if exist.
+const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
+
+// page numbers.
 let currentPage: number = 1;
 let lastPage: number = 1;
 
+// trigger getting posts on page load.
 window.addEventListener('load', () => {
     getPostsHome(currentPage);
 });
 
+// manage getting posts throttle when reaching the end of the page.
 let throttleTimer: boolean = false;
 
+// getting a new page when reaching end of page.
 window.addEventListener('scroll', () => {
     let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 1500;
     if (endOfPage && currentPage <= lastPage) {
@@ -33,7 +41,7 @@ window.addEventListener('scroll', () => {
 
 
 // check the validity of a images urls.
-function checkUrl(string: string) {
+export function checkUrl(string: string) {
     let givenURL;
     try {
         givenURL = new URL(string);
@@ -44,14 +52,18 @@ function checkUrl(string: string) {
     return givenURL ? true : false;
 }
 
+// trigger getPosts fn with the current page.
 function getPostsHome(currPage: number) {
     return getPosts(`https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`, postsBlock)
 }
 
+// fn that get posts from api.
 function getPosts(url: string, div: HTMLDivElement) {
     axios.get(url).then(res => {
-        console.log(div);
         res.data.data.map((post: any) => {
+            let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png');
+            let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : '';
+
             let comments = '';
             if (post.comments_count > 0 && post.comments) {
                 res.data.data.comments.forEach((comment: any) => {
@@ -59,7 +71,7 @@ function getPosts(url: string, div: HTMLDivElement) {
                     <div class="comment">
                         <div class="profile-icon" data-id="${post.author.id}">
                             <div class="profile-img-icon">
-                                <img src="${checkUrl(comment.author.profile_image) ? comment.author.profile_image : require('../../assets/profile_picture.png')}" />
+                                <img src="${postAuthorImg}" />
                             </div>
                         </div>
                         <div class="comment-content">${comment.body}</div>
@@ -84,7 +96,7 @@ function getPosts(url: string, div: HTMLDivElement) {
                     <div class="header">
                         <div class="profile-icon" data-id="${post.author.id}" >
                             <div class="profile-img-icon">
-                                <img src="${checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png')}" />
+                                <img src="${postAuthorImg}" />
                             </div>
                         </div>
                         <div class="name-and-username">
@@ -95,12 +107,12 @@ function getPosts(url: string, div: HTMLDivElement) {
                     </div>
                     <div class="text">${post.body}</div>
                     <div class="image">
-                        ${checkUrl(post.image) ? `<img src="${post.image}" />` : ''}
+                        ${postImage}
                     </div>
                     <div class="comments">
                         <div class="comments-wrapper">
                             <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
-                                <span>${post.comments_count && post.comments ? post.comments_count : '0'}</span>
+                                <span>${post.comments_count && post.comments ? post.comments_count : 'No comments yet'}</span>
                                 <i class="fa-regular fa-message"></i>
                             </div>
                             <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
@@ -110,9 +122,9 @@ function getPosts(url: string, div: HTMLDivElement) {
                         </div>
                         <div id="make-comment-${post.id}" class="collapse">
                             <div class="card card-body">
-                                <div class="profile-icon">
+                                <div class="profile-icon" data-id="${user.id}">
                                     <div class="profile-img-icon">
-                                        <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png')}" />
+                                        <img src="${userImage}" />
                                     </div>
                                 </div>
                                 <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." />
@@ -137,6 +149,7 @@ function getPosts(url: string, div: HTMLDivElement) {
     });
 }
 
+// handle when to show options to edit the post.
 function handlePostOptions() {
     let optionBtns = document.querySelectorAll('.post .header .edit i');
     let delBtns = document.querySelectorAll('.post .header .edit .delete-btn');

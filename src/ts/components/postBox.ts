@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { checkUrl } from './posts';
 export { }
 
 // get user data from local storage.
@@ -74,14 +75,14 @@ addImgBtns.forEach(btn => {
 // add user image in new post box.
 const userImg = document.querySelector('.create-new-post-box .profile-icon .profile-img-icon img') as HTMLImageElement;
 const userImgFloatingBox = document.querySelector('.floating-new-post-box .create-new-post-box .profile-icon .profile-img-icon img') as HTMLImageElement;
-if (Object.keys(user.profile_image).length !== 0) {
+if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)) {
 	userImg.src = user.profile_image;
 }
-userImg.dataset.id = user.id;
-if (Object.keys(user.profile_image).length !== 0) {
+(userImg.closest('.profile-icon') as HTMLElement).dataset.id = user.id;
+if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)) {
 	userImgFloatingBox.src = user.profile_image;
 }
-userImgFloatingBox.dataset.id = user.id;
+(userImgFloatingBox.closest('.profile-icon') as HTMLElement).dataset.id = user.id;
 
 // add new post request.
 let postBtn = document.querySelectorAll('.create-new-post-box div.btns button.post-btn') as NodeList;

@@ -1,10 +1,12 @@
+import { checkUrl } from './posts'
+
 // get user data from local storage.
 const userData: string = window.localStorage.getItem('user') as string;
 const user = JSON.parse(userData);
 
 // set user image in profile card.
 const profileCardImg = document.querySelector('.profile-icon .profile-img-icon img') as HTMLImageElement;
-if (Object.keys(user.profile_image).length !== 0) {
+if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)) {
     profileCardImg.src = user.profile_image;
 }
 profileCardImg.dataset.id = user.id;
