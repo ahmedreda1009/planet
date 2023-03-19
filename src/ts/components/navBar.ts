@@ -9,6 +9,7 @@ tagIcon.addEventListener('click', () => {
     tagsList.classList.toggle('active');
 });
 
+// handle tags list when click on tags icon.
 window.addEventListener('click', (e: Event) => {
     const tagIc = (e.target as HTMLDivElement)?.closest('.icons .tags');
     if (!tagIc) {
@@ -31,3 +32,20 @@ tagsListItems.forEach(ele => {
         console.log(ele)
     })
 });
+
+// // handle when click connect icon.
+// let connectIcon = document.querySelector('.icons .connect-btn') as HTMLDivElement;
+// let floatingConnectBox = document.querySelector('.floating-connect-box');
+// window.addEventListener('click', () => {
+//     // const connectBox = (e.target as HTMLDivElement)?.closest('.connect');
+
+//     // if (connectBox) return
+
+//     if (connectIcon) {
+
+//     }
+// });
+
+// connectIcon.addEventListener('click', () => {
+//     floatingConnectBox?.classList.toggle('hide');
+// });

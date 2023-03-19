@@ -31,9 +31,9 @@ window.addEventListener('scroll', () => {
 
         throttleTimer = true;
         console.log('hi');
-        currentPage++;
-        getPostsHome(currentPage);
         setTimeout(() => {
+            currentPage++;
+            getPostsHome(currentPage);
             throttleTimer = false;
         }, 500);
     }
@@ -43,6 +43,8 @@ window.addEventListener('scroll', () => {
 // check the validity of a images urls.
 export function checkUrl(string: string) {
     let givenURL;
+    let regEx = /http(s)?:\/\/localhost\//i;
+    if (regEx.test(string)) return false;
     try {
         givenURL = new URL(string);
     } catch (error) {
@@ -142,7 +144,7 @@ function getPosts(url: string, div: HTMLDivElement) {
         });
 
 
-        handlePostOptions()
+        handlePostOptions();
         lastPage = res.data.meta.last_page;
     }).catch(error => {
         console.log(error);
@@ -180,6 +182,15 @@ function handlePostOptions() {
             })
         });
     });
+
+    // // add user image besides the new comment box.
+    // const newCommentUserImages = document.querySelectorAll('.posts .post .comments [id^="make-comment"] img') as NodeList;
+    // if (Object.keys(user.profile_image).length !== 0) {
+    //     newCommentUserImages.forEach((img: Node) => {
+    //         (img as HTMLImageElement).src = user.profile_image;
+    //         (img as HTMLImageElement).dataset.id = user.id;
+    //     });
+    // }
 }
 
 
