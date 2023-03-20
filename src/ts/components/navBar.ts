@@ -33,19 +33,16 @@ tagsListItems.forEach(ele => {
     })
 });
 
-// // handle when click connect icon.
+// handle when click connect icon.
 // let connectIcon = document.querySelector('.icons .connect-btn') as HTMLDivElement;
-// let floatingConnectBox = document.querySelector('.floating-connect-box');
-// window.addEventListener('click', () => {
-//     // const connectBox = (e.target as HTMLDivElement)?.closest('.connect');
+let floatingConnectBox = document.querySelector('.floating-connect-box');
+window.addEventListener('click', (e: Event) => {
+    const connectBox = (e.target as HTMLDivElement)?.closest('.connect');
+    const connectIc = (e.target as HTMLDivElement)?.closest('.icons .connect-btn');
 
-//     // if (connectBox) return
+    if (!connectIc && !connectBox) floatingConnectBox?.classList.add('hide');
 
-//     if (connectIcon) {
-
-//     }
-// });
-
-// connectIcon.addEventListener('click', () => {
-//     floatingConnectBox?.classList.toggle('hide');
-// });
+    if (connectIc) {
+        floatingConnectBox?.classList.toggle('hide');
+    }
+});

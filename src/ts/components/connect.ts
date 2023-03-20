@@ -1,6 +1,9 @@
 import axios from "axios";
 import { checkUrl } from './posts';
 
+let loader = document.querySelector('.connect .lds-ellipsis') as HTMLDivElement;
+let floatingLoader = document.querySelector('.floating-connect-box .connect .lds-ellipsis') as HTMLDivElement;
+
 // main api url.
 // const apiLink = 'https://tarmeezacademy.com/api/v1/users?page=3&limit=15';
 
@@ -16,12 +19,14 @@ let throttleTimer: boolean = false;
 
 // trigger getting users on page load.
 window.addEventListener('load', () => {
+    loader.classList.remove('hide');
     getUsersPages(currentPage, usersBlock);
 });
 
 // getting a new page when reaching end of page.
 usersBlock.addEventListener('scroll', () => {
-    let endOfUsersDiv: boolean = usersBlock.scrollTop + usersBlock.clientHeight >= usersBlock.scrollHeight - 500;
+    let endOfUsersDiv: boolean = usersBlock.scrollTop + usersBlock.clientHeight >= usersBlock.scrollHeight - 50;
+    // let endOfUsersDiv: boolean = usersBlock.scrollTop + usersBlock.clientHeight >= usersBlock.scrollHeight;
     // console.log('scroll top', usersBlock.scrollTop);
     // console.log('clientHeight', usersBlock.clientHeight);
     // console.log('scrollHeight', usersBlock.scrollHeight);
@@ -31,6 +36,7 @@ usersBlock.addEventListener('scroll', () => {
 
         throttleTimer = true;
         console.log('hi');
+        loader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;
             getUsersPages(currentPage, usersBlock);
@@ -44,13 +50,14 @@ function getUsersPages(currPage: number, usersBlock: HTMLDivElement) {
 }
 
 function getUsers(url: string, div: HTMLDivElement) {
+
     axios.get(url).then(res => {
         res.data.data.map((user: any) => {
             let userImageUrl = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
 
             let userSkeleton = `
-                <div class="user-card">
-                    <div class="profile-icon">
+                <div class="user-card" data-id="${user.id}">
+                    <div class="profile-icon" data-id="${user.id}">
                         <div class="profile-img-icon">
                             <img src="${userImageUrl}" alt="user image" />
                         </div>
@@ -67,10 +74,15 @@ function getUsers(url: string, div: HTMLDivElement) {
             div.innerHTML += userSkeleton;
         });
 
+
+        loader.classList.add('hide');
+        floatingLoader.classList.add('hide');
+
         lastPage = res.data.meta.last_page;
     }).catch(error => {
         console.log(error);
     });
+
 }
 
 // floating users box
@@ -82,6 +94,7 @@ let floatingUsersBlock = document.querySelector('.floating-connect-box .connect 
 
 if (window.innerWidth <= 1100) {
     console.log('hello');
+    floatingLoader.classList.remove('hide');
     getUsersPages(currentPage, floatingUsersBlock);
     console.log('hello');
 }
@@ -94,7 +107,8 @@ window.addEventListener('resize', () => {
 
 // getting a new page when reaching end of page.
 floatingUsersBlock.addEventListener('scroll', () => {
-    let endOfUsersDiv: boolean = floatingUsersBlock.scrollTop + floatingUsersBlock.clientHeight >= floatingUsersBlock.scrollHeight - 500;
+    let endOfUsersDiv: boolean = floatingUsersBlock.scrollTop + floatingUsersBlock.clientHeight >= floatingUsersBlock.scrollHeight - 50;
+    // let endOfUsersDiv: boolean = floatingUsersBlock.scrollTop + floatingUsersBlock.clientHeight >= floatingUsersBlock.scrollHeight;
     // console.log('scroll top', usersBlock.scrollTop);
     // console.log('clientHeight', usersBlock.clientHeight);
     // console.log('scrollHeight', usersBlock.scrollHeight);
@@ -104,6 +118,7 @@ floatingUsersBlock.addEventListener('scroll', () => {
 
         throttleTimerFloating = true;
         console.log('hi');
+        floatingLoader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;
             getUsersPages(currentPage, floatingUsersBlock);

@@ -1,6 +1,9 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
 
+// loader
+let loader = document.querySelector('.lds-ellipsis') as HTMLDivElement;
+
 // the div where we eill put the posts that we get from the api.
 let postsBlock = document.querySelector('.posts') as HTMLDivElement;
 
@@ -17,6 +20,7 @@ let lastPage: number = 1;
 
 // trigger getting posts on page load.
 window.addEventListener('load', () => {
+    loader.classList.remove('hide');
     getPostsHome(currentPage);
 });
 
@@ -26,11 +30,13 @@ let throttleTimer: boolean = false;
 // getting a new page when reaching end of page.
 window.addEventListener('scroll', () => {
     let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 1500;
+    // let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight;
     if (endOfPage && currentPage <= lastPage) {
         if (throttleTimer) return;
 
         throttleTimer = true;
         console.log('hi');
+        loader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;
             getPostsHome(currentPage);
@@ -143,6 +149,8 @@ function getPosts(url: string, div: HTMLDivElement) {
             div.innerHTML += postSkeleton;
         });
 
+
+        loader.classList.add('hide');
 
         handlePostOptions();
         lastPage = res.data.meta.last_page;
