@@ -1,11 +1,12 @@
 @use "../components/skeleton.scss";
 @use "../abstract";
 
-main {
+h1 {
 	background-color: black;
 	border-radius: 10px;
 	position: relative;
 	top: 7px;
 	box-shadow: abstract.$mainShadow;
-	height: 200px;
+	// height: 200px;
+	min-height: 300px;
 }

@@ -1,11 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { checkUrl } from './posts';
+import { checkUrl, user } from './posts';
 export { }
-
-// get user data from local storage.
-const userData: string = window.localStorage.getItem('user') as string;
-const user = JSON.parse(userData);
 
 // calculate the height of the text area after writing soem text.
 function calcHeight(value: string): number {
@@ -78,11 +74,11 @@ const userImgFloatingBox = document.querySelector('.floating-new-post-box .creat
 if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)) {
 	userImg.src = user.profile_image;
 }
-(userImg.closest('.profile-icon') as HTMLElement).dataset.id = user.id;
+(userImg.closest('.profile-icon') as HTMLElement).dataset.userid = user.id;
 if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)) {
 	userImgFloatingBox.src = user.profile_image;
 }
-(userImgFloatingBox.closest('.profile-icon') as HTMLElement).dataset.id = user.id;
+(userImgFloatingBox.closest('.profile-icon') as HTMLElement).dataset.userid = user.id;
 
 // add new post request.
 let postBtn = document.querySelectorAll('.create-new-post-box div.btns button.post-btn') as NodeList;

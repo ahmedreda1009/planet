@@ -9,7 +9,7 @@ let postsBlock = document.querySelector('.posts') as HTMLDivElement;
 
 // get user data from local storage.
 const userData: string = window.localStorage.getItem('user') as string;
-const user = JSON.parse(userData);
+export const user = JSON.parse(userData);
 
 // get user profile image if exist.
 const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
@@ -62,13 +62,17 @@ export function checkUrl(string: string) {
 
 // trigger getPosts fn with the current page.
 function getPostsHome(currPage: number) {
-    return getPosts(`https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`, postsBlock)
+    let url = `https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`;
+    return getPosts(url, postsBlock)
 }
 
 // fn that get posts from api.
-function getPosts(url: string, div: HTMLDivElement) {
+// export function getPosts(url: string, div: HTMLDivElement, order: string) {
+export function getPosts(url: string, div: HTMLDivElement) {
     axios.get(url).then(res => {
-        res.data.data.map((post: any) => {
+        let data = res.data.data;
+        // if (order= 'des') data = data.reverse();
+        data.map((post: any) => {
             let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png');
             let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : '';
 
@@ -77,7 +81,7 @@ function getPosts(url: string, div: HTMLDivElement) {
                 res.data.data.comments.forEach((comment: any) => {
                     comments += `
                     <div class="comment">
-                        <div class="profile-icon" data-id="${post.author.id}">
+                        <div class="profile-icon" data-userid="${post.author.id}">
                             <div class="profile-img-icon">
                                 <img src="${postAuthorImg}" />
                             </div>
@@ -99,16 +103,22 @@ function getPosts(url: string, div: HTMLDivElement) {
                     </div>`;
             }
 
+            let postDiv = document.createElement('div');
+            postDiv.className = 'post';
+            postDiv.dataset.postid = `${post.id}`;
+
             let postSkeleton = `
-                <div class="post" data-id="${post.id} id="post-${post.id}">
-                    <div class="header">
-                        <div class="profile-icon" data-id="${post.author.id}" >
+                <div class="post" data-postid="${post.id}">
+                    
+                </div>
+                <div class="header">
+                        <div class="profile-icon" data-userid="${post.author.id}">
                             <div class="profile-img-icon">
                                 <img src="${postAuthorImg}" />
                             </div>
                         </div>
                         <div class="name-and-username">
-                            <div class="name" data-id="${post.author.id}">${post.author.name}</div>
+                            <div class="name" data-userid="${post.author.id}">${post.author.name}</div>
                             <div class="time text-muted">${post.created_at}</div>
                         </div>
                         ${editPostOptions}
@@ -130,7 +140,7 @@ function getPosts(url: string, div: HTMLDivElement) {
                         </div>
                         <div id="make-comment-${post.id}" class="collapse">
                             <div class="card card-body">
-                                <div class="profile-icon" data-id="${user.id}">
+                                <div class="profile-icon" data-userid="${user.id}">
                                     <div class="profile-img-icon">
                                         <img src="${userImage}" />
                                     </div>
@@ -143,12 +153,17 @@ function getPosts(url: string, div: HTMLDivElement) {
                             <div class="card card-body">${comments}</div>
                         </div>
                     </div>
-                </div>
             `;
 
-            div.innerHTML += postSkeleton;
-        });
+            postDiv.innerHTML = postSkeleton;
+            div.append(postDiv);
 
+
+            postDiv.querySelector(`.profile-icon`)?.addEventListener('click', () => {
+                window.localStorage.setItem('userProfileId', post.author.id);
+                window.location.href = 'profile.html';
+            });
+        });
 
         loader.classList.add('hide');
 

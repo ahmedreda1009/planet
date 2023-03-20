@@ -3,3 +3,4 @@ import '../components/postBox';
 import '../components/navBar';
 import '../global';
 import '../components/connect';
+import '../components/profilePosts';

@@ -56,8 +56,8 @@ function getUsers(url: string, div: HTMLDivElement) {
             let userImageUrl = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
 
             let userSkeleton = `
-                <div class="user-card" data-id="${user.id}">
-                    <div class="profile-icon" data-id="${user.id}">
+                <div class="user-card" data-userid="${user.id}">
+                    <div class="profile-icon">
                         <div class="profile-img-icon">
                             <img src="${userImageUrl}" alt="user image" />
                         </div>

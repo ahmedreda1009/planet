@@ -1,6 +1,6 @@
-import './components/profileCard';
-
 import Swal from 'sweetalert2';
+import './components/profileCard';
+import { user } from './components/posts';
 
 // api url
 // const baseUrl = 'https://tarmeezacademy.com/api/v1/';
@@ -54,26 +54,32 @@ homeIcon.addEventListener('click', () => {
     if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
-// click on profile button in left side.
-let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
-profileBtn.addEventListener('click', () => {
-    // let pageName = window.location.pathname.split("/").pop();
-    // if (pageName === 'profile.html') return;
-    window.location.href = 'profile.html';
-});
-// click on profile icon in botton nav bar.
-let profileIcon = document.querySelector('.icons .profile') as HTMLDivElement;
-profileIcon.addEventListener('click', () => {
-    // let pageName = window.location.pathname.split("/").pop();
-    // if (pageName === 'profile.html') return;
-    window.location.href = 'profile.html';
-});
+// // click on profile button in left side.
+// let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
+// profileBtn.addEventListener('click', () => {
+//     // let pageName = window.location.pathname.split("/").pop();
+//     // if (pageName === 'profile.html') return;
+//     window.location.href = 'profile.html';
+// });
+// // click on profile icon in botton nav bar.
+// let profileIcon = document.querySelector('.icons .profile') as HTMLDivElement;
+// profileIcon.addEventListener('click', () => {
+//     // let pageName = window.location.pathname.split("/").pop();
+//     // if (pageName === 'profile.html') return;
+//     window.location.href = 'profile.html';
+// });
+
 // click on profile icon in profile card, posts and comments.
-let profileIcons = document.querySelectorAll('.profile-icon') as NodeList;
+// let profileCardIcon = document.querySelector('.profile-card .profile-icon') as HTMLDivElement;
+let profileCardIcon = document.querySelector("#profile-card > div.header > div.profile-icon")
+let newPostIcons = document.querySelector('.create-new-post-box .profile-icon') as HTMLDivElement;
+
+let profileIcons = [profileCardIcon, newPostIcons]
 profileIcons.forEach(icon => {
-    icon.addEventListener('click', () => {
+    icon?.addEventListener('click', () => {
         // let pageName = window.location.pathname.split("/").pop();
         // if (pageName === 'profile.html') return;
+        window.localStorage.setItem('userProfileId', user.id);
         window.location.href = 'profile.html';
     });
 });
