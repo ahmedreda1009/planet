@@ -52,13 +52,11 @@
 				&:hover {
 					color: #555;
 				}
-			}
 
-			.username {
-				font-size: 13px;
-				margin-top: -9px;
-				margin-left: -2px;
-				cursor: default;
+				.username {
+					font-size: 13px;
+					font-weight: 100;
+				}
 			}
 
 			.time {
@@ -347,11 +345,22 @@
 						min-height: 40px;
 					}
 
-					.comment-content {
-						background-color: #f4f4f4;
-						border-radius: 5px;
-						padding: 10px;
-						flex-grow: 1;
+					.comment-box {
+						.comment-author {
+							font-weight: bold;
+						}
+
+						.comment-content {
+							background-color: #f4f4f4;
+							border-radius: 20px;
+							padding: 5px 15px;
+							flex-grow: 1;
+
+							.username {
+								font-size: 13px;
+								font-weight: 100;
+							}
+						}
 					}
 				}
 			}

@@ -67,29 +67,22 @@ function getPostsHome(currPage: number) {
 }
 
 // fn that get posts from api.
-// export function getPosts(url: string, div: HTMLDivElement, order: string) {
-export function getPosts(url: string, div: HTMLDivElement) {
+export function getPosts(url: string, div: HTMLDivElement, order?: string) {
     axios.get(url).then(res => {
         let data = res.data.data;
-        // if (order= 'des') data = data.reverse();
-        data.map((post: any) => {
+
+        if (order === 'des') data = data.reverse();
+
+        console.log(order);
+
+        data?.map((post: any) => {
             let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png');
             let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : '';
 
-            let comments = '';
-            if (post.comments_count > 0 && post.comments) {
-                res.data.data.comments.forEach((comment: any) => {
-                    comments += `
-                    <div class="comment">
-                        <div class="profile-icon" data-userid="${post.author.id}">
-                            <div class="profile-img-icon">
-                                <img src="${postAuthorImg}" />
-                            </div>
-                        </div>
-                        <div class="comment-content">${comment.body}</div>
-                    </div>`;
-                });
-            }
+
+
+
+            getComments(post);
 
             let editPostOptions: string = '';
             if (post.author.id === user.id) {
@@ -118,7 +111,7 @@ export function getPosts(url: string, div: HTMLDivElement) {
                             </div>
                         </div>
                         <div class="name-and-username">
-                            <div class="name" data-userid="${post.author.id}">${post.author.name}</div>
+                            <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
                             <div class="time text-muted">${post.created_at}</div>
                         </div>
                         ${editPostOptions}
@@ -130,7 +123,7 @@ export function getPosts(url: string, div: HTMLDivElement) {
                     <div class="comments">
                         <div class="comments-wrapper">
                             <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
-                                <span>${post.comments_count && post.comments ? post.comments_count : 'No comments yet'}</span>
+                                <span>${post.comments_count ? post.comments_count : '0'}</span>
                                 <i class="fa-regular fa-message"></i>
                             </div>
                             <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
@@ -150,7 +143,7 @@ export function getPosts(url: string, div: HTMLDivElement) {
                             </div>
                         </div>
                         <div id="comments-number-${post.id}" class="collapse">
-                            <div class="card card-body">${comments}</div>
+                            <div class="card card-body"></div>
                         </div>
                     </div>
             `;
@@ -158,10 +151,42 @@ export function getPosts(url: string, div: HTMLDivElement) {
             postDiv.innerHTML = postSkeleton;
             div.append(postDiv);
 
-
-            postDiv.querySelector(`.profile-icon`)?.addEventListener('click', () => {
+            function goToProfile() {
                 window.localStorage.setItem('userProfileId', post.author.id);
                 window.location.href = 'profile.html';
+            }
+
+
+            postDiv.querySelector(`.profile-icon`)?.addEventListener('click', () => {
+                goToProfile();
+            });
+
+            postDiv.querySelector(`.name-and-username .name`)?.addEventListener('click', () => {
+                goToProfile();
+            });
+
+            postDiv.querySelector(`[id^="make-comment"] .profile-icon`)?.addEventListener('click', () => {
+                window.localStorage.setItem('userProfileId', user.id);
+                window.location.href = 'profile.html';
+            });
+
+            postDiv.querySelector("[id^='make-comment'] > div > i")?.addEventListener('click', () => {
+                let commentInput = postDiv?.querySelector('.comments input') as HTMLInputElement;
+
+                if (commentInput.value != '') {
+                    makeNewComment(post.id, commentInput.value, commentInput);
+                }
+            });
+
+
+            (postDiv.querySelector("[id='new-comment']") as HTMLInputElement)?.addEventListener('keypress', (e: KeyboardEvent) => {
+                if (e.keyCode === 13) {
+                    let commentInput = postDiv?.querySelector('.comments input') as HTMLInputElement;
+
+                    if (commentInput.value != '') {
+                        makeNewComment(post.id, commentInput.value, commentInput);
+                    }
+                }
             });
         });
 
@@ -216,74 +241,93 @@ function handlePostOptions() {
     // }
 }
 
+// make a comment
+function makeNewComment(postId: string, commentInput: string, input: HTMLInputElement) {
+    let apiUrl = `https://tarmeezacademy.com/api/v1/posts/${postId}/comments`;
+    let token = window.localStorage.getItem('token');
+    let headers = {
+        "authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+    }
+    let body = {
+        "body": `${commentInput}`
+    };
 
-// let commentsArray = [
-//     {
-//         "id": 1,
-//         "body": "Maxime corrupti necessitatibus nemo debitis tempora voluptatem.",
-//         "author": {
-//             "id": 6,
-//             "profile_image": "http://tarmeezacademy.com/images/posts/MmSpwqIaGZ0jzyj.jpg",
-//             "is_fake": 1,
-//             "username": "bilal.hadi",
-//             "name": "عبد الحي هوساوي",
-//             "email": "khaled84@example.net",
-//             "email_verified_at": "2022-12-04 00:47:03",
-//             "remember_token": null,
-//             "created_at": "2022-12-04T00:47:03.000000Z",
-//             "updated_at": "2022-12-04T00:47:03.000000Z"
-//         }
-//     },
-//     {
-//         "id": 2,
-//         "body": "Ea omnis maxime omnis saepe.",
-//         "author": {
-//             "id": 5,
-//             "profile_image": "http://tarmeezacademy.com/images/posts/MmSpwqIaGZ0jzyj.jpg",
-//             "is_fake": 1,
-//             "username": "khaled81",
-//             "name": "المهندسة سهر المقبل",
-//             "email": "fadi84@example.org",
-//             "email_verified_at": "2022-12-04 00:47:03",
-//             "remember_token": null,
-//             "created_at": "2022-12-04T00:47:03.000000Z",
-//             "updated_at": "2022-12-04T00:47:03.000000Z"
-//         }
-//     }
-// ]
+    axios.post(apiUrl, body, { headers }).then(res => {
+        console.log(res.data.data)
+
+        let commentsBox = document.querySelector(`#comments-number-${postId} > .card`) as HTMLElement;
+
+        let commentSkeleton = `
+        <div class="comment">
+            <div class="profile-icon">
+            <div class="profile-img-icon">
+                <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png')}" />
+            </div>
+            </div>
+            <div class="comment-box">
+                <div class="comment-content">
+                    <div class="comment-author">${user.name} <span class="text-muted username">@${user.username}</span></div>
+                    ${commentInput}
+                </div>
+            </div>
+        </div>    
+        `;
+
+        commentsBox.innerHTML += commentSkeleton;
+
+        input.value = '';
+        let commentsNumBtn = document.querySelector(`[data-postid="${postId}"] > div.comments > div.comments-wrapper > div.comments-number`) as HTMLElement;
+        let commentsNum = commentsNumBtn.querySelector('span') as HTMLElement;
+        commentsNum.innerHTML = `${parseInt(commentsNum.innerHTML) + 1}`;
+        // open comments box after making a commetn.
+        commentsNumBtn.setAttribute("aria-expanded", "true");
+        commentsNumBtn.classList.remove('collapsed');
+    });
+}
+
+// display comments within each post.
+function getComments(post: any) {
+    if (post.comments_count > 0) {
+
+        axios.get(`https://tarmeezacademy.com/api/v1/posts/${post.id}`).then(res => {
+            let data = res.data.data.comments;
+
+            let comments = document.createElement('div');
+
+            data.forEach((ele: any) => {
+
+                let comment = document.createElement('div');
+                comment.className = 'comment';
+
+                let commentSkeleton = `
+                <div class="profile-icon">
+                    <div class="profile-img-icon">
+                        <img src="${checkUrl(ele.author.profile_image) ? ele.author.profile_image : require('../../assets/profile_picture.png')}" />
+                    </div>
+                </div>
+                <div class="comment-box">
+                    <div class="comment-content">
+                        <div class="comment-author">${ele.author.name} <span class="text-muted username">@${ele.author.username}</span></div>
+                        ${ele.body}
+                    </div>
+                </div>`;
+
+                comment.innerHTML = commentSkeleton;
+
+                comment.querySelector('.profile-icon')?.addEventListener('click', () => {
+                    window.localStorage.setItem('userProfileId', ele.author.id);
+                    window.location.href = 'profile.html';
+                })
+
+                comments.append(comment);
 
 
-// if (commentsArray.length > 0) {
-//     commentsArray.forEach((comment: any) => {
-//         comments += `
-//         <div class="comment">
-//             <div class="profile-icon">
-//                 <div class="profile-img-icon">
-//                     <img src="${comment.author.profile_image ? comment.author.profile_image : require('../../assets/profile_picture.png')}" />
-//                 </div>
-//             </div>
-//             <div class="comment-content">${comment.body}</div>
-//         </div>`;
-//     });
-// }
+            })
 
+            let postToAdd = document.querySelector(`[data-postid="${post.id}"] .comments #comments-number-${post.id} .card`) as HTMLDivElement;
 
-
-// let optionBtns = document.querySelector(`post-${post.id} .header .edit i`);
-// let delBtns = document.querySelector(`post-${post.id} .header .edit .delete-btn`);
-
-
-
-
-// delBtns?.addEventListener('click', () => {
-//     Swal.fire({
-//         title: 'Are you sure?',
-//         // text: "We will miss you.",
-//         icon: 'question',
-//         showCancelButton: true,
-//         confirmButtonColor: '#d33',
-//         // confirmButtonBorderColor: '#000',
-//         cancelButtonColor: '#0dcaf0',
-//         confirmButtonText: 'Delete!'
-//     })
-// });
+            postToAdd?.append(comments);
+        })
+    }
+}

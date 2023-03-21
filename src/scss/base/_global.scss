@@ -6,19 +6,9 @@
 	box-sizing: border-box;
 }
 
-:root {
-	--shadow-color: 0deg 0% 4%;
-	--shadow-elevation-low: 0.1px 0.1px 0.1px hsl(var(--shadow-color) / 0.89),
-		0.6px 0.5px 0.7px -4.2px hsl(var(--shadow-color) / 0.53);
-	--shadow-elevation-medium: 0.1px 0.1px 0.1px hsl(var(--shadow-color) / 0.83),
-		0.6px 0.5px 0.7px -2.1px hsl(var(--shadow-color) / 0.61),
-		3px 2.5px 3.4px -4.2px hsl(var(--shadow-color) / 0.38);
-	--shadow-elevation-high: 0.1px 0.1px 0.1px hsl(var(--shadow-color) / 0.77),
-		0.6px 0.5px 0.7px -0.8px hsl(var(--shadow-color) / 0.67),
-		1.6px 1.3px 1.8px -1.7px hsl(var(--shadow-color) / 0.57),
-		3.9px 3.2px 4.4px -2.5px hsl(var(--shadow-color) / 0.46),
-		8.3px 6.7px 9.3px -3.4px hsl(var(--shadow-color) / 0.36),
-		15.4px 12.6px 17.3px -4.2px hsl(var(--shadow-color) / 0.25);
+::selection {
+	background-color: rgb(13, 202, 240);
+	color: rgb(13, 202, 240);
 }
 
 html {
@@ -32,28 +22,3 @@ body {
 	font-size: 30px;
 	overflow-x: hidden;
 }
-
-// ::-webkit-scrollbar {
-// 	height: 12px;
-// 	width: 12px;
-// 	background: #aaa;
-// }
-
-// ::-webkit-scrollbar-thumb {
-// 	background: #393812;
-// 	-webkit-border-radius: 1ex;
-// 	-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.75);
-// }
-
-// ::-webkit-scrollbar-corner {
-// 	background: #000;
-// }
-
-// .scrollable {
-// 	max-width: 200px;
-// 	max-height: 100%;
-
-// 	height: 450px;
-// 	/* change ` overflow: scroll ` to ` overflow: auto ` if you only want vertical scroll */
-// 	overflow: auto;
-// }

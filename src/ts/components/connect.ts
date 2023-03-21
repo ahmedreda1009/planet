@@ -55,23 +55,31 @@ function getUsers(url: string, div: HTMLDivElement) {
         res.data.data.map((user: any) => {
             let userImageUrl = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
 
+            let userDiv = document.createElement('div');
+            userDiv.className = 'user-card';
+            userDiv.dataset.userid = user.id;
+
             let userSkeleton = `
-                <div class="user-card" data-userid="${user.id}">
-                    <div class="profile-icon">
-                        <div class="profile-img-icon">
-                            <img src="${userImageUrl}" alt="user image" />
-                        </div>
-                    </div>
-                    <div class="profile-name">
-                        <div class="name">${user.name}</div>
-                        <div class="username">
-                            @<span>${user.username}</span>
-                        </div>
+                <div class="profile-icon">
+                <div class="profile-img-icon">
+                    <img src="${userImageUrl}" alt="user image" />
+                </div>
+                </div>
+                <div class="profile-name">
+                    <div class="name">${user.name}</div>
+                    <div class="username">
+                        @<span>${user.username}</span>
                     </div>
                 </div>
             `;
+            userDiv.innerHTML = userSkeleton;
 
-            div.innerHTML += userSkeleton;
+            div.append(userDiv);
+
+            userDiv.addEventListener('click', () => {
+                window.localStorage.setItem('userProfileId', user.id);
+                window.location.href = 'profile.html';
+            });
         });
 
 
@@ -114,10 +122,8 @@ floatingUsersBlock.addEventListener('scroll', () => {
     // console.log('scrollHeight', usersBlock.scrollHeight);
     if (endOfUsersDiv && currentPage <= lastPage) {
         if (throttleTimerFloating) return;
-        console.log('hi');
 
         throttleTimerFloating = true;
-        console.log('hi');
         floatingLoader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;

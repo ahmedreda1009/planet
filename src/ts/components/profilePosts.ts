@@ -14,9 +14,14 @@ let userId: (string | null) = window.localStorage.getItem('userProfileId');
 let apiUrl = `https://tarmeezacademy.com/api/v1/users/${userId || user.id}/posts?sortBy=created_at?orderBy=des`;
 
 // trigger the getPosts fn.
-getPosts(apiUrl, profilePosts)
+getPosts(apiUrl, profilePosts, 'des')
 
 // removing the loader on scrolling.
 window.addEventListener('scroll', () => {
     loader.classList.add('hide');
 });
+
+export function goToProfilePage() {
+    window.localStorage.setItem('userProfileId', user.id);
+    window.location.href = 'profile.html';
+}

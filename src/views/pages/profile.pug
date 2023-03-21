@@ -1,7 +1,17 @@
 extends ../layouts/page-skeleton
 
 block mainBlock
-	h1.m-auto.text-light This is profile.
+	.profile-page-card.text-light
+		.background-image
+			.image
+				img(src=require('../../assets/profile_picture.png'), alt="profile picture")
+		.content
+			.profile-image
+				img(src=require('../../assets/profile_picture.png'), alt="profile picture")
+			.text
+				.name 
+				.username
+				.edit-btn.btn.btn-info.text-light.fw-bold.rounded-pill.hide EDIT
 	.profile-posts
 	.profile-loader
 		include ../components/loader

@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 import './components/profileCard';
-import { user } from './components/posts';
+import { goToProfilePage } from './components/profilePosts';
 
 // api url
 // const baseUrl = 'https://tarmeezacademy.com/api/v1/';
@@ -79,8 +79,7 @@ profileIcons.forEach(icon => {
     icon?.addEventListener('click', () => {
         // let pageName = window.location.pathname.split("/").pop();
         // if (pageName === 'profile.html') return;
-        window.localStorage.setItem('userProfileId', user.id);
-        window.location.href = 'profile.html';
+        goToProfilePage();
     });
 });
 // click on logo
