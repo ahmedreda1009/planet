@@ -2,12 +2,6 @@ import Swal from 'sweetalert2';
 import './components/profileCard';
 import { goToProfilePage } from './components/profilePosts';
 
-// api url
-// const baseUrl = 'https://tarmeezacademy.com/api/v1/';
-// const baseUrl = "https://reqres.in";
-
-// export default baseUrl;
-
 // logout button.
 const logoutBtns = document.querySelectorAll('.logout') as NodeList;
 
@@ -40,6 +34,7 @@ logoutBtns.forEach(btn => {
         })
     });
 });
+
 // click on home button in left side.
 let homeBtn = document.querySelector('.profile .home-btn') as HTMLButtonElement;
 homeBtn.addEventListener('click', () => {
@@ -47,6 +42,7 @@ homeBtn.addEventListener('click', () => {
     if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
+
 // click on home icon in botton nav bar.
 let homeIcon = document.querySelector('.icons .home') as HTMLDivElement;
 homeIcon.addEventListener('click', () => {
@@ -54,6 +50,7 @@ homeIcon.addEventListener('click', () => {
     if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
+
 // // click on profile button in left side.
 // let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
 // profileBtn.addEventListener('click', () => {
@@ -82,6 +79,7 @@ profileIcons.forEach(icon => {
         goToProfilePage();
     });
 });
+
 // click on logo
 let logo = document.querySelector('nav a.navbar-brand #logo') as HTMLDialogElement;
 logo.addEventListener('click', () => {
@@ -89,3 +87,16 @@ logo.addEventListener('click', () => {
     if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
+
+// tags list
+let tagsLeftSide = document.querySelectorAll('#tags li') as NodeList;
+let tagsNavButton = document.querySelectorAll(".icons + ul.tags-list > li") as NodeList;
+
+console.log(tagsLeftSide, tagsNavButton);
+
+tagsLeftSide.forEach(icon => {
+    icon.addEventListener('click', () => {
+        window.location.href = 'explore.html';
+        console.log('tag');
+    })
+})

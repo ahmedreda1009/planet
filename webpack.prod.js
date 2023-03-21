@@ -10,7 +10,7 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // handle multiple html pages.
-let htmlPageNames = ['home', 'profile'];
+let htmlPageNames = ['home', 'profile', 'explore'];
 let multipleHtmlPlugins = htmlPageNames.map(name => {
     return new HtmlWebpackPlugin({
         template: `./src/views/pages/${name}.pug`, // relative path to the HTML files

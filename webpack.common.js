@@ -6,6 +6,7 @@ module.exports = {
         vendor: './src/vendor.ts',
         home: './src/ts/pages/home.ts',
         profile: './src/ts/pages/profile.ts',
+        explore: './src/ts/pages/explore.ts'
     },
     output: {
         filename: '[name]-[contenthash].bundle.js',

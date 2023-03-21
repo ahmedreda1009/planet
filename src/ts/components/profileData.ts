@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { user, checkUrl } from './posts';
 
 // user id
@@ -16,6 +17,9 @@ let username = document.querySelector('.profile-page-card .username') as HTMLDiv
 // edit button.
 let editBtn = document.querySelector('.profile-page-card .edit-btn') as HTMLButtonElement;
 
+// follow button.
+let followBtn = document.querySelector('.profile-page-card .follow-btn') as HTMLButtonElement;
+
 // api link
 let apiUrl: string = `https://tarmeezacademy.com/api/v1/users/${userId || user.id}`;
 
@@ -32,5 +36,19 @@ axios.get(apiUrl).then((res: any) => {
     username.innerHTML = `@${data.username}`;
     if (user.id === parseInt(userId)) {
         editBtn.classList.remove('hide');
+        followBtn.classList.add('hide');
+    } else {
+        editBtn.classList.add('hide');
+        followBtn.classList.remove('hide');
     }
 });
+
+// follow btn on click
+followBtn.addEventListener('click', () => {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'This user does not want you to follow him!',
+        confirmButtonColor: '#0dcaf0'
+    })
+})

@@ -138,7 +138,7 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
                                         <img src="${userImage}" />
                                     </div>
                                 </div>
-                                <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." />
+                                <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
                                 <i class="fa-solid fa-circle-right"></i>
                             </div>
                         </div>

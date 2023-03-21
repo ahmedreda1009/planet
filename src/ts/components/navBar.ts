@@ -20,6 +20,7 @@ window.addEventListener('click', (e: Event) => {
         for (let i = 0; i < tagsListItems.length; i++) {
             const reversedIdx = tagsListItems.length - i;
             (tagsListItems[i] as HTMLElement).style.transform = `translateY(${(reversedIdx + 1) * -45}px)`;
+            (tagsListItems[i] as HTMLElement).dataset.tagid = `${reversedIdx}`;
         }
     } else {
         for (let i = 0; i < tagsListItems.length; i++) {
