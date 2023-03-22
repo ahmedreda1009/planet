@@ -77,7 +77,7 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
 
         data?.map((post: any) => {
             let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png');
-            let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : '';
+            let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : `<img src="" />`;
 
 
 
@@ -87,13 +87,13 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
             let editPostOptions: string = '';
             if (post.author.id === user.id) {
                 editPostOptions = `
-                    <div class="edit">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <ul class="options">
-                            <li class="bg bg-primary">Edit</li>
-                            <li class="bg bg-danger delete-btn">Delete</li>
-                        </ul>
-                    </div>`;
+                <div class="edit">
+                    <i class="fa-solid fa-ellipsis"></i>
+                    <ul class="options">
+                        <li class="bg bg-primary edit-btn">Edit</li>
+                        <li class="bg bg-danger delete-btn">Delete</li>
+                    </ul>
+                </div>`;
             }
 
             let postDiv = document.createElement('div');
@@ -101,52 +101,59 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
             postDiv.dataset.postid = `${post.id}`;
 
             let postSkeleton = `
-                <div class="post" data-postid="${post.id}">
-                    
+            <div class="header">
+                <div class="profile-icon" data-userid="${post.author.id}">
+                    <div class="profile-img-icon">
+                        <img src="${postAuthorImg}" />
+                    </div>
                 </div>
-                <div class="header">
-                        <div class="profile-icon" data-userid="${post.author.id}">
+                <div class="name-and-username">
+                    <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
+                    <div class="time text-muted">${post.created_at}</div>
+                </div>
+                <div class="btn btn-sm btn-primary m-auto mt-0 me-1 save-changes">SAVE CHANGES</div>
+                ${editPostOptions}
+            </div>
+            <div class="text">${post.body}</div>
+            <div class="image">
+                ${postImage}
+                <div class="change-image">
+                    <label for="change-image-post-${post.id}">
+                        <i class="fa-solid fa-camera" >
+                            <input type="file" name="post image" class="chnage-photo-post" id="change-image-post-${post.id}" />
+                        </i>
+                    </label>
+                </div>
+                <div class="remove-image">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+            </div>
+            <div class="comments">
+                <div class="comments-wrapper">
+                    <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
+                        <span>${post.comments_count ? post.comments_count : '0'}</span>
+                        <i class="fa-regular fa-message"></i>
+                    </div>
+                    <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
+                        <i class="fa-regular fa-message"></i>
+                        <span>Comment</span>
+                    </div>
+                </div>
+                <div id="make-comment-${post.id}" class="collapse">
+                    <div class="card card-body">
+                        <div class="profile-icon" data-userid="${user.id}">
                             <div class="profile-img-icon">
-                                <img src="${postAuthorImg}" />
+                                <img src="${userImage}" />
                             </div>
                         </div>
-                        <div class="name-and-username">
-                            <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
-                            <div class="time text-muted">${post.created_at}</div>
-                        </div>
-                        ${editPostOptions}
+                        <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
+                        <i class="fa-solid fa-circle-right"></i>
                     </div>
-                    <div class="text">${post.body}</div>
-                    <div class="image">
-                        ${postImage}
-                    </div>
-                    <div class="comments">
-                        <div class="comments-wrapper">
-                            <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
-                                <span>${post.comments_count ? post.comments_count : '0'}</span>
-                                <i class="fa-regular fa-message"></i>
-                            </div>
-                            <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
-                                <i class="fa-regular fa-message"></i>
-                                <span>Comment</span>
-                            </div>
-                        </div>
-                        <div id="make-comment-${post.id}" class="collapse">
-                            <div class="card card-body">
-                                <div class="profile-icon" data-userid="${user.id}">
-                                    <div class="profile-img-icon">
-                                        <img src="${userImage}" />
-                                    </div>
-                                </div>
-                                <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
-                                <i class="fa-solid fa-circle-right"></i>
-                            </div>
-                        </div>
-                        <div id="comments-number-${post.id}" class="collapse">
-                            <div class="card card-body"></div>
-                        </div>
-                    </div>
-            `;
+                </div>
+                <div id="comments-number-${post.id}" class="collapse">
+                    <div class="card card-body"></div>
+                </div>
+            </div>`;
 
             postDiv.innerHTML = postSkeleton;
             div.append(postDiv);
@@ -203,6 +210,7 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
 function handlePostOptions() {
     let optionBtns = document.querySelectorAll('.post .header .edit i');
     let delBtns = document.querySelectorAll('.post .header .edit .delete-btn');
+    let editBtns = document.querySelectorAll('.post .header .edit .edit-btn');
 
     optionBtns.forEach(btn => {
         window.addEventListener('click', (e: Event) => {
@@ -253,6 +261,15 @@ function handlePostOptions() {
             })
         });
     });
+
+    editBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+            let post = btn.closest('.post') as HTMLDivElement;
+            console.log(post);
+            editPost(post);
+            (post as HTMLElement).click();
+        })
+    })
 
     // // add user image besides the new comment box.
     // const newCommentUserImages = document.querySelectorAll('.posts .post .comments [id^="make-comment"] img') as NodeList;
@@ -354,3 +371,92 @@ function getComments(post: any) {
         })
     }
 }
+
+function editPost(post: HTMLDivElement) {
+    let postId = post.getAttribute('data-postid');
+    let postBody = post.querySelector('.text') as HTMLDivElement;
+    let postImageDiv = post.querySelector('.image') as HTMLDivElement;
+    let postImage = postImageDiv?.querySelector('img') as HTMLImageElement;
+    let postImageEditBtn = post.querySelector('.change-image') as HTMLDivElement;
+    let postImageRemoveBtn = post.querySelector('.remove-image') as HTMLDivElement;
+    let newImageInput = post.querySelector('.change-image input[type="file"]') as HTMLInputElement;
+    let saveChangesBtn = post.querySelector('.save-changes') as HTMLButtonElement;
+    let newImageFile: any = '';
+    // let emptyImage = require('../../assets/empty-image.png');
+
+    let formData = new FormData();
+
+    postBody.setAttribute('contenteditable', 'true');
+    postBody.focus();
+    // select all the content in the element
+    document.execCommand('selectAll', true, 'null');
+    // collapse selection to the end
+    document.getSelection()?.collapseToEnd();
+    postImageEditBtn.classList?.add('active');
+    postImageRemoveBtn.classList?.add('active');
+    postImageDiv.classList.add('edit');
+    saveChangesBtn.classList.add('active');
+
+    newImageInput.addEventListener('change', () => {
+        console.log(newImageInput.value);
+        if (!newImageInput.files) return;
+        newImageFile = newImageInput.files[0];
+        const src = URL.createObjectURL(newImageFile);
+        postImage.src = src;
+        formData.append('image', newImageFile);
+    });
+
+    postImageRemoveBtn.addEventListener('click', () => {
+        postImage.src = '';
+        // formData.append('image', emptyImage);
+        blobUrlToFile(require('../../assets/empty-image.png')).then((res: any) => {
+            console.log(res);
+            formData.append('image', res);
+        })
+    })
+
+    saveChangesBtn.addEventListener('click', () => {
+        console.log(postBody.textContent);
+
+        formData.append('_method', `put`);
+        formData.append('body', `${postBody.textContent}`);
+
+        let url = `https://tarmeezacademy.com/api/v1/posts/${postId}`;
+
+        const token = window.localStorage.getItem('token');
+        let headers = {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": 'multipart/form-data'
+        }
+
+        // if (newImageFile) {
+        //     formData.append('image', newImageFile);
+        //     console.log(newImageFile);
+        // }
+
+        axios.post(url, formData, { headers }).then((res) => {
+            console.log(res);
+            postBody.setAttribute('contenteditable', 'false');
+            postImageEditBtn.classList?.remove('active');
+            postImageRemoveBtn.classList?.remove('active');
+            postImageDiv.classList.remove('edit');
+            saveChangesBtn.classList.remove('active');
+
+        });
+    });
+
+
+
+}
+
+// convert image url to image file line the one that we get from imageInput.files[0]
+const blobUrlToFile = (blobUrl: string): Promise<File> => new Promise((resolve) => {
+    fetch(blobUrl).then((res) => {
+        res.blob().then((blob) => {
+            // please change the file.extension with something more meaningful
+            // or create a utility function to parse from URL
+            const file = new File([blob], 'empty-image.png', { type: blob.type })
+            resolve(file)
+        })
+    })
+})

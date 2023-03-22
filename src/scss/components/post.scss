@@ -66,6 +66,17 @@
 			}
 		}
 
+		.save-changes {
+			opacity: 0;
+			pointer-events: none;
+			transition: opacity 0.3s ease;
+
+			&.active {
+				opacity: 1;
+				pointer-events: all;
+			}
+		}
+
 		.edit {
 			margin-left: auto;
 
@@ -146,6 +157,8 @@
 		overflow: hidden;
 		// padding: 10px;
 		transition: background-color 0.3s ease;
+		border: none;
+		outline: none;
 
 		// &:hover {
 		// 	background-color: #ddd;
@@ -161,7 +174,63 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
 		// border-radius: 10px;
+
+		&.edit {
+			min-height: 80px;
+		}
+
+		.change-image,
+		.remove-image {
+			position: absolute;
+			right: 20px;
+			color: #999;
+			background-color: #f7f7f7;
+			border-radius: 50%;
+			box-shadow: abstract.$mainShadow;
+			width: 50px;
+			height: 50px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: background-color 0.3s ease, opacity 0.3s ease;
+			padding: 5px;
+			font-size: 25px;
+			opacity: 0;
+			pointer-events: none;
+			z-index: 100;
+
+			&.active {
+				// display: flex;
+				opacity: 1;
+				pointer-events: all;
+			}
+
+			&:hover {
+				background-color: #eee;
+			}
+		}
+
+		.change-image {
+			top: 20px;
+
+			label {
+				&:hover {
+					cursor: pointer;
+				}
+				i {
+					input {
+						display: none;
+					}
+				}
+			}
+		}
+
+		.remove-image {
+			top: 80px;
+		}
 
 		img {
 			max-width: 100%;
