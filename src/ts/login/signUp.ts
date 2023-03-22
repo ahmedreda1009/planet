@@ -1,7 +1,8 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 
 // const baseUrl = "https://reqres.in";
-const baseUrl = "https://tarmeezacademy.com/api/v1/'";
+const baseUrl = "https://tarmeezacademy.com/api/v1/register";
 
 // click to show sign up window.
 const createNewAccBtn = document.getElementById(
@@ -26,38 +27,41 @@ overlayLayer.addEventListener("click", () => {
 });
 
 // register function
-function register(username: string, password: string): void {
-	axios
-		.post(`${baseUrl}/api/register`, {
-			email: username,
-			password: password,
-		})
-		.then((response) => {
-			window.localStorage.setItem("token", response.data.token);
+function register(name: string, username: string, password: string, img: File): void {
+	let formData = new FormData();
+	formData.append("name", name);
+	formData.append("username", username);
+	formData.append("password", password);
+	formData.append("image", img);
 
-			window.location.href = "home.html";
-		});
+	let headers = {
+		"Content-Type": 'multipart/form-data'
+	}
+
+	axios.post(baseUrl, formData, { headers }).then((response) => {
+		window.localStorage.setItem("token", response.data.token);
+		window.localStorage.setItem("user", JSON.stringify(response.data.user));
+
+		window.location.href = "home.html";
+	}).catch((res: any) => {
+		window.localStorage.removeItem("token");
+
+		Swal.fire({
+			title: res.response.data.message,
+			showConfirmButton: true,
+			icon: 'error'
+		})
+	});
 }
 
 // trigger sign-up.
 const nameSignUp = document.getElementById("name-sign-up") as HTMLInputElement;
-const emailSignUp = document.getElementById(
-	"email-sign-up"
-) as HTMLInputElement;
-const passwordSignUp = document.getElementById(
-	"password-sign-up"
-) as HTMLInputElement;
-const pictureSignUpValue = document.getElementById(
-	"profile-pic"
-) as HTMLInputElement;
+const emailSignUp = document.getElementById("email-sign-up") as HTMLInputElement;
+const passwordSignUp = document.getElementById("password-sign-up") as HTMLInputElement;
+const pictureSignUpValue = document.getElementById("profile-pic") as HTMLInputElement;
 const imgInput = document.getElementById("select-img") as HTMLImageElement;
 const signUpBtn = document.getElementById("sign-up-btn") as HTMLButtonElement;
-const inputs: HTMLInputElement[] = [
-	nameSignUp,
-	emailSignUp,
-	passwordSignUp,
-	pictureSignUpValue,
-];
+const inputs: HTMLInputElement[] = [nameSignUp, emailSignUp, passwordSignUp, pictureSignUpValue];
 signUpBtn.addEventListener("click", (e) => {
 	e.preventDefault();
 
@@ -74,7 +78,10 @@ signUpBtn.addEventListener("click", (e) => {
 		});
 
 		// trigger register request.
-		register(emailSignUp.value, passwordSignUp.value);
+		// register(nameSignUp.value, emailSignUp.value, passwordSignUp.value, pictureSignUpValue.files[0]);
+		if (pictureSignUpValue.files) {
+			register(nameSignUp.value, emailSignUp.value, passwordSignUp.value, pictureSignUpValue.files[0]);
+		}
 	} else {
 		// remove red border from input image
 		imgInput.classList.remove("empty");

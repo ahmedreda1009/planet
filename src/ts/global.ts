@@ -1,4 +1,3 @@
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import './components/profileCard';
 import { goToProfilePage } from './components/profilePosts';
@@ -19,23 +18,17 @@ logoutBtns.forEach(btn => {
             confirmButtonText: 'Log out!'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    {
-                        title: 'logged out successfully!',
-                        showConfirmButton: false,
-                        // 'We will miss you.',
-                        icon: 'success'
-                    })
+                setTimeout(() => {
+                    window.localStorage.removeItem('token');
+                    window.location.href = 'index.html';
+                }, 700)
 
-                axios.post('https://tarmeezacademy.com/api/v1/logout', {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${window.localStorage.getItem('token')}`
-                }).then((res: any) => {
-                    console.log(res);
-                    setTimeout(() => {
-                        window.localStorage.removeItem('token');
-                        window.location.href = 'index.html';
-                    }, 700)
+
+                Swal.fire({
+                    title: 'logged out successfully!',
+                    showConfirmButton: false,
+                    // 'We will miss you.',
+                    icon: 'success'
                 })
 
             }

@@ -30,7 +30,13 @@ function login(username: string, password: string): void {
 	}).catch((response) => {
 		window.localStorage.removeItem("user");
 		window.localStorage.removeItem("token");
-		console.log(response);
+		console.log(response.response.data.message);
+		Swal.fire({
+			title: response.response.data.message,
+			showConfirmButton: true,
+			// 'We will miss you.',
+			icon: 'error'
+		})
 	});
 }
 // password input
