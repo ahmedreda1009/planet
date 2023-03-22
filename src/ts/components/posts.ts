@@ -387,37 +387,41 @@ function editPost(post: HTMLDivElement) {
     let cancelChangesBtn = post.querySelector('.cancel') as HTMLElement;
     let saveCancelChangesBtn = post.querySelector('.save-cancel-edit') as HTMLElement;
     let newImageFile: any = '';
-    // let emptyImage = require('../../assets/empty-image.png');
 
+    // get post image and text values before changing them.
+    // we will use these values if the user cancelled the changes that he made.
     let defaultImagePost = postImage.src;
     let defaultpostText = postBody.textContent;
 
+    // use form data because we will upload image to the api.
     let formData = new FormData();
 
+    // make the text div editable.
     postBody.setAttribute('contenteditable', 'true');
+    // focus the div to let the user knew that he can edit it.
     postBody.focus();
-    // select all the content in the element
+
+    // move the cursor to the end of the post text.
     document.execCommand('selectAll', true, 'null');
-    // collapse selection to the end
     document.getSelection()?.collapseToEnd();
+
+    // show edit and cancel edit buttons.
     postImageEditBtn.classList?.add('active');
     postImageRemoveBtn.classList?.add('active');
     postImageDiv.classList.add('edit');
-    // saveChangesBtn.classList.add('active');
-    // cancelChangesBtn.classList.add('active');
     saveCancelChangesBtn.classList.add('active');
 
+    // remove edit icons when edit completed or when the user cancel the edit.
     function removeEditIcons() {
         postBody.setAttribute('contenteditable', 'false');
         postImageEditBtn.classList?.remove('active');
         postImageRemoveBtn.classList?.remove('active');
         postImageDiv.classList.remove('edit');
-        // saveChangesBtn.classList.remove('active');
-        // cancelChangesBtn.classList.remove('active');
         saveCancelChangesBtn.classList.remove('active');
 
     }
 
+    // change image in the dom and add the new image to the form data.
     newImageInput.addEventListener('change', () => {
         console.log(newImageInput.value);
         if (!newImageInput.files) return;
@@ -427,17 +431,20 @@ function editPost(post: HTMLDivElement) {
         formData.append('image', newImageFile);
     });
 
+    // remove the image when click on x btn.
+    // send 1px image to the api when removing the image because the api does not let us to delete the image when editing the post.
     postImageRemoveBtn.addEventListener('click', () => {
         postImage.src = '';
-        // formData.append('image', emptyImage);
+
+        // get image file object from image url to arrange it before send it to the api.
         blobUrlToFile(require('../../assets/empty-image.png')).then((res: any) => {
             console.log(res);
             formData.append('image', res);
         })
     })
 
+    // send the changes to api.
     saveChangesBtn.addEventListener('click', () => {
-        console.log(postBody.textContent);
 
         formData.append('_method', `put`);
         formData.append('body', `${postBody.textContent}`);
@@ -450,11 +457,6 @@ function editPost(post: HTMLDivElement) {
             "Content-Type": 'multipart/form-data'
         }
 
-        // if (newImageFile) {
-        //     formData.append('image', newImageFile);
-        //     console.log(newImageFile);
-        // }
-
         axios.post(url, formData, { headers }).then((res) => {
             console.log(res);
             removeEditIcons();
@@ -462,6 +464,7 @@ function editPost(post: HTMLDivElement) {
     });
 
 
+    // when click cancel remove edit icons and return the old data to the post.
     cancelChangesBtn.addEventListener('click', () => {
         removeEditIcons();
         postImage.src = defaultImagePost;
