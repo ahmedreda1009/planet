@@ -111,8 +111,11 @@ export function getPosts(url: string, div: HTMLDivElement, order?: string) {
                     <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
                     <div class="time text-muted">${post.created_at}</div>
                 </div>
-                <div class="btn btn-sm btn-primary m-auto mt-0 me-1 save-changes">SAVE CHANGES</div>
                 ${editPostOptions}
+                </div>
+            <div class="save-cancel-edit">
+                <div class="btn btn-sm btn-primary save-changes">SAVE CHANGES</div>
+                <div class="btn btn-sm btn-danger cancel">CANCEL</div>
             </div>
             <div class="text">${post.body}</div>
             <div class="image">
@@ -380,9 +383,14 @@ function editPost(post: HTMLDivElement) {
     let postImageEditBtn = post.querySelector('.change-image') as HTMLDivElement;
     let postImageRemoveBtn = post.querySelector('.remove-image') as HTMLDivElement;
     let newImageInput = post.querySelector('.change-image input[type="file"]') as HTMLInputElement;
-    let saveChangesBtn = post.querySelector('.save-changes') as HTMLButtonElement;
+    let saveChangesBtn = post.querySelector('.save-changes') as HTMLElement;
+    let cancelChangesBtn = post.querySelector('.cancel') as HTMLElement;
+    let saveCancelChangesBtn = post.querySelector('.save-cancel-edit') as HTMLElement;
     let newImageFile: any = '';
     // let emptyImage = require('../../assets/empty-image.png');
+
+    let defaultImagePost = postImage.src;
+    let defaultpostText = postBody.textContent;
 
     let formData = new FormData();
 
@@ -395,7 +403,20 @@ function editPost(post: HTMLDivElement) {
     postImageEditBtn.classList?.add('active');
     postImageRemoveBtn.classList?.add('active');
     postImageDiv.classList.add('edit');
-    saveChangesBtn.classList.add('active');
+    // saveChangesBtn.classList.add('active');
+    // cancelChangesBtn.classList.add('active');
+    saveCancelChangesBtn.classList.add('active');
+
+    function removeEditIcons() {
+        postBody.setAttribute('contenteditable', 'false');
+        postImageEditBtn.classList?.remove('active');
+        postImageRemoveBtn.classList?.remove('active');
+        postImageDiv.classList.remove('edit');
+        // saveChangesBtn.classList.remove('active');
+        // cancelChangesBtn.classList.remove('active');
+        saveCancelChangesBtn.classList.remove('active');
+
+    }
 
     newImageInput.addEventListener('change', () => {
         console.log(newImageInput.value);
@@ -436,15 +457,16 @@ function editPost(post: HTMLDivElement) {
 
         axios.post(url, formData, { headers }).then((res) => {
             console.log(res);
-            postBody.setAttribute('contenteditable', 'false');
-            postImageEditBtn.classList?.remove('active');
-            postImageRemoveBtn.classList?.remove('active');
-            postImageDiv.classList.remove('edit');
-            saveChangesBtn.classList.remove('active');
-
+            removeEditIcons();
         });
     });
 
+
+    cancelChangesBtn.addEventListener('click', () => {
+        removeEditIcons();
+        postImage.src = defaultImagePost;
+        postBody.textContent = defaultpostText;
+    })
 
 
 }
