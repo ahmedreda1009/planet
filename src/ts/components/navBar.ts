@@ -20,7 +20,7 @@ window.addEventListener('click', (e: Event) => {
         for (let i = 0; i < tagsListItems.length; i++) {
             const reversedIdx = tagsListItems.length - i;
             (tagsListItems[i] as HTMLElement).style.transform = `translateY(${(reversedIdx + 1) * -45}px)`;
-            (tagsListItems[i] as HTMLElement).dataset.tagid = `${reversedIdx}`;
+            (tagsListItems[i] as HTMLElement).dataset.tagid = `${i + 1}`;
         }
     } else {
         for (let i = 0; i < tagsListItems.length; i++) {
@@ -28,11 +28,11 @@ window.addEventListener('click', (e: Event) => {
         }
     }
 });
-tagsListItems.forEach(ele => {
-    ele.addEventListener('click', () => {
-        console.log(ele)
-    })
-});
+// tagsListItems.forEach(ele => {
+//     ele.addEventListener('click', () => {
+//         console.log(ele)
+//     })
+// });
 
 // handle when click connect icon.
 // let connectIcon = document.querySelector('.icons .connect-btn') as HTMLDivElement;

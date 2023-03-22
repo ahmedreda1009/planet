@@ -1,3 +1,4 @@
+import axios from 'axios';
 import Swal from 'sweetalert2';
 import './components/profileCard';
 import { goToProfilePage } from './components/profilePosts';
@@ -26,10 +27,17 @@ logoutBtns.forEach(btn => {
                         icon: 'success'
                     })
 
-                setTimeout(() => {
-                    window.localStorage.removeItem('token');
-                    window.location.href = 'index.html';
-                }, 700)
+                axios.post('https://tarmeezacademy.com/api/v1/logout', {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${window.localStorage.getItem('token')}`
+                }).then((res: any) => {
+                    console.log(res);
+                    setTimeout(() => {
+                        window.localStorage.removeItem('token');
+                        window.location.href = 'index.html';
+                    }, 700)
+                })
+
             }
         })
     });
@@ -89,14 +97,25 @@ logo.addEventListener('click', () => {
 });
 
 // tags list
-let tagsLeftSide = document.querySelectorAll('#tags li') as NodeList;
-let tagsNavButton = document.querySelectorAll(".icons + ul.tags-list > li") as NodeList;
+let tagsLeftSide = document.querySelectorAll('#tags li');
+let tagsNavButton = document.querySelectorAll(".icons + ul.tags-list > li");
 
-console.log(tagsLeftSide, tagsNavButton);
-
-tagsLeftSide.forEach(icon => {
+tagsLeftSide.forEach((icon: any) => {
     icon.addEventListener('click', () => {
+        window.localStorage.setItem('tagId', icon.dataset.tagid);
         window.location.href = 'explore.html';
-        console.log('tag');
-    })
-})
+    });
+});
+tagsNavButton.forEach((icon: any) => {
+    icon.addEventListener('click', () => {
+        window.localStorage.setItem('tagId', icon.dataset.tagid);
+        window.location.href = 'explore.html';
+    });
+});
+
+// loader
+let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivElement;
+
+setTimeout(() => {
+    loader.classList.add('hide');
+}, 500);

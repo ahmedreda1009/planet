@@ -86,14 +86,14 @@ let postBodyElements = document.querySelectorAll('.create-new-post-box textarea'
 let postImageElements = document.querySelectorAll('.create-new-post-box div.btns input') as NodeList;
 postBtn.forEach(btn => {
 	btn.addEventListener('click', (e: Event) => {
-		console.log('hi');
+		// console.log('hi');
 		let postBody = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('textarea') as HTMLTextAreaElement;
 		let postImage = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('div.btns input') as HTMLInputElement;
 
-		console.log(postBody?.value);
-		console.log(postImage?.value);
+		// console.log(postBody?.value);
+		// console.log(postImage?.value);
 		if (postImage?.files) {
-			console.log(postImage?.files[0]);
+			// console.log(postImage?.files[0]);
 			if (postBody?.value === '' && postImage.value === '') return;
 			createNewPost(postBody.value, postImage.files[0]);
 		}

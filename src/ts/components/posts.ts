@@ -35,7 +35,7 @@ window.addEventListener('scroll', () => {
         if (throttleTimer) return;
 
         throttleTimer = true;
-        console.log('hi');
+
         loader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;
@@ -216,8 +216,12 @@ function handlePostOptions() {
         });
     });
 
+    let delBtnId: any;
+
+
     delBtns.forEach(btn => {
         btn?.addEventListener('click', () => {
+            delBtnId = (btn.closest('.post') as HTMLElement)?.dataset.postid;
             Swal.fire({
                 title: 'Are you sure?',
                 // text: "We will miss you.",
@@ -227,6 +231,25 @@ function handlePostOptions() {
                 // confirmButtonBorderColor: '#000',
                 cancelButtonColor: '#0dcaf0',
                 confirmButtonText: 'Delete!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    let delUrl = `https://tarmeezacademy.com/api/v1/posts/${delBtnId}`;
+                    let token = window.localStorage.getItem('token');
+                    let headers = {
+                        "authorization": `Bearer ${token}`,
+                        "Content-Type": 'application/json'
+                    }
+                    axios.delete(delUrl, { headers }).then(res => {
+                        console.log(res);
+                        (btn.closest('.post') as HTMLElement).remove();
+                        Swal.fire(
+                            'Deleted!',
+                            `Your post has been deleted.`,
+                            'success'
+                        )
+                    });
+
+                }
             })
         });
     });

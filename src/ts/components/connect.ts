@@ -32,10 +32,8 @@ usersBlock.addEventListener('scroll', () => {
     // console.log('scrollHeight', usersBlock.scrollHeight);
     if (endOfUsersDiv && currentPage <= lastPage) {
         if (throttleTimer) return;
-        console.log('hi');
 
         throttleTimer = true;
-        console.log('hi');
         loader.classList.remove('hide');
         setTimeout(() => {
             currentPage++;
@@ -101,10 +99,9 @@ let throttleTimerFloating: boolean = false;
 let floatingUsersBlock = document.querySelector('.floating-connect-box .connect .user-cards') as HTMLDivElement;
 
 if (window.innerWidth <= 1100) {
-    console.log('hello');
+    // console.log('hello');
     floatingLoader.classList.remove('hide');
     getUsersPages(currentPage, floatingUsersBlock);
-    console.log('hello');
 }
 
 window.addEventListener('resize', () => {

@@ -20,9 +20,7 @@ closeSignUp.addEventListener("click", () => {
 });
 
 // hide sign up when clicking on empty space.
-const overlayLayer = document.querySelector(
-	".sign-up .overlay"
-) as HTMLDivElement;
+const overlayLayer = document.querySelector(".sign-up .overlay") as HTMLDivElement;
 overlayLayer.addEventListener("click", () => {
 	signUpBox.classList.remove("active");
 });
@@ -172,11 +170,14 @@ inputFile.addEventListener("change", () => {
 	// check if there is files is not null
 	// check if the files is more than 0
 	// hide close button if there are files
-	if (inputFile.files?.length && inputFile.files?.length > 0) {
-		removePicBtn.classList.add("show");
-	} else {
-		removePicBtn.classList.remove("show");
-	}
+	// if (inputFile.files?.length && inputFile.files?.length > 0) {
+	// 	removePicBtn.classList.add("show");
+	// } else {
+	// 	removePicBtn.classList.remove("show");
+	// }
+
+
+	removePicBtn.classList.add("show");
 });
 removePicBtn.addEventListener('click', () => {
 	setTimeout(() => {
