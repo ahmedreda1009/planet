@@ -1,6 +1,8 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { checkUrl, user } from './posts';
+import user from '../global/getUser';
+import checkUrl from '../global/checkImageUrl';
+// import { createPosts } from './posts';
 export { }
 
 // calculate the height of the text area after writing soem text.
@@ -97,11 +99,14 @@ postBtn.forEach(btn => {
 			if (postBody?.value === '' && postImage.value === '') return;
 			createNewPost(postBody.value, postImage.files[0]);
 		}
+		// else {
+		// 	createNewPost(postBody.value);
+		// }
 
 	});
 });
 
-function createNewPost(body: string, img: File) {
+function createNewPost(body: string, img?: File) {
 	let token = window.localStorage.getItem('token');
 
 	let url = 'http://tarmeezacademy.com/api/v1/posts';
@@ -117,11 +122,16 @@ function createNewPost(body: string, img: File) {
 	}
 
 
-	axios.post(url, formData, { headers }).then(_ => {
+	axios.post(url, formData, { headers }).then((_) => {
 		postBodyElements.forEach(ele => (ele as HTMLTextAreaElement).value = '');
 		postImageElements.forEach(ele => (ele as HTMLInputElement).value = '');
 		(document.querySelector('.create-new-post-box .post-img') as HTMLDivElement).innerHTML = '';
-		window.location.reload();
+		// window.location.reload();
+		// let postsBlock = document.querySelector('.profile-posts .posts') as HTMLDivElement;
+		// createPosts([res], postsBlock, 'des');
+		// floatingNewPost?.classList.remove('active');
+		// createPosts(res.data.data, postsBlock)
+
 	}).catch(error => {
 		console.log(error.response.data.message);
 		Swal.fire({

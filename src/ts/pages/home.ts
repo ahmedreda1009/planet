@@ -1,9 +1,10 @@
 import "../../scss/pages/home/_index.scss";
-import '../components/postBox';
-import '../components/navBar';
+import '../components/post/newPostBox';
+import '../components/global/navBar';
 import '../global';
-import '../components/posts';
-import '../components/connect';
+import '../components/post/posts';
+import '../components/home/homePosts';
+// import '../components/global/connect';
 
 // set home icon color when we are on home.html
 let homeBtnNav = document.querySelector('.icons > div.home');

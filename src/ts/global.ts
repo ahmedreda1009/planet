@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
-import './components/profileCard';
-import { goToProfilePage } from './components/profilePosts';
+import './components/global/profileCard';
+import goToProfilePage from './components/global/goToProfile';
+import user from './components/global/getUser';
 
 // logout button.
 const logoutBtns = document.querySelectorAll('.logout') as NodeList;
@@ -77,7 +78,7 @@ profileIcons.forEach(icon => {
     icon?.addEventListener('click', () => {
         // let pageName = window.location.pathname.split("/").pop();
         // if (pageName === 'profile.html') return;
-        goToProfilePage();
+        goToProfilePage(user.id);
     });
 });
 

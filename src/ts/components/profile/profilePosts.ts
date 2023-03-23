@@ -1,10 +1,11 @@
-import { getPosts, user } from './posts';
+import { getPosts } from '../post/posts';
+import user from '../global/getUser';
 
 // loader
 let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivElement;
 
 // where to put the user's posts.
-let profilePosts = document.querySelector('.profile-posts') as HTMLDivElement;
+let profilePosts = document.querySelector('.profile-posts .posts') as HTMLDivElement;
 
 // user id.
 // let userId: number = user.id;
@@ -14,18 +15,8 @@ let userId: (string | null) = window.localStorage.getItem('userProfileId');
 let apiUrl = `https://tarmeezacademy.com/api/v1/users/${userId || user.id}/posts?sortBy=created_at?orderBy=des`;
 
 // trigger the getPosts fn.
-getPosts(apiUrl, profilePosts, 'des');
+getPosts(apiUrl, profilePosts);
 
 setTimeout(() => {
     loader.classList.add('hide');
 }, 500);
-
-// // removing the loader on scrolling.
-// window.addEventListener('scroll', () => {
-//     loader.classList.add('hide');
-// });
-
-export function goToProfilePage() {
-    window.localStorage.setItem('userProfileId', user.id);
-    window.location.href = 'profile.html';
-}

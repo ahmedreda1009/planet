@@ -100,9 +100,9 @@ signUpBtn.addEventListener("click", (e) => {
 			imgInput.classList.add("empty");
 		}
 	}
-	inputs.forEach((ele) => {
-		console.log(ele.value);
-	});
+	// inputs.forEach((ele) => {
+	// 	console.log(ele.value);
+	// });
 });
 
 // handle border color of inputs when changing values
@@ -148,7 +148,7 @@ inputFile.addEventListener("change", () => {
 		e.preventDefault();
 
 		// remove image when click on remove image icon.
-		selectedImg.src = require("../../assets/profile_picture.png");
+		selectedImg.src = require("../../../assets/profile_picture.png");
 		inputFile.value = "";
 		selectImgBtn.classList.add("empty");
 	});

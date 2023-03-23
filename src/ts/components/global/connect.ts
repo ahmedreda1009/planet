@@ -1,5 +1,5 @@
 import axios from "axios";
-import { checkUrl } from './posts';
+import checkUrl from './checkImageUrl';
 
 let loader = document.querySelector('.connect .lds-ellipsis') as HTMLDivElement;
 let floatingLoader = document.querySelector('.floating-connect-box .connect .lds-ellipsis') as HTMLDivElement;
@@ -48,10 +48,9 @@ function getUsersPages(currPage: number, usersBlock: HTMLDivElement) {
 }
 
 function getUsers(url: string, div: HTMLDivElement) {
-
     axios.get(url).then(res => {
         res.data.data.map((user: any) => {
-            let userImageUrl = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
+            let userImageUrl = checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png');
 
             let userDiv = document.createElement('div');
             userDiv.className = 'user-card';

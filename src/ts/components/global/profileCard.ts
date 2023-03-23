@@ -1,5 +1,6 @@
-import { checkUrl, user } from './posts'
-import { goToProfilePage } from './profilePosts';
+import checkUrl from './checkImageUrl';
+import user from './getUser';
+import goToProfilePage from './goToProfile';
 
 // set user image in profile card.
 const profileCardImg = document.querySelector('.profile-icon .profile-img-icon img') as HTMLImageElement;
@@ -15,17 +16,17 @@ const userName = user.name.split(" ").map((element: string) => {
 });
 profileCardName.innerHTML = userName.join(' ');
 profileCardName.addEventListener('click', () => {
-    goToProfilePage();
+    goToProfilePage(user.id);
 })
 
 // set user username in profile card.
 const profileCardUsername = document.querySelector('#profile-card .name-and-username .username span') as HTMLSpanElement;
-profileCardUsername.innerHTML = user.username;
+profileCardUsername.innerHTML = `@${user.username}`;
 
 let profileBtns = document.querySelectorAll('.profile-btn');
 profileBtns.forEach(btn => {
     (btn as HTMLElement).dataset.userid = user.id;
     btn.addEventListener('click', () => {
-        goToProfilePage();
+        goToProfilePage(user.id);
     });
 });

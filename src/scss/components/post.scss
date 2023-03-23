@@ -199,6 +199,14 @@
 			min-height: 80px;
 		}
 
+		&.removed {
+			height: 0px;
+		}
+
+		&.new {
+			min-height: 160px;
+		}
+
 		.change-image,
 		.remove-image {
 			position: absolute;
@@ -299,10 +307,12 @@
 		// margin-top: 10px;
 		padding: 10px;
 		padding-top: 10px;
-		border-top: 2px solid #ddd;
+		// border-top: 2px solid #ddd;
 
 		.comments-wrapper {
 			display: flex;
+			gap: 10px;
+			margin-bottom: 5px;
 
 			.comments-number {
 				font-size: 15px;
@@ -319,6 +329,8 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				color: #999;
 				width: 50%;
+				background-color: #f7f7f7;
+				box-shadow: abstract.$mainShadow;
 
 				&:hover {
 					background-color: #eee;
@@ -347,6 +359,8 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				color: #999;
 				width: 50%;
+				background-color: #f7f7f7;
+				box-shadow: abstract.$mainShadow;
 
 				&:hover {
 					background-color: #eee;

@@ -1,6 +1,6 @@
 import '../../scss/pages/explore.scss';
-import '../components/postBox';
-import '../components/navBar';
+import '../components/post/newPostBox';
+import '../components/global/navBar';
 import '../global';
-import '../components/connect';
-import '../components/explorePosts';
+import '../components/global/connect';
+import '../components/explore/explorePosts';

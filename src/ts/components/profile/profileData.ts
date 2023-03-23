@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import { user, checkUrl } from './posts';
+import user from '../global/getUser';
+import checkUrl from '../global/checkImageUrl';
 
 // user id
 let userId: string = window.localStorage.getItem('userProfileId') as string;

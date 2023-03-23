@@ -1,18 +1,16 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
+import checkUrl from "../global/checkImageUrl";
+import user from "../global/getUser";
 
 // loader
 let loader = document.querySelector('.lds-ellipsis') as HTMLDivElement;
 
 // the div where we eill put the posts that we get from the api.
-let postsBlock = document.querySelector('.posts') as HTMLDivElement;
-
-// get user data from local storage.
-const userData: string = window.localStorage.getItem('user') as string;
-export const user = JSON.parse(userData);
+let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
 
 // get user profile image if exist.
-const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png');
+const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png');
 
 // page numbers.
 let currentPage: number = 1;
@@ -45,21 +43,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-
-// check the validity of a images urls.
-export function checkUrl(string: string) {
-    let givenURL;
-    let regEx = /http(s)?:\/\/localhost\//i;
-    if (regEx.test(string)) return false;
-    try {
-        givenURL = new URL(string);
-    } catch (error) {
-        console.log("error is", error);
-        return false;
-    }
-    return givenURL ? true : false;
-}
-
 // trigger getPosts fn with the current page.
 function getPostsHome(currPage: number) {
     let url = `https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=15`;
@@ -67,145 +50,159 @@ function getPostsHome(currPage: number) {
 }
 
 // fn that get posts from api.
-export function getPosts(url: string, div: HTMLDivElement, order?: string) {
+export function getPosts(url: string, div: HTMLDivElement) {
     axios.get(url).then(res => {
         let data = res.data.data;
 
-        if (order === 'des') data = data.reverse();
-
-        console.log(order);
-
-        data?.map((post: any) => {
-            let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../assets/profile_picture.png');
-            let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : `<img src="" />`;
+        // if (order === 'profile') data = data.reverse();
 
 
+        let pageName = window.location.pathname.split("/").pop();
+        if (pageName === 'profile.html') data = data.reverse();
 
 
-            getComments(post);
+        createPosts(data, div);
 
-            let editPostOptions: string = '';
-            if (post.author.id === user.id) {
-                editPostOptions = `
-                <div class="edit">
-                    <i class="fa-solid fa-ellipsis"></i>
-                    <ul class="options">
-                        <li class="bg bg-primary edit-btn">Edit</li>
-                        <li class="bg bg-danger delete-btn">Delete</li>
-                    </ul>
-                </div>`;
-            }
+        loader.classList.add('hide');
 
-            let postDiv = document.createElement('div');
-            postDiv.className = 'post';
-            postDiv.dataset.postid = `${post.id}`;
+        handlePostOptions();
 
-            let postSkeleton = `
-            <div class="header">
-                <div class="profile-icon" data-userid="${post.author.id}">
-                    <div class="profile-img-icon">
-                        <img src="${postAuthorImg}" />
-                    </div>
-                </div>
-                <div class="name-and-username">
-                    <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
-                    <div class="time text-muted">${post.created_at}</div>
-                </div>
-                ${editPostOptions}
-                </div>
-            <div class="save-cancel-edit">
-                <div class="btn btn-sm btn-primary save-changes">SAVE CHANGES</div>
-                <div class="btn btn-sm btn-danger cancel">CANCEL</div>
-            </div>
-            <div class="text">${post.body}</div>
-            <div class="image">
-                ${postImage}
-                <div class="change-image">
-                    <label for="change-image-post-${post.id}">
-                        <i class="fa-solid fa-camera" >
-                            <input type="file" name="post image" class="chnage-photo-post" id="change-image-post-${post.id}" />
-                        </i>
-                    </label>
-                </div>
-                <div class="remove-image">
-                    <i class="fa-solid fa-xmark"></i>
-                </div>
-            </div>
-            <div class="comments">
-                <div class="comments-wrapper">
-                    <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
-                        <span>${post.comments_count ? post.comments_count : '0'}</span>
-                        <i class="fa-regular fa-message"></i>
-                    </div>
-                    <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
-                        <i class="fa-regular fa-message"></i>
-                        <span>Comment</span>
-                    </div>
-                </div>
-                <div id="make-comment-${post.id}" class="collapse">
-                    <div class="card card-body">
-                        <div class="profile-icon" data-userid="${user.id}">
-                            <div class="profile-img-icon">
-                                <img src="${userImage}" />
-                            </div>
-                        </div>
-                        <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
-                        <i class="fa-solid fa-circle-right"></i>
-                    </div>
-                </div>
-                <div id="comments-number-${post.id}" class="collapse">
-                    <div class="card card-body"></div>
-                </div>
+        lastPage = res.data.meta.last_page;
+    }).catch(error => {
+        console.log(error);
+        Swal.fire({
+            icon: 'error',
+            title: `${error.response.data.message}`,
+            text: 'Try again later!'
+        })
+    });
+}
+
+// create posts.
+export function createPosts(data: Object[], div: HTMLDivElement) {
+    data?.forEach((post: any) => {
+        let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../../assets/profile_picture.png');
+        let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : `<img src="" />`;
+
+        getComments(post);
+
+        let editPostOptions: string = '';
+        if (post.author.id === user.id) {
+            editPostOptions = `
+            <div class="edit">
+                <i class="fa-solid fa-ellipsis"></i>
+                <ul class="options">
+                    <li class="bg bg-primary edit-btn">Edit</li>
+                    <li class="bg bg-danger delete-btn">Delete</li>
+                </ul>
             </div>`;
+        }
 
-            postDiv.innerHTML = postSkeleton;
-            div.append(postDiv);
+        let postDiv = document.createElement('div');
+        postDiv.className = 'post';
+        postDiv.dataset.postid = `${post.id}`;
 
-            function goToProfile() {
-                window.localStorage.setItem('userProfileId', post.author.id);
-                window.location.href = 'profile.html';
+        let postSkeleton = `
+        <div class="header">
+            <div class="profile-icon" data-userid="${post.author.id}">
+                <div class="profile-img-icon">
+                    <img src="${postAuthorImg}" />
+                </div>
+            </div>
+            <div class="name-and-username">
+                <div class="name" data-userid="${post.author.id}">${post.author.name} <span class="text-muted username">@${post.author.username}</span></div>
+                <div class="time text-muted">${post.created_at}</div>
+            </div>
+            ${editPostOptions}
+            </div>
+        <div class="save-cancel-edit">
+            <div class="btn btn-sm btn-primary save-changes">SAVE CHANGES</div>
+            <div class="btn btn-sm btn-danger cancel">CANCEL</div>
+        </div>
+        <div class="text">${post.body}</div>
+        <div class="image">
+            ${postImage}
+            <div class="change-image">
+                <label for="change-image-post-${post.id}">
+                    <i class="fa-solid fa-camera" >
+                        <input type="file" name="post image" class="chnage-photo-post" id="change-image-post-${post.id}" />
+                    </i>
+                </label>
+            </div>
+            <div class="remove-image">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+        </div>
+        <div class="comments">
+            <div class="comments-wrapper">
+                <div class="comments-number" data-bs-toggle="collapse" href="#comments-number-${post.id}" role="button" aria-expanded="false" aria-controls="comments-number">
+                    <span>${post.comments_count ? post.comments_count : '0'}</span>
+                    <i class="fa-regular fa-message"></i>
+                </div>
+                <div class="make-comment" type="button" data-bs-toggle="collapse" data-bs-target="#make-comment-${post.id}" aria-expanded="false" aria-controls="make-comment">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Comment</span>
+                </div>
+            </div>
+            <div id="make-comment-${post.id}" class="collapse">
+                <div class="card card-body">
+                    <div class="profile-icon" data-userid="${user.id}">
+                        <div class="profile-img-icon">
+                            <img src="${userImage}" />
+                        </div>
+                    </div>
+                    <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
+                    <i class="fa-solid fa-circle-right"></i>
+                </div>
+            </div>
+            <div id="comments-number-${post.id}" class="collapse">
+                <div class="card card-body"></div>
+            </div>
+        </div>`;
+
+        postDiv.innerHTML = postSkeleton;
+
+        // if (order == 'profile') {
+        //     div.prepend(postDiv);
+        // }
+        div.append(postDiv);
+
+        function goToProfile() {
+            window.localStorage.setItem('userProfileId', post.author.id);
+            window.location.href = 'profile.html';
+        }
+
+
+        postDiv.querySelector(`.profile-icon`)?.addEventListener('click', () => {
+            goToProfile();
+        });
+
+        postDiv.querySelector(`.name-and-username .name`)?.addEventListener('click', () => {
+            goToProfile();
+        });
+
+        postDiv.querySelector(`[id^="make-comment"] .profile-icon`)?.addEventListener('click', () => {
+            window.localStorage.setItem('userProfileId', user.id);
+            window.location.href = 'profile.html';
+        });
+
+        postDiv.querySelector("[id^='make-comment'] > div > i")?.addEventListener('click', () => {
+            let commentInput = postDiv?.querySelector('.comments input') as HTMLInputElement;
+
+            if (commentInput.value != '') {
+                makeNewComment(post.id, commentInput.value, commentInput);
             }
+        });
 
-
-            postDiv.querySelector(`.profile-icon`)?.addEventListener('click', () => {
-                goToProfile();
-            });
-
-            postDiv.querySelector(`.name-and-username .name`)?.addEventListener('click', () => {
-                goToProfile();
-            });
-
-            postDiv.querySelector(`[id^="make-comment"] .profile-icon`)?.addEventListener('click', () => {
-                window.localStorage.setItem('userProfileId', user.id);
-                window.location.href = 'profile.html';
-            });
-
-            postDiv.querySelector("[id^='make-comment'] > div > i")?.addEventListener('click', () => {
+        (postDiv.querySelector("[id='new-comment']") as HTMLInputElement)?.addEventListener('keypress', (e: KeyboardEvent) => {
+            if (e.keyCode === 13) {
                 let commentInput = postDiv?.querySelector('.comments input') as HTMLInputElement;
 
                 if (commentInput.value != '') {
                     makeNewComment(post.id, commentInput.value, commentInput);
                 }
-            });
-
-
-            (postDiv.querySelector("[id='new-comment']") as HTMLInputElement)?.addEventListener('keypress', (e: KeyboardEvent) => {
-                if (e.keyCode === 13) {
-                    let commentInput = postDiv?.querySelector('.comments input') as HTMLInputElement;
-
-                    if (commentInput.value != '') {
-                        makeNewComment(post.id, commentInput.value, commentInput);
-                    }
-                }
-            });
+            }
         });
-
-        loader.classList.add('hide');
-
-        handlePostOptions();
-        lastPage = res.data.meta.last_page;
-    }).catch(error => {
-        console.log(error);
     });
 }
 
@@ -215,6 +212,7 @@ function handlePostOptions() {
     let delBtns = document.querySelectorAll('.post .header .edit .delete-btn');
     let editBtns = document.querySelectorAll('.post .header .edit .edit-btn');
 
+    // show and hide options
     optionBtns.forEach(btn => {
         window.addEventListener('click', (e: Event) => {
             if (e.target == btn) {
@@ -228,7 +226,6 @@ function handlePostOptions() {
     });
 
     let delBtnId: any;
-
 
     delBtns.forEach(btn => {
         btn?.addEventListener('click', () => {
@@ -250,8 +247,7 @@ function handlePostOptions() {
                         "authorization": `Bearer ${token}`,
                         "Content-Type": 'application/json'
                     }
-                    axios.delete(delUrl, { headers }).then(res => {
-                        console.log(res);
+                    axios.delete(delUrl, { headers }).then(_ => {
                         (btn.closest('.post') as HTMLElement).remove();
                         Swal.fire(
                             'Deleted!',
@@ -268,20 +264,11 @@ function handlePostOptions() {
     editBtns.forEach((btn) => {
         btn.addEventListener('click', () => {
             let post = btn.closest('.post') as HTMLDivElement;
-            console.log(post);
+
             editPost(post);
             (post as HTMLElement).click();
         })
-    })
-
-    // // add user image besides the new comment box.
-    // const newCommentUserImages = document.querySelectorAll('.posts .post .comments [id^="make-comment"] img') as NodeList;
-    // if (Object.keys(user.profile_image).length !== 0) {
-    //     newCommentUserImages.forEach((img: Node) => {
-    //         (img as HTMLImageElement).src = user.profile_image;
-    //         (img as HTMLImageElement).dataset.id = user.id;
-    //     });
-    // }
+    });
 }
 
 // make a comment
@@ -296,8 +283,7 @@ function makeNewComment(postId: string, commentInput: string, input: HTMLInputEl
         "body": `${commentInput}`
     };
 
-    axios.post(apiUrl, body, { headers }).then(res => {
-        console.log(res.data.data)
+    axios.post(apiUrl, body, { headers }).then(_ => {
 
         let commentsBox = document.querySelector(`#comments-number-${postId} > .card`) as HTMLElement;
 
@@ -305,7 +291,7 @@ function makeNewComment(postId: string, commentInput: string, input: HTMLInputEl
         <div class="comment">
             <div class="profile-icon">
             <div class="profile-img-icon">
-                <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../assets/profile_picture.png')}" />
+                <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png')}" />
             </div>
             </div>
             <div class="comment-box">
@@ -346,7 +332,7 @@ function getComments(post: any) {
                 let commentSkeleton = `
                 <div class="profile-icon">
                     <div class="profile-img-icon">
-                        <img src="${checkUrl(ele.author.profile_image) ? ele.author.profile_image : require('../../assets/profile_picture.png')}" />
+                        <img src="${checkUrl(ele.author.profile_image) ? ele.author.profile_image : require('../../../assets/profile_picture.png')}" />
                     </div>
                 </div>
                 <div class="comment-box">
@@ -423,6 +409,8 @@ function editPost(post: HTMLDivElement) {
 
     // change image in the dom and add the new image to the form data.
     newImageInput.addEventListener('change', () => {
+        postImageDiv.classList.remove('removed');
+        postImageDiv.classList.add('new');
         console.log(newImageInput.value);
         if (!newImageInput.files) return;
         newImageFile = newImageInput.files[0];
@@ -435,10 +423,11 @@ function editPost(post: HTMLDivElement) {
     // send 1px image to the api when removing the image because the api does not let us to delete the image when editing the post.
     postImageRemoveBtn.addEventListener('click', () => {
         postImage.src = '';
+        postImageDiv.classList.add('removed');
+        postImageDiv.classList.remove('new');
 
         // get image file object from image url to arrange it before send it to the api.
-        blobUrlToFile(require('../../assets/empty-image.png')).then((res: any) => {
-            console.log(res);
+        blobUrlToFile(require('../../../assets/empty-image.png')).then((res: any) => {
             formData.append('image', res);
         })
     })
@@ -457,9 +446,15 @@ function editPost(post: HTMLDivElement) {
             "Content-Type": 'multipart/form-data'
         }
 
-        axios.post(url, formData, { headers }).then((res) => {
-            console.log(res);
+        axios.post(url, formData, { headers }).then(_ => {
             removeEditIcons();
+        }).catch((res) => {
+            Swal.fire({
+                title: res.response.data.message,
+                showConfirmButton: true,
+                // 'We will miss you.',
+                icon: 'error'
+            })
         });
     });
 

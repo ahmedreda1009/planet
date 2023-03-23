@@ -1,4 +1,4 @@
-import { getPosts } from './posts';
+import { getPosts } from '../post/posts';
 
 
 // loader
@@ -22,7 +22,7 @@ let tagsImages = ['sports.jpg', 'politics.png', 'economy.jpg', 'entertainment.jp
 let apiUrl = `https://tarmeezacademy.com/api/v1/tags/${tagId}/posts`;
 
 // add image 
-tagImageBlock.src = require(`../../assets/${tagsImages[+tagId - 1]}`);
+tagImageBlock.src = require(`../../../assets/${tagsImages[+tagId - 1]}`);
 
 // add title
 tagTitleBlock.innerHTML = tagsTitle[+tagId - 1];
@@ -42,7 +42,7 @@ window.addEventListener('resize', () => {
 });
 
 // trigger the getPosts fn.
-getPosts(apiUrl, explorePosts, 'des');
+getPosts(apiUrl, explorePosts);
 
 loader.classList.add('hide');
 
