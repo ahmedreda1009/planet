@@ -1,7 +1,7 @@
 import axios from "axios";
 import Swal from 'sweetalert2';
-import checkUrl from "../global/checkImageUrl";
-import user from "../global/getUser";
+import checkUrl from "../checkImageUrl";
+import user from "../getUser";
 
 // loader
 let loader = document.querySelector('.lds-ellipsis') as HTMLDivElement;
@@ -10,7 +10,7 @@ let loader = document.querySelector('.lds-ellipsis') as HTMLDivElement;
 let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
 
 // get user profile image if exist.
-const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png');
+const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../../../assets/profile_picture.png');
 
 // page numbers.
 let currentPage: number = 1;
@@ -69,7 +69,6 @@ export function getPosts(url: string, div: HTMLDivElement) {
 
         lastPage = res.data.meta.last_page;
     }).catch(error => {
-        console.log(error);
         Swal.fire({
             icon: 'error',
             title: `${error.response.data.message}`,
@@ -81,7 +80,7 @@ export function getPosts(url: string, div: HTMLDivElement) {
 // create posts.
 export function createPosts(data: Object[], div: HTMLDivElement) {
     data?.forEach((post: any) => {
-        let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../../assets/profile_picture.png');
+        let postAuthorImg = checkUrl(post.author.profile_image) ? post.author.profile_image : require('../../../../assets/profile_picture.png');
         let postImage = checkUrl(post.image) ? `<img src="${post.image}" />` : `<img src="" />`;
 
         getComments(post);
@@ -283,7 +282,7 @@ function makeNewComment(postId: string, commentInput: string, input: HTMLInputEl
         "body": `${commentInput}`
     };
 
-    axios.post(apiUrl, body, { headers }).then(_ => {
+    axios.post(apiUrl, body, { headers }).then((_) => {
 
         let commentsBox = document.querySelector(`#comments-number-${postId} > .card`) as HTMLElement;
 
@@ -291,7 +290,7 @@ function makeNewComment(postId: string, commentInput: string, input: HTMLInputEl
         <div class="comment">
             <div class="profile-icon">
             <div class="profile-img-icon">
-                <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png')}" />
+                <img src="${checkUrl(user.profile_image) ? user.profile_image : require('../../../../assets/profile_picture.png')}" />
             </div>
             </div>
             <div class="comment-box">
@@ -332,7 +331,7 @@ function getComments(post: any) {
                 let commentSkeleton = `
                 <div class="profile-icon">
                     <div class="profile-img-icon">
-                        <img src="${checkUrl(ele.author.profile_image) ? ele.author.profile_image : require('../../../assets/profile_picture.png')}" />
+                        <img src="${checkUrl(ele.author.profile_image) ? ele.author.profile_image : require('../../../../assets/profile_picture.png')}" />
                     </div>
                 </div>
                 <div class="comment-box">
@@ -411,7 +410,7 @@ function editPost(post: HTMLDivElement) {
     newImageInput.addEventListener('change', () => {
         postImageDiv.classList.remove('removed');
         postImageDiv.classList.add('new');
-        console.log(newImageInput.value);
+
         if (!newImageInput.files) return;
         newImageFile = newImageInput.files[0];
         const src = URL.createObjectURL(newImageFile);
@@ -427,7 +426,7 @@ function editPost(post: HTMLDivElement) {
         postImageDiv.classList.remove('new');
 
         // get image file object from image url to arrange it before send it to the api.
-        blobUrlToFile(require('../../../assets/empty-image.png')).then((res: any) => {
+        blobUrlToFile(require('../../../../assets/empty-image.png')).then((res: any) => {
             formData.append('image', res);
         })
     })

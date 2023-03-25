@@ -1,8 +1,8 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-import blobUrlToFile from "../global/convertUrlToFile";
+import blobUrlToFile from "../convertUrlToFile";
 
-export function editPost(post: HTMLDivElement) {
+function editPost(post: HTMLDivElement) {
     let postId = post.getAttribute('data-postid');
     let postBody = post.querySelector('.text') as HTMLDivElement;
     let postImageDiv = post.querySelector('.image') as HTMLDivElement;
@@ -52,7 +52,7 @@ export function editPost(post: HTMLDivElement) {
     newImageInput.addEventListener('change', () => {
         postImageDiv.classList.remove('removed');
         postImageDiv.classList.add('new');
-        console.log(newImageInput.value);
+
         if (!newImageInput.files) return;
         newImageFile = newImageInput.files[0];
         const src = URL.createObjectURL(newImageFile);
@@ -68,7 +68,7 @@ export function editPost(post: HTMLDivElement) {
         postImageDiv.classList.remove('new');
 
         // get image file object from image url to arrange it before send it to the api.
-        blobUrlToFile(require('../../../assets/empty-image.png')).then((res: any) => {
+        blobUrlToFile(require('../../../../assets/empty-image.png')).then((res: any) => {
             formData.append('image', res);
         })
     })
@@ -99,13 +99,12 @@ export function editPost(post: HTMLDivElement) {
         });
     });
 
-
     // when click cancel remove edit icons and return the old data to the post.
     cancelChangesBtn.addEventListener('click', () => {
         removeEditIcons();
         postImage.src = defaultImagePost;
         postBody.textContent = defaultpostText;
     })
-
-
 }
+
+export default editPost;

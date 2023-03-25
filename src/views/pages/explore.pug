@@ -1,13 +1,15 @@
 extends ../layouts/page-skeleton
 
 block mainBlock
-    .tags-head
-        .background-image
-            img(src=require('../../assets/sports.jpg'), alt="sports equipment")
-            //- img(src=require('../../assets/politics.png'), alt="sports equipment")
-            //- img(src=require('../../assets/economy.jpg'), alt="sports equipment")
-            //- img(src=require('../../assets/entertainment.jpg'), alt="sports equipment")
-        .title
-            i.fa-solid.fa-hashtag
-            span SPORTS
-    .tags-posts
+	.tags-head
+		.background-image
+			img(src=require('../../assets/sports.jpg'), alt="sports equipment")
+			//- img(src=require('../../assets/politics.png'), alt="sports equipment")
+			//- img(src=require('../../assets/economy.jpg'), alt="sports equipment")
+			//- img(src=require('../../assets/entertainment.jpg'), alt="sports equipment")
+		.title
+			i.fa-solid.fa-hashtag
+			span SPORTS
+	.tags-posts
+	.explore-loader
+		include ../components/loader

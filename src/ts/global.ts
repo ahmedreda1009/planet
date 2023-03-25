@@ -1,7 +1,8 @@
 import Swal from 'sweetalert2';
-import './components/global/profileCard';
 import goToProfilePage from './components/global/goToProfile';
 import user from './components/global/getUser';
+import './components/global/profileCard';
+import '../ts/components/global/connect/users';
 
 // logout button.
 const logoutBtns = document.querySelectorAll('.logout') as NodeList;
@@ -40,16 +41,16 @@ logoutBtns.forEach(btn => {
 // click on home button in left side.
 let homeBtn = document.querySelector('.profile .home-btn') as HTMLButtonElement;
 homeBtn.addEventListener('click', () => {
-    let pageName = window.location.pathname.split("/").pop();
-    if (pageName === 'home.html') return;
+    // let pageName = window.location.pathname.split("/").pop();
+    // if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
 
 // click on home icon in botton nav bar.
 let homeIcon = document.querySelector('.icons .home') as HTMLDivElement;
 homeIcon.addEventListener('click', () => {
-    let pageName = window.location.pathname.split("/").pop();
-    if (pageName === 'home.html') return;
+    // let pageName = window.location.pathname.split("/").pop();
+    // if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
 
@@ -85,8 +86,8 @@ profileIcons.forEach(icon => {
 // click on logo
 let logo = document.querySelector('nav a.navbar-brand #logo') as HTMLDialogElement;
 logo.addEventListener('click', () => {
-    let pageName = window.location.pathname.split("/").pop();
-    if (pageName === 'home.html') return;
+    // let pageName = window.location.pathname.split("/").pop();
+    // if (pageName === 'home.html') return;
     window.location.href = 'home.html';
 });
 
@@ -107,9 +108,9 @@ tagsNavButton.forEach((icon: any) => {
     });
 });
 
-// loader
-let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivElement;
+// // loader
+// let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivElement;
 
-setTimeout(() => {
-    loader.classList.add('hide');
-}, 500);
+// setTimeout(() => {
+//     loader.classList.add('hide');
+// }, 500);

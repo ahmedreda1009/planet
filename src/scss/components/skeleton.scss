@@ -14,6 +14,10 @@
 // 	box-shadow: 0 0 0 3px rgb(200 100 100 / 50%);
 // }
 
+// * {
+// 	border-radius: 0px !important;
+// }
+
 body {
 	background-color: #fff;
 	background-color: #ddd;
@@ -61,6 +65,7 @@ body {
 				gap: 10px;
 				align-items: center;
 				padding-left: 20px;
+				border-radius: 10px;
 			}
 
 			.home-btn {
@@ -103,6 +108,10 @@ body {
 				position: sticky;
 				top: 415px;
 				top: 350px;
+
+				li.active {
+					color: rgb(13, 202, 240);
+				}
 			}
 		}
 
@@ -310,6 +319,10 @@ ul.tags-list {
 		&:hover {
 			background-color: #eee;
 			// color: #fff;
+		}
+
+		&.active {
+			color: rgb(13, 202, 240);
 		}
 	}
 

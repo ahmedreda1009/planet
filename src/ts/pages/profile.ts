@@ -1,11 +1,11 @@
 import '../../scss/pages/profile.scss';
-import '../components/post/newPostBox';
+import '../components/global/post/newPostBox';
 import '../components/global/navBar';
 import '../global';
-import '../components/global/connect';
 import '../components/profile/profilePosts';
 import '../components/profile/profileData';
 import user from '../components/global/getUser';
+// import '../components/global/connect';
 
 if (user.id == window.localStorage.getItem('userProfileId')) {
     let profileBtnNav = document.querySelector('.icons > div.profile');

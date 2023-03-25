@@ -1,8 +1,5 @@
-import axios from 'axios';
-import Swal from 'sweetalert2';
-import user from '../global/getUser';
-import checkUrl from '../global/checkImageUrl';
-// import { createPosts } from './posts';
+import user from '../getUser';
+import checkUrl from '../checkImageUrl';
 export { }
 
 // calculate the height of the text area after writing soem text.
@@ -29,9 +26,12 @@ window.addEventListener('click', (e: Event) => {
 	const showBtn = (e.target as HTMLDivElement)?.classList.contains('post-btn');
 	const showIcon = (e.target as HTMLDivElement)?.closest('.post-icon');
 	const hideNewPostBox = document.querySelector('.floating-new-post-box .fa-xmark') as HTMLElement;
+	const makeNewPostBtn = document.querySelector('.floating-new-post-box .post-btn');
 
-	if (e.target === hideNewPostBox) floatingNewPost?.classList.remove('active');
+	if (e.target === hideNewPostBox || e.target === makeNewPostBtn) floatingNewPost?.classList.remove('active');
+
 	if (isPostBox) return;
+
 
 	if (showBtn || showIcon) {
 		floatingNewPost?.classList.toggle('active');
@@ -81,63 +81,3 @@ if (Object.keys(user.profile_image).length !== 0 && checkUrl(user.profile_image)
 	userImgFloatingBox.src = user.profile_image;
 }
 (userImgFloatingBox.closest('.profile-icon') as HTMLElement).dataset.userid = user.id;
-
-// add new post request.
-let postBtn = document.querySelectorAll('.create-new-post-box div.btns button.post-btn') as NodeList;
-let postBodyElements = document.querySelectorAll('.create-new-post-box textarea') as NodeList;
-let postImageElements = document.querySelectorAll('.create-new-post-box div.btns input') as NodeList;
-postBtn.forEach(btn => {
-	btn.addEventListener('click', (e: Event) => {
-		// console.log('hi');
-		let postBody = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('textarea') as HTMLTextAreaElement;
-		let postImage = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('div.btns input') as HTMLInputElement;
-
-		// console.log(postBody?.value);
-		// console.log(postImage?.value);
-		if (postImage?.files) {
-			// console.log(postImage?.files[0]);
-			if (postBody?.value === '' && postImage.value === '') return;
-			createNewPost(postBody.value, postImage.files[0]);
-		}
-		// else {
-		// 	createNewPost(postBody.value);
-		// }
-
-	});
-});
-
-function createNewPost(body: string, img?: File) {
-	let token = window.localStorage.getItem('token');
-
-	let url = 'http://tarmeezacademy.com/api/v1/posts';
-	let headers = {
-		"authorization": `Bearer ${token}`,
-		"Content-Type": 'multipart/form-data'
-	}
-
-	let formData = new FormData();
-	formData.append('body', body);
-	if (img) {
-		formData.append('image', img);
-	}
-
-
-	axios.post(url, formData, { headers }).then((_) => {
-		postBodyElements.forEach(ele => (ele as HTMLTextAreaElement).value = '');
-		postImageElements.forEach(ele => (ele as HTMLInputElement).value = '');
-		(document.querySelector('.create-new-post-box .post-img') as HTMLDivElement).innerHTML = '';
-		// window.location.reload();
-		// let postsBlock = document.querySelector('.profile-posts .posts') as HTMLDivElement;
-		// createPosts([res], postsBlock, 'des');
-		// floatingNewPost?.classList.remove('active');
-		// createPosts(res.data.data, postsBlock)
-
-	}).catch(error => {
-		console.log(error.response.data.message);
-		Swal.fire({
-			icon: 'error',
-			title: `${error.response.data.message}`,
-			text: 'Something went wrong!'
-		})
-	});
-}

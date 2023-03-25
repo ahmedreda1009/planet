@@ -1,6 +1,10 @@
 import '../../scss/pages/explore.scss';
-import '../components/post/newPostBox';
+import '../components/global/post/newPostBox';
 import '../components/global/navBar';
 import '../global';
-import '../components/global/connect';
 import '../components/explore/explorePosts';
+// import '../components/global/connect';
+
+
+let tags = document.querySelector("body > div.icons > div.tags");
+tags?.classList.add('active');

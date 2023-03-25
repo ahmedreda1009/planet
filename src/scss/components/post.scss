@@ -329,7 +329,7 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				color: #999;
 				width: 50%;
-				background-color: #f7f7f7;
+				// background-color: #f7f7f7;
 				box-shadow: abstract.$mainShadow;
 
 				&:hover {
@@ -359,7 +359,7 @@
 				transition: background-color 0.3s ease, color 0.3s ease;
 				color: #999;
 				width: 50%;
-				background-color: #f7f7f7;
+				// background-color: #f7f7f7;
 				box-shadow: abstract.$mainShadow;
 
 				&:hover {
@@ -456,6 +456,10 @@
 							border-radius: 20px;
 							padding: 5px 15px;
 							flex-grow: 1;
+
+							.comment-author {
+								cursor: pointer;
+							}
 
 							.username {
 								font-size: 13px;
