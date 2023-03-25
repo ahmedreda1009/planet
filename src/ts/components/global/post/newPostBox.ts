@@ -17,7 +17,11 @@ textarea.addEventListener("keyup", () => {
 });
 
 // add the user name to the placeholder in text area.
-textarea.placeholder = `What's on your mind, ${user.name.split(' ')[0]}?`;
+let userName = user.name.split(' ')[0];
+if (userName.length > 10) {
+	userName = `${userName.split(0, 10)}...`;
+}
+textarea.placeholder = `What's on your mind, ${userName}?`;
 
 // show floating new post box.
 const floatingNewPost = document.querySelector('.floating-new-post-box') as HTMLDivElement;
