@@ -35,7 +35,7 @@ module.exports = merge(common, {
             template: './src/views/index.pug',
             filename: 'index.html',
             chunks: [`main`, 'vendor'], // respective JS files
-            excludeChunks: ['home', 'profile'],
+            excludeChunks: htmlPageNames,
             // favicon: './src/assets/favicon.png'
         }),
     ].concat(multipleHtmlPlugins),
