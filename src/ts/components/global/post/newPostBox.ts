@@ -12,16 +12,21 @@ function calcHeight(value: string): number {
 
 // change text area height when writing inside it.
 const textarea = document.querySelector(".post-text-area") as HTMLTextAreaElement;
+const floatingTextarea = document.querySelector(".floating-new-post-box .post-text-area") as HTMLTextAreaElement;
 textarea.addEventListener("keyup", () => {
 	textarea.style.height = calcHeight(textarea.value) + "px";
 });
 
 // add the user name to the placeholder in text area.
 let userName = user.name.split(' ')[0];
-if (userName.length > 10) {
-	userName = `${userName.split(0, 10)}...`;
+if (userName.length > 12) {
+	userName = `${userName.slice(0, 12)}...`;
 }
 textarea.placeholder = `What's on your mind, ${userName}?`;
+floatingTextarea.placeholder = `What's on your mind, ${userName}?`;
+
+
+let loader = document.querySelector('.floating-new-post-box .create-new-post-box .new-post-loader .lds-ellipsis');
 
 // show floating new post box.
 const floatingNewPost = document.querySelector('.floating-new-post-box') as HTMLDivElement;
@@ -32,7 +37,11 @@ window.addEventListener('click', (e: Event) => {
 	const hideNewPostBox = document.querySelector('.floating-new-post-box .fa-xmark') as HTMLElement;
 	const makeNewPostBtn = document.querySelector('.floating-new-post-box .post-btn');
 
-	if (e.target === hideNewPostBox || e.target === makeNewPostBtn) floatingNewPost?.classList.remove('active');
+	// if (e.target === hideNewPostBox || e.target === makeNewPostBtn) floatingNewPost?.classList.remove('active');
+	if (e.target === hideNewPostBox) floatingNewPost?.classList.remove('active');
+	if (e.target === makeNewPostBtn) {
+		loader?.classList.remove('hide');
+	}
 
 	if (isPostBox) return;
 

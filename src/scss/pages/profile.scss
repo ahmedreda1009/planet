@@ -142,7 +142,7 @@
 				font-weight: bold;
 
 				@media (max-width: 700px) {
-					font-size: 20px;
+					font-size: 25px;
 				}
 			}
 
@@ -153,7 +153,7 @@
 				font-weight: 400;
 
 				@media (max-width: 700px) {
-					font-size: 12px;
+					font-size: 18px;
 					margin-top: -5px;
 				}
 			}
@@ -173,4 +173,9 @@
 			}
 		}
 	}
+}
+
+.profile-loader {
+	position: relative;
+	bottom: 100px;
 }

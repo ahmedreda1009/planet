@@ -4,7 +4,7 @@
         include ../profile-icon
         textarea.post-text-area(
             name="post content" 
-            placeholder="What's on your mind, Ahmed?"
+            placeholder="What's on your mind, ?"
             rows="2"
             )
     .post-img
@@ -22,4 +22,6 @@
         .attach-img-btn
             input.post-img-input(type="file", name="post-img")
             i.fa-solid.fa-image
+        .new-post-loader    
+            include ../../components/loader
         button.post-btn.btn.btn-info.fw-bold.text-light Post

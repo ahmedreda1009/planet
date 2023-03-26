@@ -20,7 +20,9 @@ async function newPost(body: string, img?: File) {
     }
 
     let formData = new FormData();
-    formData.append('body', body);
+    if (body) {
+        formData.append('body', body);
+    }
     if (img) {
         formData.append('image', img);
     }
@@ -34,7 +36,6 @@ async function newPost(body: string, img?: File) {
         postBodyElements.forEach(ele => (ele as HTMLTextAreaElement).value = '');
         postImageElements.forEach(ele => (ele as HTMLInputElement).value = '');
         (document.querySelector('.create-new-post-box .post-img') as HTMLDivElement).innerHTML = '';
-        // window.location.reload();
 
     }).catch(error => {
         Swal.fire({

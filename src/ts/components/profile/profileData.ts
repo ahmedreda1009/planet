@@ -34,8 +34,18 @@ axios.get(apiUrl).then((res: any) => {
         });
     }
 
-    nameOfUser.innerHTML = data.name;
-    username.innerHTML = `@${data.username}`;
+    let name = data.name;
+    let userName = data.username;
+
+    if (name.length > 15) {
+        name = `${name.slice(0, 15)}...`;
+    }
+    if (userName.length > 15) {
+        userName = `${userName.slice(0, 15)}...`;
+    }
+
+    nameOfUser.innerHTML = name
+    username.innerHTML = `@${userName}`;
     if (user.id === parseInt(userId)) {
         editBtn.classList.remove('hide');
         followBtn.classList.add('hide');
@@ -45,6 +55,12 @@ axios.get(apiUrl).then((res: any) => {
     }
 
     // profileEdit();
+}).catch((error) => {
+    Swal.fire({
+        icon: 'error',
+        title: `${error.response.data.message}`,
+        text: 'Try again later!'
+    })
 });
 
 // follow btn on click

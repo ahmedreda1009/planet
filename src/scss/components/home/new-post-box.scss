@@ -121,13 +121,15 @@
 		display: flex;
 		gap: 5px;
 		justify-content: flex-end;
+		justify-content: space-between;
 		align-items: center;
+		position: relative;
 		// gap: 50px;
 		// padding-left: 10px;
 		// padding-right: 10px;
 
 		.attach-img-btn {
-			margin-right: auto;
+			// margin-right: auto;
 
 			input {
 				display: none;
@@ -243,6 +245,22 @@
 						}
 					}
 				}
+			}
+		}
+
+		.new-post-loader {
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			transform: translateX(-50%);
+			height: 20px;
+			opacity: 1;
+			user-select: all;
+
+			.lds-ellipsis {
+				height: 20px;
+				bottom: 50px;
+				transition: opacity 0.3s ease;
 			}
 		}
 
