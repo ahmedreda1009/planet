@@ -39,6 +39,7 @@ window.addEventListener('click', (e: Event) => {
 
 	if (showBtn || showIcon) {
 		floatingNewPost?.classList.toggle('active');
+		floatingNewPost?.querySelector('textarea')?.focus();
 	} else {
 		floatingNewPost?.classList.remove('active');
 	}
