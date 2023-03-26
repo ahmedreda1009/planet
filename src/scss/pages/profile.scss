@@ -36,7 +36,7 @@
 					content: "\f044";
 					font-family: "Font Awesome 6 Free";
 					font-size: 15px;
-					color: #aaa;
+					color: #eee;
 					position: relative;
 					bottom: 3px;
 					left: 5px;
@@ -133,6 +133,8 @@
 				// color: rgba(255, 255, 255, 0.2);
 				color: rgba(255, 255, 255);
 				// text-shadow: 0px 0px #000;
+				border: none;
+				outline: none;
 			}
 
 			.name {
@@ -156,12 +158,17 @@
 				}
 			}
 
-			.btn {
-				padding-top: 0px;
-				padding-bottom: 0px;
+			.btns {
+				display: flex;
+				gap: 5px;
 
-				&.hide {
-					display: none;
+				.btn {
+					padding-top: 0px;
+					padding-bottom: 0px;
+
+					&.hide {
+						display: none;
+					}
 				}
 			}
 		}

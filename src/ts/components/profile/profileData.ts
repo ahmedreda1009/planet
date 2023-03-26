@@ -2,6 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import user from '../global/getUser';
 import checkUrl from '../global/checkImageUrl';
+// import profileEdit from './profileEdit';
 
 // user id
 let userId: string = window.localStorage.getItem('userProfileId') as string;
@@ -42,6 +43,8 @@ axios.get(apiUrl).then((res: any) => {
         editBtn.classList.add('hide');
         followBtn.classList.remove('hide');
     }
+
+    // profileEdit();
 });
 
 // follow btn on click
