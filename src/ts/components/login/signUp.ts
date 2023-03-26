@@ -4,6 +4,9 @@ import Swal from "sweetalert2";
 // const baseUrl = "https://reqres.in";
 const baseUrl = "https://tarmeezacademy.com/api/v1/register";
 
+let loader = document.querySelector(".sign-up .login-loader") as HTMLElement;
+
+
 // click to show sign up window.
 const createNewAccBtn = document.getElementById(
 	"create-new-acc"
@@ -28,6 +31,7 @@ overlayLayer.addEventListener("click", () => {
 
 // register function
 function register(name: string, username: string, password: string, img: File): void {
+	loader.classList.remove('hide');
 	let formData = new FormData();
 	formData.append("name", name);
 	formData.append("username", username);
@@ -51,6 +55,8 @@ function register(name: string, username: string, password: string, img: File): 
 			showConfirmButton: true,
 			icon: 'error'
 		})
+	}).finally(() => {
+		loader.classList.add('hide');
 	});
 }
 

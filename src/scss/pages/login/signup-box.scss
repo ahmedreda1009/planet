@@ -1,4 +1,5 @@
 @use "../../abstract";
+@use "../../components/loader.scss";
 
 .sign-up {
 	background-color: rgba(0, 0, 0, 0.8);
@@ -13,6 +14,45 @@
 		form {
 			transform: translate(-50%, -50%) scale(1);
 			opacity: 1;
+		}
+	}
+
+	.login-loader {
+		position: absolute;
+		top: 40%;
+		left: 50%;
+		z-index: 10000;
+		transform: translate(-50%, -50%);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		// background-color: #ffffff;
+		border-radius: 10px;
+		height: 30px;
+		opacity: 1;
+		user-select: all;
+		transition: opacity 0.3s ease;
+
+		&.hide {
+			opacity: 0;
+			user-select: none;
+
+			.lds-ellipsis {
+				opacity: 0;
+				user-select: none;
+			}
+		}
+
+		.lds-ellipsis {
+			margin-top: auto;
+			bottom: 0px;
+			height: 30px;
+			opacity: 1;
+			user-select: all;
+
+			> div {
+				top: 56px;
+			}
 		}
 	}
 
@@ -202,7 +242,7 @@
 							// height: 100%;
 							display: block;
 							object-fit: fill;
-							border-radius: 50%;
+							// border-radius: 50%;
 						}
 
 						span {

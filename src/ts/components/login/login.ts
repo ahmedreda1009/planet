@@ -4,6 +4,8 @@ import axios from "axios";
 // const baseUrl = "https://reqres.in";
 const baseUrl = "https://tarmeezacademy.com/api/v1";
 
+let loader = document.querySelector('.login-box .login-loader') as HTMLElement;
+
 // modal fires when user clicks on the forget password button.
 const forgottenPasswordBtn = document.getElementById(
 	"forgotten-password"
@@ -19,6 +21,8 @@ forgottenPasswordBtn.addEventListener("click", () => {
 
 // login function
 function login(username: string, password: string): void {
+	loader.classList.remove('hide');
+
 	axios.post(`${baseUrl}/login`, {
 		"username": username,
 		"password": password,
@@ -37,6 +41,8 @@ function login(username: string, password: string): void {
 			// 'We will miss you.',
 			icon: 'error'
 		})
+	}).finally(() => {
+		loader.classList.add('hide');
 	});
 }
 // password input
