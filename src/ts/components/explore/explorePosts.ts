@@ -13,6 +13,9 @@ import postOptions from "../global/post/postOptions";
 // where to put the tag's posts.
 let explorePosts = document.querySelector('.tags-posts') as HTMLDivElement;
 
+// home posts block
+let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
+
 // loader
 let loader = document.querySelector('.explore-loader .lds-ellipsis') as HTMLDivElement;
 
@@ -69,7 +72,7 @@ window.addEventListener('load', () => {
 
 });
 
-newPostRequest(explorePosts);
+newPostRequest(postsBlock);
 
 function renderPosts() {
     loader.classList.remove('hide');

@@ -12,6 +12,9 @@ let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivE
 // where to put the user's posts.
 let profilePosts = document.querySelector('.profile-posts .posts') as HTMLDivElement;
 
+// home posts block
+let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
+
 // user id.
 // let userId: number = user.id;
 let userId: (string | null) = window.localStorage.getItem('userProfileId');
@@ -24,7 +27,11 @@ window.addEventListener('load', () => {
     renderPosts();
 });
 
-newPostRequest(profilePosts);
+if (user.id == userId) {
+    newPostRequest(profilePosts);
+} else {
+    newPostRequest(postsBlock);
+}
 
 function renderPosts() {
     loader.classList.remove('hide');
