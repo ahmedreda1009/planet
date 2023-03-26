@@ -12,7 +12,7 @@ async function newPost(body: string, img?: File) {
 
     let token = window.localStorage.getItem('token');
 
-    let url = 'http://tarmeezacademy.com/api/v1/posts';
+    let url = 'https://tarmeezacademy.com/api/v1/posts';
 
     let headers = {
         "authorization": `Bearer ${token}`,
