@@ -1,4 +1,6 @@
+import makeNewComments from "./comments";
 import newPost from "./newPost";
+import postOptions from "./postOptions";
 
 function newPostRequest(div: HTMLElement) {
     // add new post request.
@@ -14,10 +16,14 @@ function newPostRequest(div: HTMLElement) {
                 if (postBody?.value === '' && postImage.value === '') return;
                 newPost(postBody.value, postImage.files[0]).then(post => {
                     div.prepend(post);
+                    postOptions(post.dataset.postid);
+                    makeNewComments(post.dataset.postid);
                 });
             } else {
                 newPost(postBody.value).then(post => {
                     div.prepend(post);
+                    postOptions(post.dataset.postid);
+                    makeNewComments(post.dataset.postid);
                 });
             }
         });
