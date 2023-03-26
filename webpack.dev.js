@@ -46,7 +46,7 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             template: 'src/views/index.pug',
             filename: 'index.html',
-            excludeChunks: ['home'],
+            excludeChunks: htmlPageNames,
             chunks: [`main`, 'vendor'], // respective JS files
             cache: false,
             // favicon: 'src/assets/favicon.png'

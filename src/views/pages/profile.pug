@@ -8,10 +8,15 @@ block mainBlock
 		.content
 			.profile-image
 				img(src=require('../../assets/profile_picture.png'), alt="profile picture")
+				label(for="change-profile-image")
+					i.fa-solid.fa-camera
+						input#change-profile-image(type="file" name="profile image")
 			.text
 				.name 
 				.username
 				.edit-btn.btn.btn-info.text-light.fw-bold.rounded-pill.hide EDIT
+				.save-changes-btn.btn.btn-info.text-light.fw-bold.rounded-pill.hide SAVE
+				.cancel-changes-btn.btn.btn-info.text-light.fw-bold.rounded-pill.hide CANCEL
 				.follow-btn.btn.btn-info.text-light.fw-bold.rounded-pill.hide FOLLOW
 	.profile-posts
 		.posts
