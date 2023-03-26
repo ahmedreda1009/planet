@@ -25,6 +25,7 @@ function newPostRequest(div: HTMLElement) {
                     div.prepend(post);
                     postOptions(post.dataset.postid);
                     makeNewComments(post.dataset.postid);
+                    document.querySelector('.floating-new-post-box')?.classList.remove('active');
                 }).catch((error) => {
                     Swal.fire({
                         icon: 'error',
@@ -39,10 +40,10 @@ function newPostRequest(div: HTMLElement) {
                 loader?.classList.remove('hide');
                 newPost(postBody.value).then(post => {
                     if (post == undefined) return;
-                    console.log(post);
                     div.prepend(post);
                     postOptions(post.dataset.postid);
                     makeNewComments(post.dataset.postid);
+                    document.querySelector('.floating-new-post-box')?.classList.remove('active');
                 }).catch((error) => {
                     Swal.fire({
                         icon: 'error',
