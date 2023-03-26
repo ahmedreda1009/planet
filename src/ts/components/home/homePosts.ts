@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
 
 // getting a new page when reaching end of page.
 window.addEventListener('scroll', () => {
-    let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.scrollHeight - 500;
+    let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 1500;
 
     if (endOfPage && currentPage <= lastPage) {
 
