@@ -2,7 +2,11 @@ import axios from "axios";
 import makeComment from "./makeComment";
 
 // make a comment
-function newComment({ postId, input }: { postId: number, input: HTMLInputElement }) {
+async function newComment({ postId, input }: { postId: number, input: HTMLInputElement }) {
+
+    let commentsNumBtn = document.querySelector(`[data-postid="${postId}"] > div.comments > div.comments-wrapper > div.comments-number`) as HTMLElement;
+    let commentsNum = commentsNumBtn.querySelector('span') as HTMLElement;
+    let commentsBox = commentsNumBtn.closest('.comments')?.querySelector(`#comments-number-${postId} .card`) as HTMLElement;
 
     let apiUrl = `https://tarmeezacademy.com/api/v1/posts/${postId}/comments`;
     let token = window.localStorage.getItem('token');
@@ -14,27 +18,21 @@ function newComment({ postId, input }: { postId: number, input: HTMLInputElement
         "body": `${input.value}`
     };
 
-    axios.post(apiUrl, body, { headers }).then((res: any) => {
+    await axios.post(apiUrl, body, { headers }).then((res: any) => {
+        // open comments box after making a comment.
+        if (commentsNumBtn.getAttribute("aria-expanded") == "false") {
+            commentsNumBtn.click();
+        }
+
         let data = res.data.data;
 
         let comment = makeComment(data);
 
         input.value = '';
 
-        let commentsNumBtn = document.querySelector(`[data-postid="${postId}"] > div.comments > div.comments-wrapper > div.comments-number`) as HTMLElement;
-        let commentsNum = commentsNumBtn.querySelector('span') as HTMLElement;
-        let commentsBox = commentsNumBtn.closest('.comments')?.querySelector(`#comments-number-${postId} .card`) as HTMLElement;
         commentsNum.innerHTML = `${parseInt(commentsNum.innerHTML) + 1}`;
 
         commentsBox.append(comment);
-
-        // open comments box after making a commetn.
-        // todo: this two lines don't do what they supposed to do.
-        if (commentsNumBtn.getAttribute("aria-expanded") == "false" && commentsNumBtn.classList.contains('collapsed')) {
-            // open comments box after making a commetn.
-            commentsNumBtn.click();
-        }
-
     });
 }
 
