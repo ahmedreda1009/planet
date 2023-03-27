@@ -54,7 +54,7 @@ function register(name: string, username: string, password: string, img: File): 
 		let errMsg;
 
 		if (res.response.data.message === "The image failed to upload.") {
-			errMsg = "Image size is too big, choose another image."
+			errMsg = "Image size is too big."
 		} else {
 			errMsg = res.response.data.message;
 		}

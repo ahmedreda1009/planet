@@ -91,8 +91,14 @@ function editPost(post: HTMLDivElement) {
         axios.post(url, formData, { headers }).then(_ => {
             removeEditIcons();
         }).catch((res) => {
+            let errorMsg: any;
+            if (res.response.data.message === "The image failed to upload.") {
+                errorMsg = 'Image size is too big.';
+            } else {
+                errorMsg = res.response.data.message;
+            }
             Swal.fire({
-                title: res.response.data.message,
+                title: errorMsg,
                 showConfirmButton: true,
                 // 'We will miss you.',
                 icon: 'error'
@@ -107,6 +113,8 @@ function editPost(post: HTMLDivElement) {
         removeEditIcons();
         postImage.src = defaultImagePost;
         postBody.textContent = defaultpostText;
+        postImageDiv.style.minHeight = '0px';
+        postImageDiv.style.height = '0px';
     })
 }
 
