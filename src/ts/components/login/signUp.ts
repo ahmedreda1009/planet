@@ -49,9 +49,18 @@ function register(name: string, username: string, password: string, img: File): 
 		window.location.href = "home.html";
 	}).catch((res: any) => {
 		window.localStorage.removeItem("token");
+		window.localStorage.removeItem("user");
+
+		let errMsg;
+
+		if (res.response.data.message === "The image failed to upload.") {
+			errMsg = "Image size is too big, choose another image."
+		} else {
+			errMsg = res.response.data.message;
+		}
 
 		Swal.fire({
-			title: res.response.data.message,
+			title: errMsg,
 			showConfirmButton: true,
 			icon: 'error'
 		})
