@@ -14,6 +14,7 @@ function editPost(post: HTMLDivElement) {
     let cancelChangesBtn = post.querySelector('.cancel') as HTMLElement;
     let saveCancelChangesBtn = post.querySelector('.save-cancel-edit') as HTMLElement;
     let editLoader = saveCancelChangesBtn.nextElementSibling?.querySelector('.lds-ellipsis');
+    let editBtn = document.querySelector(".header .edit .edit-btn");
     let newImageFile: any = '';
 
     // get post image and text values before changing them.
@@ -115,6 +116,12 @@ function editPost(post: HTMLDivElement) {
         postBody.textContent = defaultpostText;
         postImageDiv.style.minHeight = '0px';
         postImageDiv.style.height = '0px';
+    });
+
+    editBtn?.addEventListener('click', () => {
+        postImageDiv.style.minHeight = '80px';
+        postImageDiv.style.height = 'auto';
+        postImage.src = '';
     })
 }
 
