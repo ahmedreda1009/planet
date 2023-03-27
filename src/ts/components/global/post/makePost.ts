@@ -41,6 +41,14 @@ function makePost(postData: any) {
             <div class="btn btn-sm btn-info text-light fw-bold save-changes">SAVE CHANGES</div>
             <div class="btn btn-sm btn-danger fw-bold cancel">CANCEL</div>
         </div>
+        <div class="post-edit-loader">
+            <div class="lds-ellipsis hide">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
         <div class="text">${postData.body}</div>
         <div class="image">
             ${postImage}

@@ -13,6 +13,7 @@ function editPost(post: HTMLDivElement) {
     let saveChangesBtn = post.querySelector('.save-changes') as HTMLElement;
     let cancelChangesBtn = post.querySelector('.cancel') as HTMLElement;
     let saveCancelChangesBtn = post.querySelector('.save-cancel-edit') as HTMLElement;
+    let editLoader = saveCancelChangesBtn.nextElementSibling?.querySelector('.lds-ellipsis');
     let newImageFile: any = '';
 
     // get post image and text values before changing them.
@@ -86,7 +87,7 @@ function editPost(post: HTMLDivElement) {
             "Authorization": `Bearer ${token}`,
             "Content-Type": 'multipart/form-data'
         }
-
+        editLoader?.classList.remove('hide');
         axios.post(url, formData, { headers }).then(_ => {
             removeEditIcons();
         }).catch((res) => {
@@ -96,6 +97,8 @@ function editPost(post: HTMLDivElement) {
                 // 'We will miss you.',
                 icon: 'error'
             })
+        }).finally(() => {
+            editLoader?.classList.add('hide');
         });
     });
 
