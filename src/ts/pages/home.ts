@@ -3,8 +3,6 @@ import '../components/global/post/newPostBox';
 import '../components/global/navBar';
 import '../global';
 import '../components/home/homePosts';
-// import '../components/post/posts';
-// import '../components/global/connect';
 
 // set home icon color when we are on home.html
 let homeBtnNav = document.querySelector('.icons > div.home');

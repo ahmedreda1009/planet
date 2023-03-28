@@ -6,7 +6,6 @@ import '../components/profile/profilePosts';
 import '../components/profile/profileData';
 import '../components/profile/profileEdit';
 import user from '../components/global/getUser';
-// import '../components/global/connect';
 
 if (user.id == window.localStorage.getItem('userProfileId')) {
     let profileBtnNav = document.querySelector('.icons > div.profile');

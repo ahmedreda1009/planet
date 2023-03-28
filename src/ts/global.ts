@@ -38,79 +38,61 @@ logoutBtns.forEach(btn => {
     });
 });
 
-// click on home button in left side.
+// click on home buttons.
 let homeBtn = document.querySelector('.profile .home-btn') as HTMLButtonElement;
-homeBtn.addEventListener('click', () => {
-    // let pageName = window.location.pathname.split("/").pop();
-    // if (pageName === 'home.html') return;
-    window.location.href = 'home.html';
-});
-
-// click on home icon in botton nav bar.
 let homeIcon = document.querySelector('.icons .home') as HTMLDivElement;
-homeIcon.addEventListener('click', () => {
-    // let pageName = window.location.pathname.split("/").pop();
-    // if (pageName === 'home.html') return;
-    window.location.href = 'home.html';
+let logo = document.querySelector('nav a.navbar-brand #logo') as HTMLDialogElement;
+
+let homeBtns = [homeBtn, homeIcon, logo];
+
+homeBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let pageName = window.location.pathname.split("/").pop();
+        if (pageName === 'home.html') return;
+        window.location.href = 'home.html';
+    });
 });
 
-// // click on profile button in left side.
-// let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
-// profileBtn.addEventListener('click', () => {
-//     // let pageName = window.location.pathname.split("/").pop();
-//     // if (pageName === 'profile.html') return;
-//     window.location.href = 'profile.html';
-// });
-// // click on profile icon in botton nav bar.
-// let profileIcon = document.querySelector('.icons .profile') as HTMLDivElement;
-// profileIcon.addEventListener('click', () => {
-//     // let pageName = window.location.pathname.split("/").pop();
-//     // if (pageName === 'profile.html') return;
-//     window.location.href = 'profile.html';
-// });
+// click on profile button in left side.
+let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
+let profileIcon = document.querySelector('.icons .profile') as HTMLDivElement;
+
+let profileBtns = [profileBtn, profileIcon];
+
+profileBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        let pageName = window.location.pathname.split("/").pop();
+        if (pageName === 'profile.html') return;
+        // window.location.href = `profile.html?userId=${user.id}`;
+        window.location.href = `profile.html`;
+    });
+});
 
 // click on profile icon in profile card, posts and comments.
-// let profileCardIcon = document.querySelector('.profile-card .profile-icon') as HTMLDivElement;
 let profileCardIcon = document.querySelector("#profile-card > div.header > div.profile-icon")
 let newPostIcons = document.querySelector('.create-new-post-box .profile-icon') as HTMLDivElement;
 
 let profileIcons = [profileCardIcon, newPostIcons]
 profileIcons.forEach(icon => {
     icon?.addEventListener('click', () => {
-        // let pageName = window.location.pathname.split("/").pop();
-        // if (pageName === 'profile.html') return;
+        let pageName = window.location.pathname.split("/").pop();
+        if (pageName === 'profile.html') return;
         goToProfilePage(user.id);
     });
-});
-
-// click on logo
-let logo = document.querySelector('nav a.navbar-brand #logo') as HTMLDialogElement;
-logo.addEventListener('click', () => {
-    // let pageName = window.location.pathname.split("/").pop();
-    // if (pageName === 'home.html') return;
-    window.location.href = 'home.html';
 });
 
 // tags list
 let tagsLeftSide = document.querySelectorAll('#tags li');
 let tagsNavButton = document.querySelectorAll(".icons + ul.tags-list > li");
 
-tagsLeftSide.forEach((icon: any) => {
+let tagsBtns = [...Array.from(tagsLeftSide), ...Array.from(tagsNavButton)];
+
+tagsBtns.forEach((icon: any) => {
     icon.addEventListener('click', () => {
         window.localStorage.setItem('tagId', icon.dataset.tagid);
-        window.location.href = 'explore.html';
+        // window.location.href = `explore.html?tagId=${icon.dataset.tagid}`;
+        let pageName = window.location.pathname.split("/").pop();
+        if (pageName === 'profile.html') return;
+        window.location.href = `explore.html`;
     });
 });
-tagsNavButton.forEach((icon: any) => {
-    icon.addEventListener('click', () => {
-        window.localStorage.setItem('tagId', icon.dataset.tagid);
-        window.location.href = 'explore.html';
-    });
-});
-
-// // loader
-// let loader = document.querySelector('.profile-loader .lds-ellipsis') as HTMLDivElement;
-
-// setTimeout(() => {
-//     loader.classList.add('hide');
-// }, 500);

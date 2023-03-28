@@ -3,8 +3,6 @@ import '../components/global/post/newPostBox';
 import '../components/global/navBar';
 import '../global';
 import '../components/explore/explorePosts';
-// import '../components/global/connect';
-
 
 let tags = document.querySelector("body > div.icons > div.tags");
 tags?.classList.add('active');

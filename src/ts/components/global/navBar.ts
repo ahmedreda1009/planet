@@ -28,11 +28,6 @@ window.addEventListener('click', (e: Event) => {
         }
     }
 });
-// tagsListItems.forEach(ele => {
-//     ele.addEventListener('click', () => {
-//         console.log(ele)
-//     })
-// });
 
 // handle when click connect icon.
 // let connectIcon = document.querySelector('.icons .connect-btn') as HTMLDivElement;
