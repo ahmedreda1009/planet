@@ -14,13 +14,13 @@ function editPost(post: HTMLDivElement) {
     let cancelChangesBtn = post.querySelector('.cancel') as HTMLElement;
     let saveCancelChangesBtn = post.querySelector('.save-cancel-edit') as HTMLElement;
     let editLoader = saveCancelChangesBtn.nextElementSibling?.querySelector('.lds-ellipsis');
-    let editBtn = document.querySelector(".header .edit .edit-btn");
+    // let editBtn = document.querySelector(".header .edit .edit-btn");
     let newImageFile: any = '';
 
     // get post image and text values before changing them.
     // we will use these values if the user cancelled the changes that he made.
-    let defaultImagePost = postImage.src;
-    let defaultpostText = postBody.textContent;
+    let initialImagePost = postImage.src;
+    let initialpostText = postBody.textContent;
 
     // use form data because we will upload image to the api.
     let formData = new FormData();
@@ -47,7 +47,6 @@ function editPost(post: HTMLDivElement) {
         postImageRemoveBtn.classList?.remove('active');
         postImageDiv.classList.remove('edit');
         saveCancelChangesBtn.classList.remove('active');
-
     }
 
     // change image in the dom and add the new image to the form data.
@@ -81,6 +80,10 @@ function editPost(post: HTMLDivElement) {
         formData.append('_method', `put`);
         formData.append('body', `${postBody.textContent}`);
 
+        if (!formData.get('image')) {
+            postImageDiv?.classList.add('removed');
+        }
+
         let url = `https://tarmeezacademy.com/api/v1/posts/${postId}`;
 
         const token = window.localStorage.getItem('token');
@@ -112,17 +115,20 @@ function editPost(post: HTMLDivElement) {
     // when click cancel remove edit icons and return the old data to the post.
     cancelChangesBtn.addEventListener('click', () => {
         removeEditIcons();
-        postImage.src = defaultImagePost;
-        postBody.textContent = defaultpostText;
-        postImageDiv.style.minHeight = '0px';
-        postImageDiv.style.height = '0px';
+        postImage.src = initialImagePost;
+        postBody.textContent = initialpostText;
+        postImageDiv?.classList.remove('removed');
+        // if (postImage.src == '') {
+        //     postImageDiv.style.minHeight = '0px';
+        //     postImageDiv.style.height = '0px';
+        // }
     });
 
-    editBtn?.addEventListener('click', () => {
-        postImageDiv.style.minHeight = '80px';
-        postImageDiv.style.height = 'auto';
-        postImage.src = '';
-    })
+    // editBtn?.addEventListener('click', () => {
+    //     // postImageDiv.style.minHeight = '80px';
+    //     // postImageDiv.style.height = 'auto';
+    //     // postImage.src = '';
+    // })
 }
 
 export default editPost;

@@ -260,8 +260,10 @@
 
 		.change-image {
 			top: 20px;
+			overflow: hidden;
 
 			label {
+				padding: 10px;
 				&:hover {
 					cursor: pointer;
 				}

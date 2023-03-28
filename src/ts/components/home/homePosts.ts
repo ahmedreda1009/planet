@@ -118,14 +118,12 @@ async function getNewPosts() {
         let posts = await getPosts(url);
 
         startOfOldPosts = posts.findIndex((post: any) => post.id == firstPostId);
-        console.log(startOfOldPosts);
 
         if (startOfOldPosts === 0) return;
 
         // if we get the last post startOfOldPosts will not be -1;
         if (startOfOldPosts !== -1) {
             newPosts.push(...posts.slice(0, startOfOldPosts));
-            console.log('render posts');
 
             newPosts = newPosts.reverse();
 
