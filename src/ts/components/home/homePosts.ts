@@ -63,8 +63,10 @@ homeBtns.forEach(btn => {
             postsBlock.style.paddingTop = '40px';
 
             getNewPosts().finally(() => {
-                postsBlock.style.paddingTop = '0px';
-                homePostsTopLoader?.classList.add('hide');
+                setTimeout(() => {
+                    postsBlock.style.paddingTop = '0px';
+                    homePostsTopLoader?.classList.add('hide');
+                }, 500);
             });
         }
     });
