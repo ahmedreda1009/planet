@@ -101,6 +101,7 @@ function renderPosts() {
     });
 }
 
+// get new post when user clicks on home btn and he is in home page.
 async function getNewPosts() {
     homePostsTopLoader?.classList.remove('hide');
 
@@ -109,24 +110,32 @@ async function getNewPosts() {
 
     let newPosts: any[] = [];
 
+    // id of the last post to knew which new posts will be loaded.
     let startOfOldPosts;
 
+    // loop over pages to get the last old post.
     for (let currPage = 1; currPage < lastPage; currPage++) {
 
         let url = `https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=10`;
 
+        // get the first 10 new posts.
         let posts = await getPosts(url);
 
+        // index of the last post the user has in his timeline.
         startOfOldPosts = posts.findIndex((post: any) => post.id == firstPostId);
 
+        // if startOfOldPosts equals zero that means that the last post is the first new one on server and there is not new posts.
         if (startOfOldPosts === 0) return;
 
         // if we get the last post startOfOldPosts will not be -1;
         if (startOfOldPosts !== -1) {
+            // push the posts before the old one and push them to the array.
             newPosts.push(...posts.slice(0, startOfOldPosts));
 
+            // reverse posts to prepend at the top of the page.
             newPosts = newPosts.reverse();
 
+            // add new posts to the page.
             newPosts.forEach((post: any) => {
 
                 postsBlock.prepend(makePost(post));
@@ -142,6 +151,7 @@ async function getNewPosts() {
 
             break;
         } else {
+            // if startOfOldPosts equals -1 that means that all posts we get are new so we will put them all and go get another page.
             newPosts.push(...posts);
         }
     }
