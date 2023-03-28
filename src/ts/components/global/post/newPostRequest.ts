@@ -17,7 +17,6 @@ function newPostRequest(div: HTMLElement) {
             let postBody = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('textarea') as HTMLTextAreaElement;
             let postImage = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('div.btns input') as HTMLInputElement;
 
-
             if (postImage?.files) {
                 if (postBody?.value === '' && postImage.value === '') return;
                 newPost(postBody.value, postImage.files[0]).then(post => {

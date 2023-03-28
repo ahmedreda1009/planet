@@ -113,7 +113,7 @@ async function getNewPosts() {
 
     for (let currPage = 1; currPage < lastPage; currPage++) {
 
-        let url = `https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=20`;
+        let url = `https://tarmeezacademy.com/api/v1/posts?page=${currPage}&limit=10`;
 
         let posts = await getPosts(url);
 

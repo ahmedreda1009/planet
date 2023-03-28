@@ -6,7 +6,6 @@ import '../ts/components/global/connect/users';
 
 // logout button.
 const logoutBtns = document.querySelectorAll('.logout') as NodeList;
-
 logoutBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         Swal.fire({
@@ -42,9 +41,7 @@ logoutBtns.forEach(btn => {
 let homeBtn = document.querySelector('.profile .home-btn') as HTMLButtonElement;
 let homeIcon = document.querySelector('.icons .home') as HTMLDivElement;
 let logo = document.querySelector('nav a.navbar-brand #logo') as HTMLDialogElement;
-
 let homeBtns = [homeBtn, homeIcon, logo];
-
 homeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         let pageName = window.location.pathname.split("/").pop();
@@ -56,9 +53,7 @@ homeBtns.forEach(btn => {
 // click on profile button in left side.
 let profileBtn = document.querySelector('.profile .profile-btn') as HTMLButtonElement;
 let profileIcon = document.querySelector('.icons .profile') as HTMLDivElement;
-
 let profileBtns = [profileBtn, profileIcon];
-
 profileBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         let pageName = window.location.pathname.split("/").pop();
@@ -71,7 +66,6 @@ profileBtns.forEach(btn => {
 // click on profile icon in profile card, posts and comments.
 let profileCardIcon = document.querySelector("#profile-card > div.header > div.profile-icon")
 let newPostIcons = document.querySelector('.create-new-post-box .profile-icon') as HTMLDivElement;
-
 let profileIcons = [profileCardIcon, newPostIcons]
 profileIcons.forEach(icon => {
     icon?.addEventListener('click', () => {
@@ -84,9 +78,7 @@ profileIcons.forEach(icon => {
 // tags list
 let tagsLeftSide = document.querySelectorAll('#tags li');
 let tagsNavButton = document.querySelectorAll(".icons + ul.tags-list > li");
-
 let tagsBtns = [...Array.from(tagsLeftSide), ...Array.from(tagsNavButton)];
-
 tagsBtns.forEach((icon: any) => {
     icon.addEventListener('click', () => {
         window.localStorage.setItem('tagId', icon.dataset.tagid);

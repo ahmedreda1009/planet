@@ -8,7 +8,9 @@ async function getPosts(url: string) {
     await axios.get(url).then(res => {
         data = res.data.data;
 
-        window.localStorage.setItem('lastPostsPage', res?.data?.meta?.last_page);
+        if (res?.data?.meta?.last_page) {
+            window.localStorage.setItem('lastPostsPage', res?.data?.meta?.last_page);
+        }
     }).catch((error) => {
         Swal.fire({
             icon: 'error',

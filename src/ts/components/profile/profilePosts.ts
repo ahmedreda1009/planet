@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import user from '../global/getUser';
 import makeNewComments from '../global/post/comments';
 import getComments from '../global/post/getComments';
@@ -18,10 +17,10 @@ let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
 
 // user id.
 // let userId: number = user.id;
-let userId: (string | null) = window.localStorage.getItem('userProfileId');
+let userId = window.localStorage.getItem('userProfileId');
 
 // api link to get user posts.
-let apiUrl = `https://tarmeezacademy.com/api/v1/users/${userId || user.id}/posts?sortBy=created_at?orderBy=des`;
+let apiUrl = `https://tarmeezacademy.com/api/v1/users/${userId}/posts?sortBy=created_at?orderBy=des`;
 
 // get posts on page load.
 window.addEventListener('load', () => {
@@ -35,7 +34,7 @@ if (user.id == userId) {
 }
 
 function renderPosts() {
-    loader.classList.remove('hide');
+    loader?.classList.remove('hide');
     getPosts(apiUrl).then(posts => {
         let postsReversed = posts.reverse();
         postsReversed.forEach((post: any) => {
@@ -48,13 +47,6 @@ function renderPosts() {
             }
             makeNewComments(post.id);
         });
-    }).catch((error) => {
-        Swal.fire({
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            text: 'Try again later!'
-        })
-    }).finally(() => {
-        loader.classList.add('hide');
+        loader?.classList.add('hide');
     });
 }
