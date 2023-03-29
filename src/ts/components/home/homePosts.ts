@@ -7,6 +7,19 @@ import makePost from "../global/post/makePost";
 import newPostRequest from "../global/post/newPostRequest";
 import postOptions from "../global/post/postOptions";
 
+// sweatalert toast.
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-right',
+    iconColor: '#fff',
+    customClass: {
+        popup: 'colored-toast'
+    },
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true
+})
+
 // the div where we eill put the posts that we get from the api.
 let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
 let homePostsLoading = document.querySelector('.home-posts')?.nextElementSibling as HTMLDivElement;
@@ -60,13 +73,21 @@ homeBtns.forEach(btn => {
         }
 
         if (window.scrollY === 0) {
+            (async () => {
+                await Toast.fire({
+                    icon: 'info',
+                    title: 'Searching for New Posts.'
+                })
+            })()
+
             postsBlock.style.paddingTop = '40px';
 
             getNewPosts().finally(() => {
                 setTimeout(() => {
                     postsBlock.style.paddingTop = '0px';
                     homePostsTopLoader?.classList.add('hide');
-                }, 500);
+                    Toast.close();
+                }, 1000);
             });
         }
     });
@@ -92,12 +113,6 @@ function renderPosts() {
             makeNewComments(post.id);
             throttleTimer = false;
         });
-    }).catch((error) => {
-        Swal.fire({
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            text: 'Try again later!'
-        })
     }).finally(() => {
         homePostsLoading?.classList.add('hide');
     });

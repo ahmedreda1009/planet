@@ -1,4 +1,5 @@
 import axios from "axios";
+import Swal from "sweetalert2";
 import checkUrl from './checkImageUrl';
 
 let loader = document.querySelector('.connect .lds-ellipsis') as HTMLDivElement;
@@ -84,8 +85,15 @@ function getUsers(url: string, div: HTMLDivElement) {
         floatingLoader.classList.add('hide');
 
         lastPage = res.data.meta.last_page;
-    }).catch(error => {
-        console.log(error);
+    }).catch((error) => {
+        let msg = error.response.data.message;
+        if (msg == 'Too Many Attempts.') msg = 'Connection to Server Failed.'
+
+        Swal.fire({
+            icon: 'error',
+            title: `${msg}`,
+            text: 'Try again later!'
+        })
     });
 
 }

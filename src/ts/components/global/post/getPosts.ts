@@ -12,9 +12,12 @@ async function getPosts(url: string) {
             window.localStorage.setItem('lastPostsPage', res?.data?.meta?.last_page);
         }
     }).catch((error) => {
+        let msg = error.response.data.message;
+        if (msg == 'Too Many Attempts.') msg = 'Connection to Server Failed.'
+
         Swal.fire({
             icon: 'error',
-            title: `${error.response.data.message}`,
+            title: `${msg}`,
             text: 'Try again later!'
         })
     });

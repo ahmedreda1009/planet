@@ -10,7 +10,6 @@ logoutBtns.forEach(btn => {
     btn.addEventListener('click', () => {
         Swal.fire({
             title: 'Are you sure?',
-            // text: "We will miss you.",
             icon: 'question',
             showCancelButton: true,
             confirmButtonColor: '#d33',
@@ -19,19 +18,19 @@ logoutBtns.forEach(btn => {
             confirmButtonText: 'Log out!'
         }).then((result) => {
             if (result.isConfirmed) {
-                setTimeout(() => {
+
+
+                (async () => {
+                    await Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'logged out successfully!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                     window.localStorage.removeItem('token');
                     window.location.href = 'index.html';
-                }, 700)
-
-
-                Swal.fire({
-                    title: 'logged out successfully!',
-                    showConfirmButton: false,
-                    // 'We will miss you.',
-                    icon: 'success'
-                })
-
+                })()
             }
         })
     });
@@ -83,8 +82,8 @@ tagsBtns.forEach((icon: any) => {
     icon.addEventListener('click', () => {
         window.localStorage.setItem('tagId', icon.dataset.tagid);
         // window.location.href = `explore.html?tagId=${icon.dataset.tagid}`;
-        let pageName = window.location.pathname.split("/").pop();
-        if (pageName === 'profile.html') return;
+        // let pageName = window.location.pathname.split("/").pop();
+        // if (pageName === 'profile.html') return;
         window.location.href = `explore.html`;
     });
 });

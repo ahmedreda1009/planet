@@ -1,4 +1,3 @@
-import Swal from "sweetalert2";
 import user from "../global/getUser";
 import makeNewComments from "../global/post/comments";
 import getComments from "../global/post/getComments";
@@ -88,12 +87,6 @@ function renderPosts() {
             }
             makeNewComments(post.id);
         });
-    }).catch((error) => {
-        Swal.fire({
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            text: 'Try again later!'
-        })
     }).finally(() => {
         loader.classList.add('hide');
     });

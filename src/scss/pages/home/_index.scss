@@ -1,1 +1,9 @@
 @use "../../components/skeleton.scss";
+
+.colored-toast.swal2-icon-info {
+	background-color: #3fc3ee !important;
+}
+
+.colored-toast .swal2-title {
+	color: white;
+}
