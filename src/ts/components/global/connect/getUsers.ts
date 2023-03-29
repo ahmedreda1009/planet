@@ -1,4 +1,3 @@
-import Swal from 'sweetalert2';
 import axios from 'axios';
 
 // the div where we eill put the users cards that we get from the api.
@@ -18,12 +17,6 @@ async function getUsers(url: string) {
         data = res.data.data;
 
         window.localStorage.setItem('lastUsersPage', res?.data?.meta?.last_page);
-    }).catch((error) => {
-        Swal.fire({
-            icon: 'error',
-            title: `${error.response.data.message}`,
-            text: 'Try again later!'
-        })
     });
 
     return data;

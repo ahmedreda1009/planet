@@ -1,3 +1,4 @@
+import Swal from 'sweetalert2';
 import user from '../global/getUser';
 import makeNewComments from '../global/post/comments';
 import getComments from '../global/post/getComments';
@@ -48,5 +49,14 @@ function renderPosts() {
             makeNewComments(post.id);
         });
         loader?.classList.add('hide');
+    }).catch((error) => {
+        let msg = error.response.data.message;
+        if (msg == 'Too Many Attempts.') msg = 'Connection to Server Failed.'
+
+        Swal.fire({
+            icon: 'error',
+            title: `${msg}`,
+            text: 'Try again later!'
+        })
     });
 }
