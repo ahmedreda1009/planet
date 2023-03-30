@@ -139,7 +139,7 @@ async function getNewPosts() {
         let posts = await getPosts(url);
 
         // index of the last post the user has in his timeline.
-        startOfOldPosts = posts.findIndex((post: any) => post.id == firstPostId);
+        startOfOldPosts = posts.findIndex((post: any) => post.id <= firstPostId);
 
         // if startOfOldPosts equals zero that means that the last post is the first new one on server and there is not new posts.
         if (startOfOldPosts === 0) return;
