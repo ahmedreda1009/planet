@@ -1,4 +1,5 @@
 import checkUrl from "../checkImageUrl";
+const username = require('../../usernameSize');
 
 
 function makeUser(userData: any) {
@@ -17,9 +18,9 @@ function makeUser(userData: any) {
         </div>
         </div>
         <div class="profile-name">
-            <div class="name">${userData.name}</div>
+            <div class="name">${username(userData.name)}</div>
             <div class="username">
-                @<span>${userData.username}</span>
+                @<span>${username(userData.username)}</span>
             </div>
         </div>
         `;

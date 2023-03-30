@@ -1,5 +1,6 @@
 import user from '../getUser';
 import checkUrl from '../checkImageUrl';
+const username = require('../../usernameSize');
 export { }
 
 // calculate the height of the text area after writing soem text.
@@ -18,12 +19,8 @@ textarea.addEventListener("keyup", () => {
 });
 
 // add the user name to the placeholder in text area.
-let userName = user.name.split(' ')[0];
-if (userName.length > 12) {
-	userName = `${userName.slice(0, 12)}...`;
-}
-textarea.placeholder = `What's on your mind, ${userName}?`;
-floatingTextarea.placeholder = `What's on your mind, ${userName}?`;
+textarea.placeholder = `What's on your mind, ${username(user.name)}?`;
+floatingTextarea.placeholder = `What's on your mind, ${username(user.name)}?`;
 
 
 let loader = document.querySelector('.floating-new-post-box .create-new-post-box .new-post-loader .lds-ellipsis');

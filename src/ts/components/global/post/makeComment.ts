@@ -1,5 +1,6 @@
 import checkUrl from "../checkImageUrl";
 import goToProfilePage from "../goToProfile";
+const username = require('../../usernameSize');
 
 
 function makeComment(commentData: any) {
@@ -15,7 +16,7 @@ function makeComment(commentData: any) {
         </div>
         <div class="comment-box">
             <div class="comment-content">
-                <div class="comment-author">${commentData.author.name} <span class="text-muted username">@${commentData.author.username}</span></div>
+                <div class="comment-author">${username(commentData.author.name)} <span class="text-muted username">@${username(commentData.author.username)}</span></div>
                 ${commentData.body}
             </div>
         </div>`;
