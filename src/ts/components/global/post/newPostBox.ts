@@ -19,7 +19,7 @@ textarea.addEventListener("keyup", () => {
 });
 
 // add the user name to the placeholder in text area.
-Let userFirstName = username(user.name.split(" ")[0]);
+let userFirstName = username(user.name.split(" ")[0]);
 textarea.placeholder = `What's on your mind, ${userFirstName}?`;
 floatingTextarea.placeholder = `What's on your mind, ${userFirstName}?`;
 
