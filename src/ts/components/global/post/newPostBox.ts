@@ -19,8 +19,9 @@ textarea.addEventListener("keyup", () => {
 });
 
 // add the user name to the placeholder in text area.
-textarea.placeholder = `What's on your mind, ${username(user.name)}?`;
-floatingTextarea.placeholder = `What's on your mind, ${username(user.name)}?`;
+Let userFirstName = username(user.name.split(" ")[0]);
+textarea.placeholder = `What's on your mind, ${userFirstName}?`;
+floatingTextarea.placeholder = `What's on your mind, ${userFirstName}?`;
 
 
 let loader = document.querySelector('.floating-new-post-box .create-new-post-box .new-post-loader .lds-ellipsis');
