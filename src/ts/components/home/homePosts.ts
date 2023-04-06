@@ -96,7 +96,7 @@ homeBtns.forEach(btn => {
 function renderPosts() {
     homePostsLoading?.classList.remove('hide');
     // api url
-    let url = `https://tarmeezacademy.com/api/v1/posts?page=${currentPage}&limit=10`;
+    let url = `https://tarmeezacademy.com/api/v1/posts?page=${currentPage}&limit=15`;
 
     getPosts(url).then((posts: any[]) => {
 
@@ -111,10 +111,10 @@ function renderPosts() {
                 postOptions(post.id);
             }
             makeNewComments(post.id);
-            throttleTimer = false;
         });
     }).finally(() => {
         homePostsLoading?.classList.add('hide');
+        throttleTimer = false;
     });
 }
 
