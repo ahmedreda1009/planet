@@ -25,19 +25,13 @@ let postsBlock = document.querySelector('.home-posts .posts') as HTMLDivElement;
 let homePostsLoading = document.querySelector('.home-posts')?.nextElementSibling as HTMLDivElement;
 let homePostsTopLoader = document.querySelector('.home-posts .lds-ellipsis') as HTMLDivElement;
 
-// get user profile image if exist.
-// const userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../../assets/profile_picture.png');
-
 // page numbers.
 let currentPage: number = 1;
-let lastPage: any = 1;
+let lastPage: any = 100;
 if (window.localStorage.getItem('lastPostsPage')) {
     lastPage = window.localStorage.getItem('lastPostsPage');
     lastPage = parseInt(lastPage);
 }
-
-// manage getting posts throttle when reaching the end of the page.
-let throttleTimer: boolean = false;
 
 // get posts on page load.
 window.addEventListener('load', () => {
@@ -45,19 +39,55 @@ window.addEventListener('load', () => {
 });
 
 // getting a new page when reaching end of page.
-window.addEventListener('scroll', () => {
-    let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 500;
+window.addEventListener('scroll', handleInfiniteScroll);
 
-    if (endOfPage && currentPage <= lastPage) {
+let throttleTimer: boolean;
+function throttle(callback: any, time: number) {
+    if (throttleTimer) return;
+    throttleTimer = true;
+    setTimeout(() => {
+        callback();
+        throttleTimer = false;
+    }, time);
+};
 
-        if (throttleTimer) return;
-        throttleTimer = true;
+function handleInfiniteScroll() {
+    throttle(() => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        // let endOfPage: boolean = window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 500;
+        let endOfPage: boolean = scrollTop + clientHeight >= scrollHeight - 1000;
 
-        currentPage++;
+        if (endOfPage && currentPage <= lastPage) {
+            console.log('end');
+            currentPage++;
+            renderPosts();
+        }
+    }, 500);
+};
 
-        renderPosts();
-    }
-});
+function renderPosts() {
+    homePostsLoading?.classList.remove('hide');
+    // api url
+    let url = `https://tarmeezacademy.com/api/v1/posts?page=${currentPage}&limit=15`;
+
+    getPosts(url).then((posts: any[]) => {
+
+        posts.forEach((post: any) => {
+
+            postsBlock.append(makePost(post));
+
+            if (post.comments_count > 0) {
+                getComments(post.id);
+            }
+            if (user.id == post.author.id) {
+                postOptions(post.id);
+            }
+            makeNewComments(post.id);
+        });
+    }).finally(() => {
+        homePostsLoading?.classList.add('hide');
+    });
+}
 
 newPostRequest(postsBlock);
 
@@ -92,31 +122,6 @@ homeBtns.forEach(btn => {
         }
     });
 });
-
-function renderPosts() {
-    homePostsLoading?.classList.remove('hide');
-    // api url
-    let url = `https://tarmeezacademy.com/api/v1/posts?page=${currentPage}&limit=15`;
-
-    getPosts(url).then((posts: any[]) => {
-
-        posts.forEach((post: any) => {
-
-            postsBlock.append(makePost(post));
-
-            if (post.comments_count > 0) {
-                getComments(post.id);
-            }
-            if (user.id == post.author.id) {
-                postOptions(post.id);
-            }
-            makeNewComments(post.id);
-        });
-    }).finally(() => {
-        homePostsLoading?.classList.add('hide');
-        throttleTimer = false;
-    });
-}
 
 // get new post when user clicks on home btn and he is in home page.
 async function getNewPosts() {

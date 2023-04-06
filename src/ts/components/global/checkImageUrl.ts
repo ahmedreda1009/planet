@@ -5,8 +5,8 @@ function checkUrl(string: string) {
     if (regEx.test(string)) return false;
     try {
         givenURL = new URL(string);
-    } catch (error) {
-        console.log("error is", error);
+    } catch (_) {
+        // console.log("error is", error);
         return false;
     }
     return givenURL ? true : false;
