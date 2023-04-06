@@ -157,6 +157,17 @@
 			}
 		}
 
+		.name {
+			display: flex;
+			gap: 10px;
+			// width: 100%;
+
+			> input {
+				min-width: calc(50% - 5px);
+				max-width: calc(50% - 5px);
+			}
+		}
+
 		label {
 			display: flex;
 			justify-content: space-between;

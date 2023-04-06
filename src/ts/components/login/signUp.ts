@@ -8,9 +8,7 @@ let loader = document.querySelector(".sign-up .login-loader") as HTMLElement;
 
 
 // click to show sign up window.
-const createNewAccBtn = document.getElementById(
-	"create-new-acc"
-) as HTMLButtonElement;
+const createNewAccBtn = document.getElementById("create-new-acc") as HTMLButtonElement;
 const signUpBox = document.querySelector(".sign-up") as HTMLDivElement;
 createNewAccBtn.addEventListener("click", (e) => {
 	e.preventDefault();
@@ -30,13 +28,17 @@ overlayLayer.addEventListener("click", () => {
 });
 
 // register function
-function register(name: string, username: string, password: string, img: File): void {
+function register(name: string, username: string, password: string, img?: File): void {
 	loader.classList.remove('hide');
+
 	let formData = new FormData();
 	formData.append("name", name);
 	formData.append("username", username);
 	formData.append("password", password);
-	formData.append("image", img);
+
+	if (img) {
+		formData.append("image", img);
+	}
 
 	let headers = {
 		"Content-Type": 'multipart/form-data'
@@ -70,15 +72,20 @@ function register(name: string, username: string, password: string, img: File): 
 }
 
 // trigger sign-up.
-const nameSignUp = document.getElementById("name-sign-up") as HTMLInputElement;
+const firstNameSignUp = document.getElementById("first-name-sign-up") as HTMLInputElement;
+const lastNameSignUp = document.getElementById("last-name-sign-up") as HTMLInputElement;
 const emailSignUp = document.getElementById("email-sign-up") as HTMLInputElement;
 const passwordSignUp = document.getElementById("password-sign-up") as HTMLInputElement;
 const pictureSignUpValue = document.getElementById("profile-pic") as HTMLInputElement;
 const imgInput = document.getElementById("select-img") as HTMLImageElement;
 const signUpBtn = document.getElementById("sign-up-btn") as HTMLButtonElement;
-const inputs: HTMLInputElement[] = [nameSignUp, emailSignUp, passwordSignUp, pictureSignUpValue];
+
+const inputs: HTMLInputElement[] = [firstNameSignUp, lastNameSignUp, emailSignUp, passwordSignUp];
 signUpBtn.addEventListener("click", (e) => {
 	e.preventDefault();
+
+
+	const nameValue = `${firstNameSignUp.value.trim()} ${lastNameSignUp.value.trim()}`;
 
 	// let inputs: HTMLInputElement[] = [emailSignUp, passwordSignUp];
 
@@ -95,11 +102,14 @@ signUpBtn.addEventListener("click", (e) => {
 		// trigger register request.
 		// register(nameSignUp.value, emailSignUp.value, passwordSignUp.value, pictureSignUpValue.files[0]);
 		if (pictureSignUpValue.files) {
-			register(nameSignUp.value, emailSignUp.value, passwordSignUp.value, pictureSignUpValue.files[0]);
+			register(nameValue, emailSignUp.value, passwordSignUp.value, pictureSignUpValue.files[0]);
+		} else {
+			console.log('no images');
+			register(nameValue, emailSignUp.value, passwordSignUp.value);
 		}
 	} else {
 		// remove red border from input image
-		imgInput.classList.remove("empty");
+		// imgInput.classList.remove("empty");
 
 		// add red border to the empty inputs.
 		inputs.forEach((input) => {
@@ -111,9 +121,9 @@ signUpBtn.addEventListener("click", (e) => {
 		});
 
 		// add red border to input image when it is empty.
-		if (!pictureSignUpValue.value) {
-			imgInput.classList.add("empty");
-		}
+		// if (!pictureSignUpValue.value) {
+		// 	imgInput.classList.add("empty");
+		// }
 	}
 	// inputs.forEach((ele) => {
 	// 	console.log(ele.value);

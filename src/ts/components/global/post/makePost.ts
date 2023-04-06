@@ -7,6 +7,7 @@ function makePost(postData: any) {
 
     let postAuthorImg = checkUrl(postData.author.profile_image) ? postData.author.profile_image : require('../../../../assets/profile_picture.png');
     let postImage = checkUrl(postData.image) ? `<img src="${postData.image}" />` : `<img src="" />`;
+    let userImage = checkUrl(user.profile_image) ? user.profile_image : require('../../../../assets/profile_picture.png');
 
     let editPostOptions: string = '';
     if (postData.author.id === user.id) {
@@ -78,7 +79,7 @@ function makePost(postData: any) {
                 <div class="card card-body">
                     <div class="profile-icon" data-userid="${user.id}">
                         <div class="profile-img-icon">
-                            <img src="${user.profile_image}" />
+                            <img src="${userImage}" />
                         </div>
                     </div>
                     <input id="new-comment" type="text" name="comment" placeholder="Write a comment..." autofocus />
