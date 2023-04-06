@@ -77,7 +77,7 @@ const lastNameSignUp = document.getElementById("last-name-sign-up") as HTMLInput
 const emailSignUp = document.getElementById("email-sign-up") as HTMLInputElement;
 const passwordSignUp = document.getElementById("password-sign-up") as HTMLInputElement;
 const pictureSignUpValue = document.getElementById("profile-pic") as HTMLInputElement;
-const imgInput = document.getElementById("select-img") as HTMLImageElement;
+// const imgInput = document.getElementById("select-img") as HTMLImageElement;
 const signUpBtn = document.getElementById("sign-up-btn") as HTMLButtonElement;
 
 const inputs: HTMLInputElement[] = [firstNameSignUp, lastNameSignUp, emailSignUp, passwordSignUp];
@@ -92,7 +92,7 @@ signUpBtn.addEventListener("click", (e) => {
 	// check if any input is empty.
 	if (inputs.every((ele: HTMLInputElement) => Boolean(ele.value))) {
 		// remove red border from input file.
-		imgInput.classList.remove("empty");
+		// imgInput.classList.remove("empty");
 
 		// remove red border from all inputs.
 		inputs.forEach((input: HTMLInputElement) => {
@@ -153,19 +153,19 @@ const selectedImg = document.querySelector("#selected-img img") as HTMLImageElem
 const removePicBtn = document.getElementById("remove-profile-picture") as HTMLSpanElement;
 
 inputFile.addEventListener("change", () => {
-	const selectImgBtn = document.getElementById("select-img") as HTMLSpanElement;
-	selectImgBtn.classList.remove("empty");
+	// const selectImgBtn = document.getElementById("select-img") as HTMLSpanElement;
+	// selectImgBtn.classList.remove("empty");
 
 	// create the images url
 	// if files is null return.
 	if (!inputFile.files) return;
 	const src = URL.createObjectURL(inputFile.files[0]);
 
-	if (!src) {
-		selectImgBtn.classList.add("empty");
-	} else {
-		selectImgBtn.classList.remove("empty");
-	}
+	// if (!src) {
+	// 	selectImgBtn.classList.add("empty");
+	// } else {
+	// 	selectImgBtn.classList.remove("empty");
+	// }
 
 	selectedImg.src = src;
 
@@ -175,7 +175,7 @@ inputFile.addEventListener("change", () => {
 		// remove image when click on remove image icon.
 		selectedImg.src = require("../../../assets/profile_picture.png");
 		inputFile.value = "";
-		selectImgBtn.classList.add("empty");
+		// selectImgBtn.classList.add("empty");
 	});
 });
 
