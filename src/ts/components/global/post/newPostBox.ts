@@ -24,7 +24,7 @@ textarea.placeholder = `What's on your mind, ${userFirstName}?`;
 floatingTextarea.placeholder = `What's on your mind, ${userFirstName}?`;
 
 
-let loader = document.querySelector('.floating-new-post-box .create-new-post-box .new-post-loader .lds-ellipsis');
+// let loader = document.querySelector('.floating-new-post-box .create-new-post-box .new-post-loader .lds-ellipsis');
 
 // show floating new post box.
 const floatingNewPost = document.querySelector('.floating-new-post-box') as HTMLDivElement;
