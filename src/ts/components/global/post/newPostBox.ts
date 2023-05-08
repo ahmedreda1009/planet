@@ -33,7 +33,7 @@ window.addEventListener('click', (e: Event) => {
 	const showBtn = (e.target as HTMLDivElement)?.classList.contains('post-btn');
 	const showIcon = (e.target as HTMLDivElement)?.closest('.post-icon');
 	const hideNewPostBox = document.querySelector('.floating-new-post-box .fa-xmark') as HTMLElement;
-	const makeNewPostBtn = document.querySelector('.floating-new-post-box .post-btn');
+	// const makeNewPostBtn = document.querySelector('.floating-new-post-box .post-btn');
 
 	// if (e.target === hideNewPostBox || e.target === makeNewPostBtn) floatingNewPost?.classList.remove('active');
 	if (e.target === hideNewPostBox) floatingNewPost?.classList.remove('active');
