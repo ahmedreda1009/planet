@@ -12,10 +12,11 @@ function newPostRequest(div: HTMLElement) {
     let postBtn = document.querySelectorAll('.create-new-post-box div.btns button.post-btn') as NodeList;
     postBtn.forEach(btn => {
         btn.addEventListener('click', (e: Event) => {
-            loader?.classList.remove('hide');
 
             let postBody = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('textarea') as HTMLTextAreaElement;
             let postImage = (e.target as HTMLElement).closest('.create-new-post-box')?.querySelector('div.btns input') as HTMLInputElement;
+            
+            if (postBody?.value) loader?.classList.remove('hide');
 
             if (postImage?.files) {
                 if (postBody?.value === '' && postImage.value === '') return;
