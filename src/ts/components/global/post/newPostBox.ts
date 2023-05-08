@@ -37,9 +37,9 @@ window.addEventListener('click', (e: Event) => {
 
 	// if (e.target === hideNewPostBox || e.target === makeNewPostBtn) floatingNewPost?.classList.remove('active');
 	if (e.target === hideNewPostBox) floatingNewPost?.classList.remove('active');
-	if (e.target === makeNewPostBtn) {
-		loader?.classList.remove('hide');
-	}
+	// if (e.target === makeNewPostBtn) {
+	//	loader?.classList.remove('hide');
+	// }
 
 	if (isPostBox) return;
 
