@@ -1,0 +1,33 @@
+nav {
+  background-color: #020207;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: #222;
+  background-color: #020207;
+}
+nav .container-xl {
+  justify-content: center !important;
+}
+nav .container-xl a.navbar-brand {
+  margin-right: 0px;
+}
+nav .container-xl a.navbar-brand #logo {
+  font-family: "Comfortaa", sans-serif;
+  color: #fff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  display: flex;
+  align-items: center;
+}
+nav .container-xl a.navbar-brand #logo i {
+  font-size: 22px;
+  display: block;
+  padding-top: 3px;
+  cursor: pointer;
+}
+nav .container-xl a.navbar-brand #logo span {
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  cursor: pointer;
+}/*# sourceMappingURL=header.css.map */

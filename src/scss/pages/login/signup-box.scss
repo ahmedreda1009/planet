@@ -222,6 +222,11 @@
 				border-radius: 5px;
 				position: relative;
 
+				> i,
+				> div {
+					cursor: pointer;
+				}
+
 				i.fa-camera {
 					position: absolute;
 					bottom: 5px;

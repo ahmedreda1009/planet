@@ -1,0 +1,36 @@
+aside#tags {
+  background-color: #222;
+  background-color: #020207;
+  background-color: #f7f7f7;
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 10px;
+  max-width: 300px;
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  padding: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+aside#tags h4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: default;
+}
+aside#tags ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+}
+aside#tags ul li {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+aside#tags ul li:hover {
+  background-color: #f9f9f9;
+  color: rgb(13, 202, 240);
+}/*# sourceMappingURL=tags.css.map */

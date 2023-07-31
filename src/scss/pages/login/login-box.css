@@ -1,0 +1,207 @@
+.lds-ellipsis {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: 150px;
+  width: 75px;
+  margin: auto;
+  opacity: 1;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+  transition: opacity 0.3s ease;
+}
+.lds-ellipsis.hide {
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.lds-ellipsis div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  background: rgb(13, 202, 240);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
+.login-box {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  position: relative;
+}
+.login-box .login-loader {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  height: 30px;
+  opacity: 1;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+  transition: opacity 0.3s ease;
+}
+.login-box .login-loader.hide {
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+.login-box .login-loader.hide .lds-ellipsis {
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.login-box .login-loader .lds-ellipsis {
+  margin-top: auto;
+  bottom: 0px;
+  height: 30px;
+  opacity: 1;
+  -webkit-user-select: all;
+     -moz-user-select: all;
+          user-select: all;
+}
+.login-box .login-loader .lds-ellipsis > div {
+  top: 8px;
+}
+.login-box h3.title {
+  color: #464646;
+  font-weight: 400;
+}
+.login-box h3.title span {
+  font-weight: 700;
+  letter-spacing: -1px;
+  font-family: "Comfortaa", sans-serif;
+}
+.login-box form input {
+  transition: color 0.3s ease, border 0.3s ease, border 0.1s ease;
+  height: 50px;
+  min-width: 370px;
+  max-width: 190px;
+  color: #242424;
+  padding: 0.15rem 0.5rem;
+  min-height: 40px;
+  border-radius: 5px;
+  line-height: 1.15;
+  background: none;
+  border: 2px solid #ddd;
+  outline: none;
+}
+@media (max-width: 500px) {
+  .login-box form input {
+    min-width: 300px;
+  }
+}
+.login-box form input.wrong {
+  border-color: red;
+}
+.login-box form input.wrong:focus {
+  border-color: red;
+}
+.login-box form input.wrong:hover {
+  border-color: red;
+}
+.login-box form input:focus {
+  border: 2px solid #222;
+}
+.login-box form input::-moz-placeholder {
+  color: #919191;
+  font-size: 18px;
+}
+.login-box form input::placeholder {
+  color: #919191;
+  font-size: 18px;
+}
+.login-box form input:focus::-moz-placeholder {
+  color: #c9c9c9;
+}
+.login-box form input:focus::placeholder {
+  color: #c9c9c9;
+}
+.login-box form span {
+  position: relative;
+}
+.login-box form span i {
+  position: absolute;
+  top: 16px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.login-box a#forgotten-password {
+  font-size: 13px;
+  padding-top: 10px;
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: auto;
+  text-decoration: none;
+}
+.login-box a#forgotten-password:hover {
+  text-decoration: underline;
+}
+.login-box span.or {
+  position: relative;
+  bottom: 56px;
+  left: 50%;
+  transform: translatex(-50%);
+}/*# sourceMappingURL=login-box.css.map */
